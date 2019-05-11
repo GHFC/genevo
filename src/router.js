@@ -15,29 +15,37 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// The logger of the application.
-// It simply outputs the formatted messages on stdout or stderr
+// Main router
 // =========================================================================
 
-function log (level, message) {
-    
-    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
-    let date = new Date(Date.now() - timeZoneOffset)
-        .toISOString()
-        .replace('T', ' ')
-        .substring(0, 19);
+const express = require('express');
+const requestChecker = require('./controllers/requestChecker');
+const bootstrap = require('./controllers/bootstrap');
+const search = require('./controllers/search');
+const logger = require('./middlewares/log.js');
 
-    let line = date + ' ' + level + ': ' + message;
+const router = express.Router();
 
-    if (level === 'INFO' || level === 'WARN') console.log(line);
-    if (level === 'ERROR' || level === 'FATAL') console.error(line);
-}
+// Middlewares
+// =========================================================================
+
+router.use(logger);
+
+// Routes
+// =========================================================================
+
+// Request the database and return the genes
+router.get('/search', [
+    requestChecker,
+    search
+]);
+
+// Run a bootstrap for the requested genes
+router.get('/bootstrap', [
+    requestChecker,
+    bootstrap
+]);
 
 // =========================================================================
 
-module.exports = {
-    info: function (message) { log('INFO', message) },
-    warn: function (message) { log('WARN', message) },
-    error: function (message) { log('ERROR', message) },
-    fatal: function (message) { log('FATAL', message) },
-};
+module.exports = router;

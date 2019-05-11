@@ -15,29 +15,15 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// The logger of the application.
-// It simply outputs the formatted messages on stdout or stderr
+// Get the confidence interval limits for a distribution
 // =========================================================================
 
-function log (level, message) {
-    
-    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
-    let date = new Date(Date.now() - timeZoneOffset)
-        .toISOString()
-        .replace('T', ' ')
-        .substring(0, 19);
+module.exports = function (distribution) {
+    let high = distribution[Math.round((1 - 0.025) * distribution.length)];
+    let low = distribution[Math.round(0.025 * distribution.length)];
 
-    let line = date + ' ' + level + ': ' + message;
-
-    if (level === 'INFO' || level === 'WARN') console.log(line);
-    if (level === 'ERROR' || level === 'FATAL') console.error(line);
-}
-
-// =========================================================================
-
-module.exports = {
-    info: function (message) { log('INFO', message) },
-    warn: function (message) { log('WARN', message) },
-    error: function (message) { log('ERROR', message) },
-    fatal: function (message) { log('FATAL', message) },
+    return {
+        high: high.toFixed(5),
+        low: low.toFixed(5)
+    };
 };

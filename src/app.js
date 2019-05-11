@@ -1,5 +1,5 @@
-// The Neanderthal project website
-// Copyright (C) 2017 Institut Pasteur
+// Neanderthal Synapse
+// Copyright (C) 2019 Institut Pasteur
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const Database = require('./database');
-// const router = require('./router');
+const router = require('./router');
 const log = require('./utils/logger.js');
 const cast = require('./utils/cast.js');
 
@@ -54,7 +54,7 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 // Router
 // =========================================================================
 
-// app.use('/', router);
+app.use('/', router);
 
 // Server
 // =========================================================================

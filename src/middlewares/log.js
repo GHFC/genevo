@@ -15,29 +15,14 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// The logger of the application.
-// It simply outputs the formatted messages on stdout or stderr
+// Basic logger for each request
 // =========================================================================
 
-function log (level, message) {
-    
-    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
-    let date = new Date(Date.now() - timeZoneOffset)
-        .toISOString()
-        .replace('T', ' ')
-        .substring(0, 19);
-
-    let line = date + ' ' + level + ': ' + message;
-
-    if (level === 'INFO' || level === 'WARN') console.log(line);
-    if (level === 'ERROR' || level === 'FATAL') console.error(line);
-}
+const log = require('../utils/logger.js');
 
 // =========================================================================
 
-module.exports = {
-    info: function (message) { log('INFO', message) },
-    warn: function (message) { log('WARN', message) },
-    error: function (message) { log('ERROR', message) },
-    fatal: function (message) { log('FATAL', message) },
+module.exports = function (req, res ,next) {
+    log.info(req.ip + ' ' + req.method + ' ' + req.originalUrl);
+    next();
 };

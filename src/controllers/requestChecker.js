@@ -15,29 +15,30 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// The logger of the application.
-// It simply outputs the formatted messages on stdout or stderr
+// Check the content of the request
 // =========================================================================
 
-function log (level, message) {
-    
-    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
-    let date = new Date(Date.now() - timeZoneOffset)
-        .toISOString()
-        .replace('T', ' ')
-        .substring(0, 19);
+module.exports = function (req, res, next) {
 
-    let line = date + ' ' + level + ': ' + message;
+    if (!req.query.request) {
+        return res.status(400).send("The request cannot be empty.");
+    }
 
-    if (level === 'INFO' || level === 'WARN') console.log(line);
-    if (level === 'ERROR' || level === 'FATAL') console.error(line);
-}
+    if (/[$.]/.test(req.query.request)) {
+        return res.status(400).send("Dollars and dots are not allowed for database safety reasons.");
+    }
 
-// =========================================================================
+    if (!req.query.exactMatch) {
+        return res.status(400).send("The exact match parameter is missing.");
+    }
 
-module.exports = {
-    info: function (message) { log('INFO', message) },
-    warn: function (message) { log('WARN', message) },
-    error: function (message) { log('ERROR', message) },
-    fatal: function (message) { log('FATAL', message) },
+    if (/(^|\s)\S(\s|$)/.test(req.query.request)) {
+        return res.status(400).send("One of the terms is too short.");
+    }
+
+    if (req.query.request.length < 2) {
+        return res.status(400).send("The request is too short.");
+    }
+
+    next();
 };
