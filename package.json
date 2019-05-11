@@ -2,8 +2,9 @@
   "name": "neanderthal-synapse",
   "version": "0.0.0",
   "description": "The website of the Neanderthal's Synapse project",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,8 @@
   "bugs": "simon.malesys@pasteur.fr",
   "license": "GPL-3.0",
   "dependencies": {
+    "express": "^4.16.4",
+    "helmet": "^3.18.0",
     "mongodb": "^3.2.4"
   }
 }
