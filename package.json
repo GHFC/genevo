@@ -1,0 +1,27 @@
+{
+  "name": "neanderthal-synapse",
+  "version": "0.0.0",
+  "description": "The website of the Neanderthal's Synapse project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://smalesys@gitlab.pasteur.fr/ghfc/neanderthal-synapse.git"
+  },
+  "keywords": [
+    "genetics",
+    "neanderthal",
+    "brain",
+    "evolution",
+    "data-visualization"
+  ],
+  "author": {
+    "name": "Simon Malesys",
+    "email": "simon.malesys@pasteur.fr",
+    "url": "https://research.pasteur.fr/en/member/simon-malesys/"
+  },
+  "bugs": "simon.malesys@pasteur.fr",
+  "license": "GPL-3.0"
+}
