@@ -23,5 +23,8 @@
     "url": "https://research.pasteur.fr/en/member/simon-malesys/"
   },
   "bugs": "simon.malesys@pasteur.fr",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "mongodb": "^3.2.4"
+  }
 }
