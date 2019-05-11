@@ -1,0 +1,9 @@
+# Ignore Node.js specific files and directories
+
+node_modules/
+
+# Logs
+
+logs
+*.log
+npm-debug.log*
