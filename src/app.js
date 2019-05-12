@@ -49,7 +49,9 @@ app.set('trust proxy', proxy);
 // =========================================================================
 
 app.use(helmet());
-app.use(express.static(path.resolve(__dirname, '../dist')));
+app.use(express.static(path.resolve(__dirname, '../dist'), {
+    index: 'neanderthal-synapse.html'
+}));
 
 // Router
 // =========================================================================
