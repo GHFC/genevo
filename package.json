@@ -7,6 +7,7 @@
     "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config src/public/webpack.config.js",
+    "dev": "concurrently 'npm:dev-front' 'npm:dev-back'",
     "dev-front": "webpack-dev-server --config src/public/webpack.config.js",
     "dev-back": "nodemon --use-strict src/app.js"
   },

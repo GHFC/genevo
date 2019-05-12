@@ -1,0 +1,36 @@
+/* ---------------------------------------------------------------------- */
+/* Override the default ElementUI theme */
+/* ---------------------------------------------------------------------- */
+
+@import "theme";
+
+$--color-primary: $secondary;
+$--color-white: $white;
+$--color-black: $black;
+
+$--color-text-regular: $black-light;
+$--color-text-placeholder: $grey-dark;
+$--border-color-light: $grey;
+$--border-color-lighter: $grey-light;
+
+$--card-padding: $spacer;
+$--card-border-color: $grey;
+.el-card__header {
+    font-size: 16px;
+    padding: $spacer;
+}
+
+$--checkbox-bordered-padding: 9px $spacer 9px 10px;
+
+// Temp hack to fix font bugs
+// See this issue: https://github.com/ElemeFE/element/issues/9656
+.el-select-dropdown__item,
+.el-dropdown-menu,
+.el-notification {
+    font-family: $text-font;
+}
+
+/* Icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

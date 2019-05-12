@@ -1,0 +1,54 @@
+@import "../styles/theme";
+@import "../styles/link";
+
+@keyframes rotation {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+#wrapper {
+    height: 100%;
+    background: $primary;
+    color: $grey-light;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    box-sizing: border-box;
+    height: 52px;
+    margin-left: $spacer;
+    width: 52px;
+}
+
+.logo.moving {
+    animation: rotation 0.8s infinite ease-in-out;
+}
+
+.app-title {
+    box-sizing: border-box;
+    font-family: $title-font;
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0;
+    margin-left: 14px;
+}
+
+.links {
+    display: flex;
+    margin: auto 64px auto auto;
+
+    a {
+        @extend %link;
+        color: $grey;
+        padding: 22px 36px;
+
+        i {
+            padding-right: 4px;
+        }
+    }
+}

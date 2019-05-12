@@ -1,3 +1,43 @@
+@import "./styles/theme";
+
 html {
     min-height: 100%;
+}
+
+body, #app {
+    min-height: 100vh;
+}
+
+#app {
+    background-color: $grey-light;
+    font-family: $text-font;
+
+    display: grid;
+    grid-template-columns: 254px 1fr;
+    grid-template-rows: 64px 1fr;
+    grid-template-areas:
+        "topbar  topbar"
+        "sidebar content";
+
+    .topbar {
+        grid-area: topbar;
+
+        height: 64px;
+        position: fixed;
+        width: 100%;
+        z-index: 2400;      /* Ridiculous z-index to avoid cosmetic bugs with ElementUI tooltips */
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+
+        position: fixed;
+        top: 64px;
+        width: 254px;
+        height: 100%;
+    }
+
+    .content {
+        grid-area: content;
+    }
 }

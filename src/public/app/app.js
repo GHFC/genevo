@@ -31,7 +31,7 @@ import Vue from 'vue';
 // import Form from 'element-ui/lib/form';
 // import FormItem from 'element-ui/lib/form-item';
 // import Input from 'element-ui/lib/input';
-// import Notification from 'element-ui/lib/notification';
+import Notification from 'element-ui/lib/notification';
 // import Option from 'element-ui/lib/option';
 // import Pagination from 'element-ui/lib/pagination';
 // import Radio from 'element-ui/lib/radio';
@@ -45,10 +45,10 @@ import Vue from 'vue';
 // import Tooltip from 'element-ui/lib/tooltip';
 
 import 'normalize.css';
-// import './styles/element-theme.scss';
+import './styles/element-theme.scss';
 
-// import topBar from './pages/topbar/topbar.vue';
-// import sideBar from './pages/sidebar/sidebar.vue';
+import topbar from './topbar/topbar.vue';
+import sidebar from './sidebar/sidebar.vue';
 
 // =========================================================================
 
@@ -77,42 +77,41 @@ import 'normalize.css';
 // Vue.use(Tag);
 // Vue.use(Tooltip);
 
-// Vue.prototype.$notify = Notification;
+Vue.prototype.$notify = Notification;
 
 // =========================================================================
 
 export default {
     name: 'ns-app',
     components: {
-        // 'ind-header': topBar,
-        // 'ind-sidebar': sideBar
+        topbar,
+        sidebar
     },
     created: function () {
-        console.log('Vue works !');
 
         // Handle online and offline states properly
         // -----------------------------------------
 
-        // const notify = this.$notify;
-        // let offlineNotification = null;
+        const notify = this.$notify;
+        let offlineNotification = null;
 
-        // window.addEventListener('offline', function () {
-        //     offlineNotification = notify.warning({
-        //         title: 'Network',
-        //         message: 'You are now offline.',
-        //         offset: 64,
-        //         duration: 0
-        //     });
-        // });
+        window.addEventListener('offline', function () {
+            offlineNotification = notify.warning({
+                title: 'Network',
+                message: 'You are offline.',
+                offset: 64,
+                duration: 0
+            });
+        });
 
-        // window.addEventListener('online', function () {
-        //     offlineNotification.close();
-        //     notify.success({
-        //         title: 'Network',
-        //         message: 'You are back online.',
-        //         offset: 64
-        //     });
-        // });
+        window.addEventListener('online', function () {
+            offlineNotification.close();
+            notify.success({
+                title: 'Network',
+                message: 'You are back online.',
+                offset: 64
+            });
+        });
 
         // -----------------------------------------
 

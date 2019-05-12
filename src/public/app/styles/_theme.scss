@@ -1,0 +1,32 @@
+// -------------------------------------------------------------------------
+// Theme variables
+// -------------------------------------------------------------------------
+
+// Colors
+// -------------------------------------------------------------------------
+
+$primary:         #227093;
+$primary-light:   lighten($primary, 10%);
+$primary-dark:    darken($primary, 10%);
+
+$secondary:       #ffb142;
+$secondary-light: lighten($secondary, 10%);
+$secondary-dark:  darken($secondary, 10%);
+
+$black:           rgba(0, 0, 0, 0.87);
+$black-light:     rgba(0, 0, 0, 0.54);
+$grey:            #E0E0E0;
+$grey-dark:       darken($grey, 10%);
+$grey-light:      #F0F0F0;
+$white:           #FFFFFF;
+
+// Fonts
+// -------------------------------------------------------------------------
+
+$title-font: Raleway, sans-serif;
+$text-font: Open sans, sans-serif;
+
+// Spacing
+// -------------------------------------------------------------------------
+
+$spacer: 16px;

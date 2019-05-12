@@ -1,0 +1,11 @@
+@import "theme";
+
+%link {
+    color: $secondary;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: $secondary-light;
+    }
+}
