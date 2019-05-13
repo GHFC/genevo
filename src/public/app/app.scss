@@ -37,7 +37,40 @@ body, #app {
         height: 100%;
     }
 
-    .content {
+    main {
         grid-area: content;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 2fr;
+        grid-gap: $spacer;
+
+        .form {
+            grid-column: 1 / 5;
+        }
+        .bootstrap {
+            grid-column: 1 / 5;
+        }
+        .dnds-by-taxon {
+            grid-column: 1 / 5;
+        }
+        .modern-humans {
+            grid-column: 1 / 3;
+        }
+        .primate-evolution {
+            grid-column: 3 / 5;
+        }
+        .introgression {
+            grid-column: 1 / 5;
+        }
+        .human-hemisphere {
+            grid-column: 1 / 5;
+        }
+        .fetal-human-brain {
+            grid-column: 1 / 2;
+        }
+        .adult-human-brain {
+            grid-column: 2 / 5;
+        }
+
     }
 }

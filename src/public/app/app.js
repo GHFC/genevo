@@ -49,6 +49,15 @@ import './styles/element-theme.scss';
 
 import topbar from './topbar/topbar.vue';
 import sidebar from './sidebar/sidebar.vue';
+import search from './components/search/search.vue';
+import bootstrap from './components/bootstrap/bootstrap.vue';
+import dnds from './components/dnds/dnds.vue';
+import modernHumans from './components/modern-humans/modern-humans.vue';
+import primateEvolution from './components/primate-evolution/primate-evolution.vue';
+import introgression from './components/introgression/introgression.vue';
+import humanHemisphere from './components/human-hemisphere/human-hemisphere.vue';
+import fetalHumanBrain from './components/fetal-human-brain/fetal-human-brain.vue';
+import adultHumanBrain from './components/adult-human-brain/adult-human-brain.vue';
 
 // =========================================================================
 
@@ -85,7 +94,16 @@ export default {
     name: 'ns-app',
     components: {
         topbar,
-        sidebar
+        sidebar,
+        search,
+        bootstrap,
+        dnds,
+        modernHumans,
+        primateEvolution,
+        introgression,
+        humanHemisphere,
+        fetalHumanBrain,
+        adultHumanBrain
     },
     created: function () {
 
