@@ -47,8 +47,9 @@ import Notification from 'element-ui/lib/notification';
 import 'normalize.css';
 import './styles/element-theme.scss';
 
-import topbar from './topbar/topbar.vue';
-import sidebar from './sidebar/sidebar.vue';
+import topbar from './components/topbar/topbar.vue';
+import sidebar from './components/sidebar/sidebar.vue';
+import bottombar from './components/bottombar/bottombar.vue';
 import search from './components/search/search.vue';
 import bootstrap from './components/bootstrap/bootstrap.vue';
 import dnds from './components/dnds/dnds.vue';
@@ -95,6 +96,7 @@ export default {
     components: {
         topbar,
         sidebar,
+        bottombar,
         search,
         bootstrap,
         dnds,
