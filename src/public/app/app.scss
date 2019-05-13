@@ -49,27 +49,35 @@ body, #app {
         }
         .bootstrap {
             grid-column: 1 / 5;
+            margin: 0 $spacer 0 $spacer;
         }
         .dnds-by-taxon {
             grid-column: 1 / 5;
+            margin: 0 $spacer 0 $spacer;
         }
         .modern-humans {
             grid-column: 1 / 3;
+            margin-left: $spacer;
         }
         .primate-evolution {
             grid-column: 3 / 5;
+            margin-right: $spacer;
         }
         .introgression {
             grid-column: 1 / 5;
+            margin: 0 $spacer 0 $spacer;
         }
         .human-hemisphere {
             grid-column: 1 / 5;
+            margin: 0 $spacer 0 $spacer;
         }
         .fetal-human-brain {
             grid-column: 1 / 2;
+            margin-left: $spacer;
         }
         .adult-human-brain {
             grid-column: 2 / 5;
+            margin-right: $spacer;
         }
 
     }

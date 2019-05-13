@@ -20,7 +20,7 @@
 
 import Vue from 'vue';
 // import Button from 'element-ui/lib/button';
-// import Card from 'element-ui/lib/card';
+import Card from 'element-ui/lib/card';
 // import Checkbox from 'element-ui/lib/checkbox';
 // import CheckboxGroup from 'element-ui/lib/checkbox-group';
 // import DatePicker from 'element-ui/lib/date-picker';
@@ -63,7 +63,7 @@ import adultHumanBrain from './components/adult-human-brain/adult-human-brain.vu
 
 // Element-UI components
 // Vue.use(Button);
-// Vue.use(Card);
+Vue.use(Card);
 // Vue.use(Checkbox);
 // Vue.use(CheckboxGroup);
 // Vue.use(DatePicker);
