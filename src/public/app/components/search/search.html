@@ -1,5 +1,24 @@
 <div class="wrapper">
   <el-card class="search-card" shadow="never">
-    <span>{{ $options.name }} working !</span>
+    <div class="card-content">
+      <el-select class="genes-lists" v-model="genesLists" placeholder="Select a list of genes" multiple collapse-tags></el-select>
+      <el-input class="genes-input" v-model="genesInput" type="textarea" rows="5" placeholder="Or enter your own gene list here"></el-input>
+      <el-switch class="exact-match" v-model="exact" active-text="Exact match"></el-switch>
+      <el-switch class="orthologs" v-model="orthologs" active-text="Only 1-to-1 orthologs"></el-switch>
+      <el-select class="quality" v-model="quality" placeholder="Quality">
+        <el-option value="lowQuality" label="Low quality"></el-option>
+        <el-option value="mediumQuality" label="Medium quality"></el-option>
+        <el-option value="highQuality" label="High quality"></el-option>
+      </el-select>
+      <el-select class="allele-frequency" v-model="frequency" placeholder="Allele frequency">
+        <el-option value="pNpSGlobal" label="All alleles frequencies"></el-option>
+        <el-option value="pNpS001" label="MAF < 1%"></el-option>
+        <el-option value="pNpS005" label="MAF > 5%"></el-option>
+      </el-select>
+      <div class="buttons">
+        <el-button class="search-button" type="primary" @click='getGenes'>Search</el-button>
+        <el-button class="reset-button">Reset</el-button>
+      </div>
+    </div>
   </el-card>
 </div>

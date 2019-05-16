@@ -22,6 +22,7 @@
 const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors')
 const Database = require('./database');
 const router = require('./router');
 const log = require('./utils/logger.js');
@@ -48,6 +49,7 @@ app.set('trust proxy', proxy);
 // Middlewares
 // =========================================================================
 
+app.use(cors());
 app.use(helmet());
 app.use(express.static(path.resolve(__dirname, '../dist'), {
     index: 'neanderthal-synapse.html'

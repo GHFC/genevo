@@ -7,3 +7,43 @@
 .search-card {
     height: 100%;
 }
+
+.card-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: $spacer;
+    grid-template-areas:
+        "genes-lists quality"
+        "genes-input allele-frequency"
+        "genes-input exact-match"
+        "genes-input orthologs"
+        "buttons buttons";
+}
+
+.genes-lists {
+    grid-area: genes-lists
+}
+
+.genes-input {
+    grid-area: genes-input
+}
+
+.exact-match {
+    grid-area: exact-match
+}
+
+.orthologs {
+    grid-area: orthologs
+}
+
+.quality {
+    grid-area: quality
+}
+
+.allele-frequency {
+    grid-area: allele-frequency
+}
+
+.buttons {
+    grid-area: buttons
+}

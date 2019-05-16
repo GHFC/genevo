@@ -19,7 +19,7 @@
 // =========================================================================
 
 import Vue from 'vue';
-// import Button from 'element-ui/lib/button';
+import Button from 'element-ui/lib/button';
 import Card from 'element-ui/lib/card';
 // import Checkbox from 'element-ui/lib/checkbox';
 // import CheckboxGroup from 'element-ui/lib/checkbox-group';
@@ -28,15 +28,16 @@ import Card from 'element-ui/lib/card';
 // import Dropdown from 'element-ui/lib/dropdown';
 // import DropdownMenu from 'element-ui/lib/dropdown-menu';
 // import DropdownItem from 'element-ui/lib/dropdown-item';
-// import Form from 'element-ui/lib/form';
-// import FormItem from 'element-ui/lib/form-item';
-// import Input from 'element-ui/lib/input';
+import Form from 'element-ui/lib/form';
+import FormItem from 'element-ui/lib/form-item';
+import Input from 'element-ui/lib/input';
 import Notification from 'element-ui/lib/notification';
-// import Option from 'element-ui/lib/option';
+import Option from 'element-ui/lib/option';
 // import Pagination from 'element-ui/lib/pagination';
-// import Radio from 'element-ui/lib/radio';
+import Radio from 'element-ui/lib/radio';
 // import RadioGroup from 'element-ui/lib/radio-group';
-// import Select from 'element-ui/lib/select';
+import Select from 'element-ui/lib/select';
+import Switch from 'element-ui/lib/switch';
 // import Tabs from 'element-ui/lib/tabs';
 // import TabPane from 'element-ui/lib/tab-pane';
 // import TableColumn from 'element-ui/lib/table-column';
@@ -59,11 +60,15 @@ import introgression from './components/introgression/introgression.vue';
 import humanHemisphere from './components/human-hemisphere/human-hemisphere.vue';
 import fetalHumanBrain from './components/fetal-human-brain/fetal-human-brain.vue';
 import adultHumanBrain from './components/adult-human-brain/adult-human-brain.vue';
+import resources from './resources.js';
+import store from './store.js';
 
 // =========================================================================
 
+Vue.use(resources);
+
 // Element-UI components
-// Vue.use(Button);
+Vue.use(Button);
 Vue.use(Card);
 // Vue.use(Checkbox);
 // Vue.use(CheckboxGroup);
@@ -72,14 +77,15 @@ Vue.use(Card);
 // Vue.use(Dropdown);
 // Vue.use(DropdownMenu);
 // Vue.use(DropdownItem);
-// Vue.use(Form);
-// Vue.use(FormItem);
-// Vue.use(Input);
-// Vue.use(Option);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Option);
 // Vue.use(Pagination);
-// Vue.use(Radio);
+Vue.use(Radio);
 // Vue.use(RadioGroup);
-// Vue.use(Select);
+Vue.use(Select);
+Vue.use(Switch);
 // Vue.use(Tabs);
 // Vue.use(TabPane);
 // Vue.use(Table);
@@ -135,5 +141,7 @@ export default {
 
         // -----------------------------------------
 
-    }
+    },
+    resources: resources,
+    store: store
 };

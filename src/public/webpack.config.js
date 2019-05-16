@@ -67,6 +67,9 @@ module.exports = {
             children: false,
             modules: false
         },
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
     },
     stats: {
         assetsSort: '!size',

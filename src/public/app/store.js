@@ -15,25 +15,41 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Component handling the top bar
+// Vuex store for managing the application's states
 // =========================================================================
 
-const topbar = {
-    name: 'topbar',
-    data: function () {
-        return {
-            title: 'Neanderthal',
-            description: APP_DESCRIPTION,
-            contact: APP_CONTACT,
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+// =========================================================================
+
+Vue.use(Vuex);
+
+// =========================================================================
+
+const store = new Vuex.Store({
+    state: {
+        loading: false,
+        genes: []
+    },
+    mutations: {
+        addRequest: function (state) {
+            state.loading = true;
+        },
+        removeRequest: function (state) {
+            state.loading = false;
+        },
+        setGenes: function (state, genes) {
+            state.genes = genes;
         }
     },
-    computed: {
-        loading: function () {
-            return this.$store.state.loading;
+    getters: {
+        genes: function (state) {
+            return state.genes;
         }
     }
-};
+});
 
 // =========================================================================
 
-export default topbar;
+export default store;

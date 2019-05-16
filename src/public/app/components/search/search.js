@@ -22,10 +22,31 @@ const search = {
     name: 'search',
     data: function () {
         return {
-            title: 'Neanderthal',
-            description: APP_DESCRIPTION,
-            contact: APP_CONTACT
+            genes: [],
+            genesInput: 'rag',
+            genesLists: '',
+            exact: true,
+            orthologs: false,
+            quality: 'mediumQuality',
+            frequency: 'pNpSGlobal'
         };
+    },
+    methods: {
+        getGenes: function () {
+            const params = {
+                request: this.genesInput,
+                exactMatch: this.exact,
+                orthologs: this.orthologs,
+                quality: this.quality,
+                alleleFq: this.frequency
+            }
+
+            this.$resources.search(params).then((response) => {
+                this.$store.commit('setGenes', response.data);
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
     }
 };
 
