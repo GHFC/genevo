@@ -46,6 +46,11 @@ const store = new Vuex.Store({
     getters: {
         genes: function (state) {
             return state.genes;
+        },
+        geneNames: function (state) {
+            return state.genes.map((gene) => {
+                return gene.Gene;
+            })
         }
     }
 });

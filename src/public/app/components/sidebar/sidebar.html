@@ -1,3 +1,81 @@
 <div id="wrapper">
 
+  <div class="genes-found">
+    <span>Genes found</span>
+    <span class="badge">{{ genes.length }}</span>
+  </div>
+
+  <!-- <div class="genes-selected">
+    <span>Genes selected</span>
+    <span class="badge">125</span>
+  </div>
+
+  <div class="clear-button">
+    <el-button type="primary">
+      <i class="el-icon-delete el-icon-left"></i>
+      Clear selection
+    </el-button>
+  </div> -->
+
+  <div class="copy-button">
+    <el-button type="primary" @click="clipboard">
+      <i class="el-icon-copy-document el-icon-left"></i>
+      Copy to clipboard
+    </el-button>
+  </div>
+
+  <div class="genes-filter">
+    <el-input v-model="filter" prefix-icon="el-icon-search" placeholder="Find a gene..."></el-input>
+  </div>
+
+  <div class="genes-pagination">
+    <el-button type="primary" @click="prevPage" circle>
+      <i class="el-icon-arrow-left"></i>
+    </el-button>
+    <span>{{ currentPage }} / {{ totalPages || 1 }}</span>
+    <el-button type="primary" @click="nextPage" circle>
+      <i class="el-icon-arrow-right"></i>
+    </el-button>
+  </div>
+
+  <div class="genes-list">
+    <ul>
+      <li class="gene-item" v-for="gene in paginatedGenes">
+        <div class="gene-item-label" @click="selectGene(gene)" @mouseenter="hoverGene = gene.Gene" @mouseleave="hoverGene = ''">
+          <span>{{ gene.Gene }}</span>
+          <i class="el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoverGene === gene.Gene"></i>
+          <i class="el-icon-caret-top" v-show="selectedGene === gene.Gene"></i>
+        </div>
+
+        <ul class="gene-item-list" v-show="selectedGene === gene.Gene">
+          <li>
+            <a :href="ncbiLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on NCBI in a new tab">
+              <span>See on NCBI</span>
+            </a>
+          </li>
+          <li>
+            <a :href="ensemblLink(gene.EnsemblId)" rel="external noreferrer" target="_blank" title="View this gene on Ensembl in a new tab">
+              <span>See on Ensembl</span>
+            </a>
+          </li>
+          <li>
+            <a :href="biogpsLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on BioGPS in a new tab">
+              <span>See on BioGPS</span>
+            </a>
+          </li>
+          <li>
+            <a :href="gtexLink(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on GTEx in a new tab">
+              <span>See on GTEx</span>
+            </a>
+          </li>
+          <li>
+            <a :class="{ disabled: !gene.MimId }" :href="omimLink(gene.MimId)" rel="external noreferrer" target="_blank" title="View this gene on OMIM in a new tab">
+              <span>See on OMIM</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
 </div>

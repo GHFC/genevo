@@ -9,3 +9,9 @@
         color: $secondary-light;
     }
 }
+
+%link.disabled {
+    color: $grey-dark;
+    cursor: not-allowed;
+    text-decoration: none;
+}

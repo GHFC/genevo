@@ -1,38 +1,92 @@
 @import "../../styles/theme";
-
-/* Sidebar content */
-/* ---------------------------------------------------------------------- */
+@import "../../styles/link";
 
 #wrapper {
+    display: flex;
+    flex-direction: column;
+
     background: $primary-dark;
     color: $grey-light;
     height: 100%;
 }
 
-.nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.genes-found,
+.genes-selected,
+.clear-button {
+    padding: $spacer;
+}
 
-    .nav-list-item {
+.genes-filter,
+.clear-button,
+.copy-button {
+    padding: $spacer / 2 $spacer;
 
-        // The router-link tag since its an <a> by default
-        a {
-            color: inherit;
+    .el-button {
+        width: 100%;
+    }
+}
+
+.genes-pagination{
+    padding: $spacer / 2 $spacer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    border-radius: 10px;
+    padding: 0 0.3em;
+    float: right;
+    text-align: center;
+    min-width: 20px;
+}
+
+.genes-found  {
+    .badge {
+        background-color: $primary-light;
+    }
+}
+
+.genes-selected {
+    .badge {
+        background-color: $secondary-dark;
+    }
+}
+
+.genes-list {
+    overflow: auto;
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+}
+
+.gene-item {
+    cursor: pointer;
+
+    .gene-item-label {
+        height: 100%;
+        padding: $spacer;
+    }
+
+    .gene-item-label:hover {
+        background-color: $secondary;
+        color: $primary-dark;
+    }
+
+    i {
+        float: right;
+    }
+
+    .gene-item-list {
+        list-style-type: none;
+
+        li a {
+            @extend %link;
             display: block;
             padding: $spacer;
-            text-decoration: none;
-            outline: none;            // For Firefox
-        }
-
-        .active-page {
-            border-right: 6px solid $secondary;
-            margin-left: $spacer;
-            color: $secondary;
-        }
-
-        &:hover {
-            color: $secondary-light;
+            padding-left: $spacer * 2;
         }
     }
 }

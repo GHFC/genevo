@@ -23,13 +23,16 @@ const search = {
     data: function () {
         return {
             genes: [],
-            genesInput: 'rag',
+            genesInput: 'dyn',
             genesLists: '',
-            exact: true,
+            exact: false,
             orthologs: false,
             quality: 'mediumQuality',
             frequency: 'pNpSGlobal'
         };
+    },
+    mounted: function () {
+        this.getGenes();
     },
     methods: {
         getGenes: function () {
@@ -46,6 +49,13 @@ const search = {
             }).catch((error) => {
                 console.error(error);
             });
+        },
+        reset: function () {
+            this.genesInput = '',
+            this.exact = true,
+            this.orthologs = false,
+            this.quality = 'mediumQuality',
+            this.frequency = 'pNpSGlobal'
         }
     }
 };
