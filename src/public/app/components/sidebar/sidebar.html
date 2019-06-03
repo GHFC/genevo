@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-  <div class="genes-found">
+  <div class="genes-found" title="Total number of genes found">
     <span>Genes found</span>
     <span class="badge">{{ genes.length }}</span>
   </div>
@@ -18,22 +18,22 @@
   </div> -->
 
   <div class="copy-button">
-    <el-button type="primary" @click="clipboard">
+    <el-button type="primary" @click="clipboard" title="Copy the list of genes below to your clipboard">
       <i class="el-icon-copy-document el-icon-left"></i>
       Copy to clipboard
     </el-button>
   </div>
 
   <div class="genes-filter">
-    <el-input v-model="filter" prefix-icon="el-icon-search" spellcheck="false" placeholder="Find a gene..."></el-input>
+    <el-input v-model="filter" prefix-icon="el-icon-search" spellcheck="false" placeholder="Find a gene..." title="Filter the current list of genes"></el-input>
   </div>
 
   <div class="genes-pagination">
-    <el-button type="primary" @click="prevPage" circle>
+    <el-button type="primary" @click="prevPage" circle title="Previous genes">
       <i class="el-icon-arrow-left"></i>
     </el-button>
     <span>{{ currentPage }} / {{ totalPages || 1 }}</span>
-    <el-button type="primary" @click="nextPage" circle>
+    <el-button type="primary" @click="nextPage" circle title="Next genes">
       <i class="el-icon-arrow-right"></i>
     </el-button>
   </div>
