@@ -28,13 +28,27 @@ const search = {
             exact: false,
             orthologs: false,
             quality: 'mediumQuality',
-            frequency: 'pNpSGlobal'
+            alleleFq: 'pNpSGlobal'
         };
+    },
+    watch: {
+        quality: function (newValue) {
+            this.setQuality(newValue);
+        },
+        alleleFq: function (newValue) {
+            this.setAlleleFq(newValue);
+        }
     },
     mounted: function () {
         this.getGenes();
     },
     methods: {
+        setAlleleFq: function (alleleFq) {
+            this.$store.commit('setAlleleFq', alleleFq);
+        },
+        setQuality: function (quality) {
+            this.$store.commit('setQuality', quality);
+        },
         getGenes: function () {
             const params = {
                 request: this.genesInput,

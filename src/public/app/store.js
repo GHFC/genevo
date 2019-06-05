@@ -30,7 +30,9 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         loading: false,
-        genes: []
+        genes: [],
+        quality: 'mediumQuality',
+        alleleFq: 'pNpSGlobal'
     },
     mutations: {
         addRequest: function (state) {
@@ -41,6 +43,12 @@ const store = new Vuex.Store({
         },
         setGenes: function (state, genes) {
             state.genes = genes;
+        },
+        setAlleleFq: function (state, alleleFq) {
+            state.alleleFq = alleleFq;
+        },
+        setQuality: function (state, quality) {
+            state.quality = quality;
         }
     },
     getters: {
@@ -50,7 +58,13 @@ const store = new Vuex.Store({
         geneNames: function (state) {
             return state.genes.map((gene) => {
                 return gene.Gene;
-            })
+            });
+        },
+        alleleFq: function (state) {
+            return state.alleleFq;
+        },
+        quality: function (state) {
+            return state.quality;
         }
     }
 });
