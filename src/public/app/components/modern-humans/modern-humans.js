@@ -54,7 +54,7 @@ const modernHumans = {
                 margin: {
                     t: 30,
                     l: 50,
-                    b: 50,
+                    b: 50
                 },
                 shapes: [
                     {
@@ -412,9 +412,6 @@ const modernHumans = {
             this.data.text = [];
         },
         buildGraph: function () {
-            const alleleFq = this.$store.getters.alleleFq;
-            const quality = this.$store.getters.quality;
-
             this.clearData();
             this.setLayout();
 
@@ -422,7 +419,7 @@ const modernHumans = {
                 this.data.text.push(gene.Gene);
 
                 // If one data is missing, put the gene in the missing data list
-                if (!gene[alleleFq] || !gene[quality]) {
+                if (!gene[this.alleleFq] || !gene[this.quality]) {
                     this.data.x.push(NaN);
                     this.data.y.push(NaN);
                     // graph.missingValues.push(gene.Gene);
@@ -430,8 +427,8 @@ const modernHumans = {
                 }
 
                 // Get and calculate both parameters
-                let dNdS = gene[quality].AN.HS.OmegaHuguet;
-                let pNpS = gene[alleleFq];
+                let dNdS = gene[this.quality].AN.HS.OmegaHuguet;
+                let pNpS = gene[this.alleleFq];
 
                 // Set explicitly the parameters to NaN if needed
                 if (typeof(dNdS) !== "number") dNdS = NaN;
@@ -447,34 +444,32 @@ const modernHumans = {
             Plotly.react('modern-humans-chart', [this.data], this.layout, this.config);
         },
         setLayout: function () {
-            const alleleFq = this.$store.getters.alleleFq;
-            const quality = this.$store.getters.quality;
 
             // Median of the dNdS axis
-            this.layout.shapes[0].y0 = this.dnds[quality].median;
-            this.layout.shapes[0].y1 = this.dnds[quality].median;
+            this.layout.shapes[0].y0 = this.dnds[this.quality].median;
+            this.layout.shapes[0].y1 = this.dnds[this.quality].median;
 
             // Label
-            this.layout.annotations[0].y = this.dnds[quality].median;
+            this.layout.annotations[0].y = this.dnds[this.quality].median;
 
             // Median of the pNpS axis
-            this.layout.shapes[1].x0 = this.pnps[alleleFq].median;
-            this.layout.shapes[1].x1 = this.pnps[alleleFq].median;
+            this.layout.shapes[1].x0 = this.pnps[this.alleleFq].median;
+            this.layout.shapes[1].x1 = this.pnps[this.alleleFq].median;
 
             // Mean of the dNdS axis
-            this.layout.shapes[2].y0 = this.dnds[quality].mean;
-            this.layout.shapes[2].y1 = this.dnds[quality].mean;
+            this.layout.shapes[2].y0 = this.dnds[this.quality].mean;
+            this.layout.shapes[2].y1 = this.dnds[this.quality].mean;
 
             // Label
-            this.layout.annotations[1].y = this.dnds[quality].mean;
+            this.layout.annotations[1].y = this.dnds[this.quality].mean;
 
             // Mean of the pNpS axis
-            this.layout.shapes[3].x0 = this.pnps[alleleFq].mean;
-            this.layout.shapes[3].x1 = this.pnps[alleleFq].mean;
+            this.layout.shapes[3].x0 = this.pnps[this.alleleFq].mean;
+            this.layout.shapes[3].x1 = this.pnps[this.alleleFq].mean;
 
             // Standard deviation of the dNdS axis
-            const dNdSstdLower = this.dnds[quality].mean - this.dnds[quality].std;
-            const dNdSstdUpper = this.dnds[quality].mean + this.dnds[quality].std;
+            const dNdSstdLower = this.dnds[this.quality].mean - this.dnds[this.quality].std;
+            const dNdSstdUpper = this.dnds[this.quality].mean + this.dnds[this.quality].std;
 
             this.layout.shapes[4].y0 = dNdSstdLower;
             this.layout.shapes[4].y1 = dNdSstdUpper;
@@ -489,8 +484,8 @@ const modernHumans = {
             this.layout.annotations[11].y = dNdSstdUpper;
 
             // Standard deviation * 2 of the dNdS axis
-            const dNdSstdLowerx2 = this.dnds[quality].mean - this.dnds[quality].std * 2;
-            const dNdSstdUpperx2 = this.dnds[quality].mean + this.dnds[quality].std * 2;
+            const dNdSstdLowerx2 = this.dnds[this.quality].mean - this.dnds[this.quality].std * 2;
+            const dNdSstdUpperx2 = this.dnds[this.quality].mean + this.dnds[this.quality].std * 2;
 
             this.layout.shapes[5].y0 = dNdSstdLowerx2;
             this.layout.shapes[5].y1 = dNdSstdUpperx2;
@@ -505,8 +500,8 @@ const modernHumans = {
             this.layout.annotations[13].y = dNdSstdUpperx2;
 
             // Standard deviation of the pNpS axis
-            const pNpSstdLower = this.pnps[alleleFq].mean - this.pnps[alleleFq].std;
-            const pNpSstdUpper = this.pnps[alleleFq].mean + this.pnps[alleleFq].std;
+            const pNpSstdLower = this.pnps[this.alleleFq].mean - this.pnps[this.alleleFq].std;
+            const pNpSstdUpper = this.pnps[this.alleleFq].mean + this.pnps[this.alleleFq].std;
 
             this.layout.shapes[6].x0 = pNpSstdLower;
             this.layout.shapes[6].x1 = pNpSstdUpper;
@@ -517,8 +512,8 @@ const modernHumans = {
             this.layout.annotations[7].text = String(pNpSstdUpper.toFixed(2));
 
             // Standard deviation * 2 of the pNpS axis
-            const pNpSstdLowerx2 = this.pnps[alleleFq].mean - this.pnps[alleleFq].std * 2;
-            const pNpSstdUpperx2 = this.pnps[alleleFq].mean + this.pnps[alleleFq].std * 2;
+            const pNpSstdLowerx2 = this.pnps[this.alleleFq].mean - this.pnps[this.alleleFq].std * 2;
+            const pNpSstdUpperx2 = this.pnps[this.alleleFq].mean + this.pnps[this.alleleFq].std * 2;
 
             this.layout.shapes[7].x0 = pNpSstdLowerx2;
             this.layout.shapes[7].x1 = pNpSstdUpperx2;
