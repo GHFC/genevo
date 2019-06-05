@@ -20,14 +20,14 @@
 
 const path = require('path');
 
-const DefinePlugin = require('webpack').DefinePlugin;
-const NormalModuleReplacementPlugin = require('webpack').NormalModuleReplacementPlugin;
+const { DefinePlugin } = require('webpack');
+const { NormalModuleReplacementPlugin } = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = require('./config/env');
 const appName = process.env.npm_package_name;
