@@ -22,7 +22,6 @@ import Plotly from 'plotly.js-cartesian-dist';
 
 // =========================================================================
 
-
 const fetalHumanBrain = {
     name: 'fetal-human-brain',
     data: function () {
