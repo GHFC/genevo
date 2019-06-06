@@ -396,13 +396,13 @@ const modernHumans = {
     },
     watch: {
         genes: function () {
-            this.buildGraph();
+            this.buildChart();
         },
         quality: function () {
-            this.buildGraph();
+            this.buildChart();
         },
         alleleFq: function () {
-            this.buildGraph();
+            this.buildChart();
         }
     },
     methods: {
@@ -411,7 +411,7 @@ const modernHumans = {
             this.data.y = [];
             this.data.text = [];
         },
-        buildGraph: function () {
+        buildChart: function () {
             this.clearData();
             this.setLayout();
 

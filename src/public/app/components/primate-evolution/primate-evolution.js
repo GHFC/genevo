@@ -220,13 +220,13 @@ const primateEvolution = {
     },
     watch: {
         genes: function () {
-            this.buildGraph();
+            this.buildChart();
         },
         quality: function () {
-            this.buildGraph();
+            this.buildChart();
         },
         alleleFq: function () {
-            this.buildGraph();
+            this.buildChart();
         }
     },
     methods: {
@@ -237,7 +237,7 @@ const primateEvolution = {
                 this.data[index].text = [];
             });
         },
-        buildGraph: function () {
+        buildChart: function () {
             this.clearData();
 
             this.data.forEach((trace, index) => {
