@@ -47,7 +47,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../../dist'),
         publicPath: '/',
-        filename: appName + '.js'
+        filename: appName + '.js',
+        chunkFilename: '[name].js'
     },
     optimization: {
         minimizer: [
@@ -56,7 +57,16 @@ module.exports = {
                 parallel: true
             }),
             new OptimizeCSSAssetsPlugin()
-        ]
+        ],
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     devServer: {
         contentBase: path.resolve(__dirname, '../../dist'),
