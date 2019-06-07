@@ -52,20 +52,11 @@ const store = new Vuex.Store({
         }
     },
     getters: {
-        genes: function (state) {
-            return state.genes;
-        },
         geneNames: function (state) {
             return state.genes.map((gene) => {
                 return gene.Gene;
             });
         },
-        alleleFq: function (state) {
-            return state.alleleFq;
-        },
-        quality: function (state) {
-            return state.quality;
-        }
     }
 });
 

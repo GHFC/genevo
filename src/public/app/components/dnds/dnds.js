@@ -18,6 +18,7 @@
 // Box plot displaying the dN/dS by taxon
 // =========================================================================
 
+import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
 import '../../images/phylotree.png';
 
@@ -345,27 +346,15 @@ const dnds = {
             }
         };
     },
-    computed: {
-        genes: function () {
-            return this.$store.getters.genes;
-        },
-        quality: function () {
-            return this.$store.getters.quality;
-        },
-        alleleFq: function () {
-            return this.$store.getters.alleleFq;
-        }
-    },
+    computed: mapState({
+        genes: state => state.genes,
+        quality: state => state.quality,
+        alleleFq: state => state.alleleFq,
+    }),
     watch: {
-        genes: function () {
-            this.buildChart();
-        },
-        quality: function () {
-            this.buildChart();
-        },
-        alleleFq: function () {
-            this.buildChart();
-        }
+        genes: function () { this.buildChart(); },
+        quality: function () { this.buildChart(); },
+        alleleFq: function () { this.buildChart(); }
     },
     methods: {
         clearData: function () {

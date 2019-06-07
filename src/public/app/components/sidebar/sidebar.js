@@ -32,7 +32,7 @@ const sidebar = {
     },
     computed: {
         genes: function () {
-            return this.$store.getters.genes;
+            return this.$store.state.genes;
         },
         filteredGenes: function () {
             if (!this.filter.length) return this.genes;
