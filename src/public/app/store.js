@@ -32,7 +32,15 @@ const store = new Vuex.Store({
         loading: false,
         genes: [],
         quality: 'mediumQuality',
-        alleleFq: 'pNpSGlobal'
+        alleleFq: 'pNpSGlobal',
+        hoveredDot: {
+            dot: null,
+            origin: ''
+        },
+        selectedDots: {
+            dots:  [],
+            origin: ''
+        }
     },
     mutations: {
         addRequest: function (state) {
@@ -49,6 +57,14 @@ const store = new Vuex.Store({
         },
         setQuality: function (state, quality) {
             state.quality = quality;
+        },
+        setHoveredDot: function (state, data) {
+            state.hoveredDot.dot = data.dot;
+            state.hoveredDot.origin = data.origin;
+        },
+        setSelectedDots: function (state, data) {
+            state.selectedDots.dots = data.dots;
+            state.selectedDots.origin = data.origin;
         }
     },
     getters: {

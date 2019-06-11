@@ -27,6 +27,7 @@ const primateEvolution = {
     name: 'primate-evolution',
     data: function () {
         return {
+            chart: null,
             data: [
                 {
                     name: "Homo sapiens",
@@ -212,11 +213,21 @@ const primateEvolution = {
         genes: state => state.genes,
         quality: state => state.quality,
         alleleFq: state => state.alleleFq,
+        hoveredDot: state => state.hoveredDot.dot,
+        selectedDots: state => state.selectedDots.dots
     }),
     watch: {
         genes: function () { this.buildChart(); },
         quality: function () { this.buildChart(); },
-        alleleFq: function () { this.buildChart(); }
+        alleleFq: function () { this.buildChart(); },
+        hoveredDot: function (newValue, oldValue) {
+            if (newValue) this.hoverDot(newValue);
+            else this.unhoverDot(oldValue);
+        },
+        selectedDots: function (newValue, oldValue) {
+            if (newValue.length) this.selectDots(newValue);
+            else this.deselectDots(oldValue);
+        }
     },
     methods: {
         clearData: function () {
@@ -256,7 +267,75 @@ const primateEvolution = {
                 });
             });
 
-            Plotly.react('primate-evolution-chart', this.data, this.layout, this.config);
+            Plotly.react('primate-evolution-chart', this.data, this.layout, this.config).then((chart) => {
+                this.chart = chart;
+                this.setEvents(chart);
+            });
+        },
+        setEvents: function (chart) {
+            const origin = this.$options.name;
+
+            chart.on('plotly_hover', (data) => {
+                const dot = data.points[0].pointNumber;
+                this.hoverDot(dot);
+                this.$store.commit('setHoveredDot', { dot, origin });
+            });
+
+            chart.on('plotly_unhover', () => {
+                this.$store.commit('setHoveredDot', { dot: null, origin });
+            });
+
+            chart.on('plotly_selected', (data) => {
+                if (!data) return;
+
+                const dots = data.points
+                    .filter((point) => { return point.x !== false; })     // Filter the NaN points
+                    .map((point) => { return point.pointNumber; })        // Get only the index
+                    .filter((pointNumber, index, array) => {              // Make each index unique
+                        return array.indexOf(pointNumber) === index;
+                    });
+
+                this.$store.commit('setSelectedDots', { dots, origin });
+            });
+
+            chart.on('plotly_deselect', () => {
+                this.$store.commit('setSelectedDots', { dots: [], origin });
+            });
+
+            chart.on('plotly_doubleclick', () => {
+                this.$store.commit('setSelectedDots', { dots: [], origin });
+            });
+        },
+        hoverDot: function (dot) {
+            const traces = [];
+
+            for (var i = 0; i <= 7; i++) {
+                traces.push({ curveNumber: i, pointNumber: dot});
+            }
+
+            Plotly.Fx.hover(this.chart, traces);
+        },
+        unhoverDot: function (dot) {
+            const traces = [];
+
+            for (var i = 0; i <= 7; i++) {
+                traces.push({ curveNumber: i, pointNumber: dot});
+            }
+
+            Plotly.Fx.unhover(this.chart, traces);
+        },
+        selectDots: function (dots) {
+            const opacity = [];
+
+            this.chart.data[0].x.forEach(function (x, index) {
+                if (dots.indexOf(index) > -1) opacity.push(0.8);
+                else opacity.push(0.2);
+            });
+
+            Plotly.restyle(this.chart, { "marker.opacity": [opacity] });
+        },
+        deselectDots: function (dots) {
+            Plotly.restyle(this.chart, { "marker.opacity": 0.8 });
         }
     }
 };
