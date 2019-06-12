@@ -277,6 +277,7 @@ const fetalHumanBrain = {
 
             chart.on('plotly_hover', (data) => {
                 const dot = data.points[0].pointNumber;
+                this.hoverDot(dot);
                 this.$store.commit('setHoveredDot', { dot, origin });
             });
 
