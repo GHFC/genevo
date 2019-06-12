@@ -72,7 +72,7 @@ const store = new Vuex.Store({
             return state.genes.map((gene) => {
                 return gene.Gene;
             });
-        },
+        }
     }
 });
 

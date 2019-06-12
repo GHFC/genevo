@@ -18,30 +18,45 @@
 // Component handling the sidebar
 // =========================================================================
 
+import { mapState } from 'vuex';
+
+// =========================================================================
+
 const sidebar = {
     name: 'sidebar',
     data: function () {
         return {
             filter: '',
             selectedGene: '',
-            hoverGene: '',
             currentPage: 1,
             totalPages: 0,
             pageSize: 15
         }
     },
     computed: {
-        genes: function () {
-            return this.$store.state.genes;
-        },
+        ...mapState({
+            genes: state => state.genes,
+            hoveredDot: state => state.hoveredDot.dot,
+            selectedDots: state => state.selectedDots.dots
+        }),
         filteredGenes: function () {
-            if (!this.filter.length) return this.genes;
+            let filteredGenes = this.genes;
 
-            let filter = new RegExp(this.filter, 'ig');
+            // Only the selected genes, if any
+            if (this.selectedDots.length) {
 
-            return this.genes.filter((gene) => {
-                return filter.test(gene.Gene);
-            });
+            }
+
+            // Then filter with the filter input, if any
+            if (this.filter.length) {
+                let filter = new RegExp(this.filter, 'ig');
+
+                filteredGenes = filteredGenes.filter((gene) => {
+                    return filter.test(gene.Gene);
+                });
+            };
+
+            return filteredGenes;
         },
         paginatedGenes: function () {
             if (this.filteredGenes.length <= this.pageSize) return this.filteredGenes;
@@ -56,6 +71,10 @@ const sidebar = {
         filteredGenes: function () {
             this.currentPage = 1;
             this.totalPages = Math.ceil(this.filteredGenes.length / this.pageSize);
+        },
+        hoveredDot: function (newValue, oldValue) {
+            if (newValue) this.onDotHover(newValue);
+            else this.onDotUnhover(oldValue);
         }
     },
     methods: {
@@ -101,6 +120,19 @@ const sidebar = {
         },
         omimLink: function (id) {
             if (id && id.length > 0) return "https://www.omim.org/entry/" + id[0];
+        },
+        hoverGene: function (geneName) {
+            const origin = this.$options.name;
+            let geneIndex = null;
+
+            for (let i = 0; i < this.genes.length; i++) {
+                if (this.genes[i].Gene === geneName) {
+                    geneIndex = i;
+                    break;
+                }
+            }
+
+            this.$store.commit('setHoveredDot', { dot: geneIndex, origin });
         }
     }
 };

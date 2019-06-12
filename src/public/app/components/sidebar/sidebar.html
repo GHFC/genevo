@@ -5,12 +5,12 @@
     <span class="badge">{{ genes.length }}</span>
   </div>
 
-  <!-- <div class="genes-selected">
+  <div class="genes-selected" v-if="selectedDots.length">
     <span>Genes selected</span>
-    <span class="badge">125</span>
+    <span class="badge">{{ selectedDots.length }}</span>
   </div>
 
-  <div class="clear-button">
+  <!-- <div class="clear-button">
     <el-button type="primary">
       <i class="el-icon-delete el-icon-left"></i>
       Clear selection
@@ -40,8 +40,8 @@
 
   <div class="genes-list">
     <ul>
-      <li class="gene-item" v-for="gene in paginatedGenes">
-        <div class="gene-item-label" @click="selectGene(gene)" @mouseenter="hoverGene = gene.Gene" @mouseleave="hoverGene = ''">
+      <li class="gene-item" v-for="(gene, index) in paginatedGenes">
+        <div class="gene-item-label" @click="selectGene(gene)" @mouseenter="hoverGene(gene.Gene)" @mouseleave="hoverGene('')">
           <span>{{ gene.Gene }}</span>
           <i class="el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoverGene === gene.Gene"></i>
           <i class="el-icon-caret-top" v-show="selectedGene === gene.Gene"></i>
