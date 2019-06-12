@@ -27,6 +27,7 @@ const fetalHumanBrain = {
     name: 'fetal-human-brain',
     data: function () {
         return {
+            chart: null,
             regions: {
                 R1: {
                     box: {
@@ -196,11 +197,21 @@ const fetalHumanBrain = {
         genes: state => state.genes,
         quality: state => state.quality,
         alleleFq: state => state.alleleFq,
+        hoveredDot: state => state.hoveredDot.dot,
+        selectedDots: state => state.selectedDots.dots
     }),
     watch: {
         genes: function () { this.buildChart(); },
         quality: function () { this.buildChart(); },
-        alleleFq: function () { this.buildChart(); }
+        alleleFq: function () { this.buildChart(); },
+        hoveredDot: function (newValue, oldValue) {
+            if (newValue) this.hoverDot(newValue);
+            else this.unhoverDot(oldValue);
+        },
+        selectedDots: function (newValue) {
+            if (newValue.length) this.selectDots(newValue);
+            else this.deselectDots();
+        }
     },
     methods: {
         clearData: function () {
@@ -256,7 +267,74 @@ const fetalHumanBrain = {
                 index++;
             }
 
-            Plotly.react('fetal-human-brain-chart', this.data, this.layout, this.config);
+            Plotly.react('fetal-human-brain-chart', this.data, this.layout, this.config).then((chart) => {
+                this.chart = chart;
+                this.setEvents(chart);
+            });
+        },
+        setEvents: function (chart) {
+            const origin = this.$options.name;
+
+            chart.on('plotly_hover', (data) => {
+                const dot = data.points[0].pointNumber;
+                this.$store.commit('setHoveredDot', { dot, origin });
+            });
+
+            chart.on('plotly_unhover', () => {
+                this.$store.commit('setHoveredDot', { dot: null, origin });
+            });
+
+            chart.on('plotly_selected', (data) => {
+                if (!data) return;
+
+                const dots = data.points
+                    .filter((point) => { return point.x !== false; })     // Filter the NaN points
+                    .map((point) => { return point.pointNumber; })        // Get only the index
+                    .filter((pointNumber, index, array) => {              // Make each index unique
+                        return array.indexOf(pointNumber) === index;
+                    });
+
+                this.$store.commit('setSelectedDots', { dots, origin });
+            });
+
+            chart.on('plotly_deselect', () => {
+                this.$store.commit('setSelectedDots', { dots: [], origin });
+            });
+
+            chart.on('plotly_doubleclick', () => {
+                this.$store.commit('setSelectedDots', { dots: [], origin });
+            });
+        },
+        hoverDot: function (dot) {
+            const traces = [];
+
+            for (var i = 1; i <= 7; i =i + 2) {
+                traces.push({ curveNumber: i, pointNumber: dot});
+            }
+
+            Plotly.Fx.hover(this.chart, traces);
+        },
+        unhoverDot: function (dot) {
+            const traces = [];
+
+            for (var i = 1; i <= 7; i = i + 2) {
+                traces.push({ curveNumber: i, pointNumber: dot});
+            }
+
+            Plotly.Fx.unhover(this.chart, traces);
+        },
+        selectDots: function (dots) {
+            const opacity = [];
+
+            this.chart.data[0].y.forEach(function (y, index) {
+                if (dots.indexOf(index) > -1) opacity.push(0.8);
+                else opacity.push(0.2);
+            });
+
+            Plotly.restyle(this.chart, { "marker.opacity": [opacity] }, [1, 3, 5, 7]);
+        },
+        deselectDots: function (dots) {
+            Plotly.restyle(this.chart, { "marker.opacity": 0.8 }, [1, 3, 5, 7]);
         },
         jitter: function () {
             // Generate small noise to add a jitter to the scatter plots
