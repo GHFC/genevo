@@ -65,16 +65,17 @@ const sidebar = {
             let end = start + this.pageSize;
 
             return this.filteredGenes.slice(start, end);
+        },
+        hoveredGene: function () {
+            if (typeof(this.hoveredDot) === 'number') {
+                return this.genes[this.hoveredDot].Gene;
+            }
         }
     },
     watch: {
         filteredGenes: function () {
             this.currentPage = 1;
             this.totalPages = Math.ceil(this.filteredGenes.length / this.pageSize);
-        },
-        hoveredDot: function (newValue, oldValue) {
-            if (newValue) this.onDotHover(newValue);
-            else this.onDotUnhover(oldValue);
         }
     },
     methods: {

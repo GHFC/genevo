@@ -40,10 +40,10 @@
 
   <div class="genes-list">
     <ul>
-      <li class="gene-item" v-for="(gene, index) in paginatedGenes">
-        <div class="gene-item-label" @click="selectGene(gene)" @mouseenter="hoverGene(gene.Gene)" @mouseleave="hoverGene('')">
+      <li class="gene-item" v-for="gene in paginatedGenes">
+        <div class="gene-item-label" :class="{ 'gene-hover': hoveredGene === gene.Gene }" @click="selectGene(gene)" @mouseenter="hoverGene(gene.Gene)" @mouseleave="hoverGene('')">
           <span>{{ gene.Gene }}</span>
-          <i class="el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoverGene === gene.Gene"></i>
+          <i class="el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoveredGene === gene.Gene"></i>
           <i class="el-icon-caret-top" v-show="selectedGene === gene.Gene"></i>
         </div>
 

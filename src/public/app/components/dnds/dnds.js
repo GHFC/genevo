@@ -428,6 +428,10 @@ const dnds = {
             const origin = this.$options.name;
 
             chart.on('plotly_hover', (data) => {
+
+                // Trigger hover events only for dots
+                if (data.points.length > 1) return;
+
                 const dot = data.points[0].pointNumber;
                 this.hoverDot(dot);
                 this.$store.commit('setHoveredDot', { dot, origin });
