@@ -83,7 +83,7 @@ export default {
         fetalHumanBrain,
         adultHumanBrain
     },
-    created: function () {
+    mounted: function () {
 
         // Handle online and offline states properly
         // -----------------------------------------
@@ -111,6 +111,11 @@ export default {
 
         // -----------------------------------------
 
+    },
+    computed: {
+        genes: function () {
+            return this.$store.state.genes;
+        }
     },
     resources: resources,
     store: store

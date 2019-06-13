@@ -9,31 +9,31 @@
   </aside>
 
   <main>
-    <div class="form">
+    <div class="search">
       <search></search>
     </div>
     <!-- <div class="bootstrap">
       <bootstrap></bootstrap>
     </div> -->
-    <div class="dnds-by-taxon">
+    <div class="dnds-by-taxon" v-show="genes.length">
       <dnds></dnds>
     </div>
-    <div class="modern-humans">
+    <div class="modern-humans" v-show="genes.length">
       <modern-humans></modern-humans>
     </div>
-    <div class="primate-evolution">
+    <div class="primate-evolution" v-show="genes.length">
       <primate-evolution></primate-evolution>
     </div>
-    <div class="introgression">
+    <div class="introgression" v-show="genes.length">
       <introgression></introgression>
     </div>
-    <div class="human-hemisphere">
+    <div class="human-hemisphere" v-show="genes.length">
       <human-hemisphere></human-hemisphere>
     </div>
-    <div class="fetal-human-brain">
+    <div class="fetal-human-brain" v-show="genes.length">
       <fetal-human-brain></fetal-human-brain>
     </div>
-    <div class="adult-human-brain">
+    <div class="adult-human-brain" v-show="genes.length">
       <adult-human-brain></adult-human-brain>
     </div>
   </main>

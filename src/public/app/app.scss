@@ -53,7 +53,7 @@ body, #app {
         grid-template-columns: 1fr 1fr 2fr;
         grid-gap: $spacer;
 
-        .form {
+        .search {
             grid-column: 1 / 5;
         }
         .bootstrap {

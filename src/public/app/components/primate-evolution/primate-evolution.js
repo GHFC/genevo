@@ -238,6 +238,8 @@ const primateEvolution = {
             });
         },
         buildChart: function () {
+            if (this.genes.length === 0) return;
+
             this.clearData();
 
             this.data.forEach((trace, index) => {

@@ -387,6 +387,8 @@ const introgression = {
             this.data.text = [];
         },
         buildChart: function () {
+            if (this.genes.length === 0) return;
+
             this.clearData();
             this.setLayout();
 

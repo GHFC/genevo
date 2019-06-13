@@ -1,6 +1,6 @@
 <div id="wrapper">
 
-  <div class="genes-found" title="Total number of genes found">
+  <div class="genes-found" title="Total number of genes found" v-show="genes.length">
     <span>Genes found</span>
     <span class="badge">{{ genes.length }}</span>
   </div>
@@ -17,18 +17,18 @@
     </el-button>
   </div> -->
 
-  <div class="copy-button">
+  <div class="copy-button" v-show="genes.length">
     <el-button type="primary" @click="clipboard" title="Copy the list of genes below to your clipboard">
       <i class="el-icon-copy-document el-icon-left"></i>
       Copy to clipboard
     </el-button>
   </div>
 
-  <div class="genes-filter">
+  <div class="genes-filter" v-show="genes.length">
     <el-input v-model="filter" prefix-icon="el-icon-search" spellcheck="false" placeholder="Find a gene..." title="Filter the current list of genes"></el-input>
   </div>
 
-  <div class="genes-pagination">
+  <div class="genes-pagination" v-show="genes.length">
     <el-button type="primary" @click="prevPage" circle title="Previous genes">
       <i class="el-icon-arrow-left"></i>
     </el-button>
@@ -38,7 +38,7 @@
     </el-button>
   </div>
 
-  <div class="genes-list">
+  <div class="genes-list" v-show="genes.length">
     <ul>
       <li class="gene-item" v-for="gene in paginatedGenes">
         <div class="gene-item-label" :class="{ 'gene-hover': hoveredGene === gene.Gene }" @click="selectGene(gene)" @mouseenter="hoverGene(gene.Gene)" @mouseleave="hoverGene('')">

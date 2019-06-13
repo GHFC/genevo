@@ -227,6 +227,8 @@ const fetalHumanBrain = {
             }
         },
         buildChart: function () {
+            if (this.genes.length === 0) return;
+
             this.clearData();
 
             // Counter for the taxa

@@ -69,7 +69,8 @@ const search = {
             this.exact = true,
             this.orthologs = false,
             this.quality = 'mediumQuality',
-            this.frequency = 'pNpSGlobal'
+            this.frequency = 'pNpSGlobal',
+            this.$store.commit('setGenes', []);
         }
     }
 };
