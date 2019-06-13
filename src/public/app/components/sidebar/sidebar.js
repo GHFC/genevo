@@ -44,7 +44,9 @@ const sidebar = {
 
             // Only the selected genes, if any
             if (this.selectedDots.length) {
-
+                filteredGenes = this.selectedDots.map((dot) => {
+                    return filteredGenes[dot];
+                });
             }
 
             // Then filter with the filter input, if any
