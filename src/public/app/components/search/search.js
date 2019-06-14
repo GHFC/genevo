@@ -18,13 +18,18 @@
 // Main form for requesting the data
 // =========================================================================
 
+import presetLists from './gene-lists.js';
+
+// =========================================================================
+
 const search = {
     name: 'search',
     data: function () {
         return {
             genes: [],
             genesInput: 'dyn',
-            genesLists: '',
+            genesLists: [],
+            presetLists: presetLists,
             exact: false,
             orthologs: false,
             quality: 'mediumQuality',
@@ -50,8 +55,11 @@ const search = {
             this.$store.commit('setQuality', quality);
         },
         getGenes: function () {
+            if (!this.genesInput && !this.genesLists.length) return;
+
             const params = {
                 request: this.genesInput,
+                genesLists: this.genesLists,
                 exactMatch: this.exact,
                 orthologs: this.orthologs,
                 quality: this.quality,
@@ -66,6 +74,7 @@ const search = {
         },
         reset: function () {
             this.genesInput = '',
+            this.genesLists = [],
             this.exact = true,
             this.orthologs = false,
             this.quality = 'mediumQuality',

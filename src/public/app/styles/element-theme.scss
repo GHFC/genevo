@@ -21,10 +21,12 @@ $--card-border-color: $grey;
 }
 
 $--checkbox-bordered-padding: 9px $spacer 9px 10px;
+$--select-group-font-size: 12px;
 
 // Temp hack to fix font bugs
 // See this issue: https://github.com/ElemeFE/element/issues/9656
 .el-select-dropdown__item,
+.el-select-group__title,
 .el-dropdown-menu,
 .el-notification {
     font-family: $text-font;

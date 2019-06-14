@@ -31,34 +31,31 @@ module.exports = function (req, res) {
     var genes = db.collection('genes');            // Get the collection
     var entrezList = [];                           // List of Entrez identifiers
     var geneList = [];                             // List of gene names
-    var functionList = [];                         // List of the metabolic functions
     var exactMatch = cast(req.query.exactMatch)    // Match exactly the terms or not
     var orthologs = cast(req.query.orthologs)      // Return only the 1-to-1 orthologs genes
     var fields = { _id: 0 };                       // Do not keep the _id field in the results
 
-    // Split the request terms and fill the lists for the database query
-    req.query.request
-    .match(/[^\s,]+/g)
-    .map(function (term) {
-        return cast(term);
-    })
-    .forEach(function (term) {
+    // Split the request terms for the database query
+    if (req.query.request) {
+        req.query.request
+        .match(/[^\s,]+/g)
+        .map(function (term) {
+            return cast(term);
+        })
+        .forEach(function (term) {
 
-        if (typeof(term) === 'number') {
-            entrezList.push(term);
-        }
+            if (typeof(term) === 'number') {
+                entrezList.push(term);
+            }
 
-        else if (term.substring(0, 5) === 'list:')  {
-            functionList.push(term.substring(5));
-        }
-
-        else {
-            var regex = "";
-            if (exactMatch) regex = new RegExp('^' + term + '$', 'i');
-            else regex = new RegExp(term, 'i');
-            geneList.push(regex);
-        }
-    });
+            else {
+                var regex = "";
+                if (exactMatch) regex = new RegExp('^' + term + '$', 'i');
+                else regex = new RegExp(term, 'i');
+                geneList.push(regex);
+            }
+        });
+    }
 
     // Build the request
     var query = { $or: [
@@ -76,11 +73,14 @@ module.exports = function (req, res) {
         ];
     }
 
-    functionList.forEach(function (name) {
-        var req = {};
-        req[name] = true;
-        query.$or.push(req);
-    });
+    // Add the lists to the query, if any
+    if (req.query.genesLists) {
+        req.query.genesLists.forEach(function (name) {
+            var req = {};
+            req[name] = true;
+            query.$or.push(req);
+        });
+    }
 
     // Send the request to the database
     genes.find(query)

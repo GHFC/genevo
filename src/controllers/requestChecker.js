@@ -20,24 +20,30 @@
 
 module.exports = function (req, res, next) {
 
-    if (!req.query.request) {
+    if (!req.query.request && !req.query.genesLists.length) {
         return res.status(400).send("The request cannot be empty.");
     }
 
-    if (/[$.]/.test(req.query.request)) {
-        return res.status(400).send("Dollars and dots are not allowed for database safety reasons.");
+    if (req.query.request) {
+        if (/[$.]/.test(req.query.request)) {
+            return res.status(400).send("Dollars and dots are not allowed for database safety reasons.");
+        }
+
+        if (req.query.request.length < 2) {
+            return res.status(400).send("The request is too short.");
+        }
+
+        if (/(^|\s)\S(\s|$)/.test(req.query.request)) {
+            return res.status(400).send("One of the terms is too short.");
+        }
+    }
+
+    if (req.query.genesLists && !(req.query.genesLists instanceof Array)) {
+        return res.status(400).send("The genesLists parameter must be an array.");
     }
 
     if (!req.query.exactMatch) {
         return res.status(400).send("The exact match parameter is missing.");
-    }
-
-    if (/(^|\s)\S(\s|$)/.test(req.query.request)) {
-        return res.status(400).send("One of the terms is too short.");
-    }
-
-    if (req.query.request.length < 2) {
-        return res.status(400).send("The request is too short.");
     }
 
     next();

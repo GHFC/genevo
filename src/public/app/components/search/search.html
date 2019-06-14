@@ -1,7 +1,19 @@
 <div class="wrapper">
   <el-card class="search-card" shadow="never">
     <div class="card-content">
-      <el-select class="genes-lists" v-model="genesLists" placeholder="Select a list of genes" multiple collapse-tags title="Choose a preset list of genes"></el-select>
+      <el-select class="genes-lists" v-model="genesLists" placeholder="Select a list of genes" multiple clearable title="Choose a preset list of genes">
+        <el-option-group
+          v-for="(lists, group) in presetLists"
+          :key="group"
+          :label="group">
+          <el-option
+            v-for="(name, list) in lists"
+            :key="list"
+            :value="list"
+            :label="name">
+          </el-option>
+        </el-option-group>
+      </el-select>
       <el-input class="genes-input" v-model="genesInput" type="textarea" rows="5" spellcheck="false" placeholder="Or enter your own gene list here"></el-input>
       <el-switch class="exact-match" v-model="exact" active-text="Exact match" title="Match exactly the keywords"></el-switch>
       <el-switch class="orthologs" v-model="orthologs" active-text="Only 1-to-1 orthologs" title="Request only the 1-to-1 orthologs genes"></el-switch>
