@@ -21,11 +21,13 @@
 import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
 import '../../images/phylotree.png';
+import jitter from '../../mixins/jitter';
 
 // =========================================================================
 
 const dnds = {
     name: 'dnds',
+    mixins: [ jitter ],
     data: function () {
         return {
             chart: null,
@@ -494,9 +496,6 @@ const dnds = {
         },
         deselectDots: function (dots) {
             Plotly.restyle(this.chart, { "marker.opacity": 0.8 }, [1, 3, 5, 7, 9, 11, 13, 15]);
-        },
-        jitter: function () {
-            return Math.random() * (0.1) - 0.05;
         }
     }
 };

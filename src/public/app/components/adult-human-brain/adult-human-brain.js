@@ -20,11 +20,13 @@
 
 import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
+import jitter from '../../mixins/jitter';
 
 // =========================================================================
 
 const adultHumanBrain = {
     name: 'adult-human-brain',
+    mixins: [ jitter ],
     data: function () {
         return {
             chart: null,
@@ -342,10 +344,6 @@ const adultHumanBrain = {
         },
         deselectDots: function (dots) {
             Plotly.restyle(this.chart, { "marker.opacity": 0.8 }, [1, 3, 5, 7]);
-        },
-        jitter: function () {
-            // Generate small noise to add a jitter to the scatter plots
-            return Math.random() * (0.1) - 0.05;
         }
     }
 };
