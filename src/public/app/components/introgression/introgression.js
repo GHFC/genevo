@@ -20,11 +20,13 @@
 
 import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
+import chartConfig from '../../mixins/chart-config';
 
 // =========================================================================
 
 const introgression = {
     name: 'introgression',
+    mixins: [ chartConfig ],
     data: function () {
         return {
             chart: null,
@@ -334,18 +336,6 @@ const introgression = {
                         text: "2𝜎",
                         showarrow: false
                     }
-                ]
-            },
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    "sendDataToCloud",
-                    "autoScale2d",
-                    "hoverClosestCartesian",
-                    "hoverCompareCartesian",
-                    "toggleSpikelines",
-                    "toImage"
                 ]
             },
             ccdsEurope: {

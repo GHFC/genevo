@@ -22,12 +22,16 @@ import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
 import '../../images/phylotree.png';
 import jitter from '../../mixins/jitter';
+import chartConfig from '../../mixins/chart-config';
 
 // =========================================================================
 
 const dnds = {
     name: 'dnds',
-    mixins: [ jitter ],
+    mixins: [
+        jitter,
+        chartConfig
+    ],
     data: function () {
         return {
             chart: null,
@@ -333,18 +337,6 @@ const dnds = {
                         sizex: 10,
                         xanchor: "right"
                     }
-                ]
-            },
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    "sendDataToCloud",
-                    "autoScale2d",
-                    "hoverClosestCartesian",
-                    "hoverCompareCartesian",
-                    "toggleSpikelines",
-                    "toImage"
                 ]
             }
         };

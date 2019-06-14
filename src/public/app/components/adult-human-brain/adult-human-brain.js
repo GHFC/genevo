@@ -21,12 +21,16 @@
 import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
 import jitter from '../../mixins/jitter';
+import chartConfig from '../../mixins/chart-config';
 
 // =========================================================================
 
 const adultHumanBrain = {
     name: 'adult-human-brain',
-    mixins: [ jitter ],
+    mixins: [
+        jitter,
+        chartConfig
+    ],
     data: function () {
         return {
             chart: null,
@@ -180,18 +184,6 @@ const adultHumanBrain = {
                     r: 30,
                     b: 50
                 }
-            },
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    "sendDataToCloud",
-                    "autoScale2d",
-                    "hoverClosestCartesian",
-                    "hoverCompareCartesian",
-                    "toggleSpikelines",
-                    "toImage"
-                ]
             }
         };
     },

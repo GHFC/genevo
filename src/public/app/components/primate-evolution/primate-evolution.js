@@ -20,11 +20,13 @@
 
 import { mapState } from 'vuex';
 import Plotly from 'plotly.js-cartesian-dist';
+import chartConfig from '../../mixins/chart-config';
 
 // =========================================================================
 
 const primateEvolution = {
     name: 'primate-evolution',
+    mixins: [ chartConfig ],
     data: function () {
         return {
             chart: null,
@@ -181,18 +183,6 @@ const primateEvolution = {
                     l: 50,
                     b: 50
                 },
-            },
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    "sendDataToCloud",
-                    "autoScale2d",
-                    "hoverClosestCartesian",
-                    "hoverCompareCartesian",
-                    "toggleSpikelines",
-                    "toImage"
-                ]
             },
             species: {
                 // Translator for the database keys
