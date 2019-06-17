@@ -6,4 +6,41 @@
 
 .adult-human-brain-card {
     height: 100%;
+
+    .content {
+        display: flex;
+
+        .chart,
+        .brain {
+            width: 50%;
+        }
+
+        .brain {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brain-color-scale {
+            margin-bottom: 2em;
+            margin-left: 8px;
+
+            .scale {
+                border: 1px solid #DDD;
+                height: 2em;
+                margin: 0 3em;
+
+                background: -moz-linear-gradient(left,  #00cc29 15%, #000000 50%, #ff2c19 85%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  #00cc29 15%,#000000 50%,#ff2c19 85%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  #00cc29 15%,#000000 50%,#ff2c19 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            }
+
+            .labels span:first-child {
+                float: left;
+            }
+
+            .labels span:last-child {
+                float: right;
+            }
+        }
+    }
 }
