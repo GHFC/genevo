@@ -6,4 +6,17 @@
 
 .human-hemisphere-card {
     height: 100%;
+
+    .content {
+        display: flex;
+        height: 600px;
+
+        #human-hemisphere {
+            width: 50%;
+        }
+
+        #human-hemisphere-legend {
+            width: 50%;
+        }
+    }
 }

@@ -27,6 +27,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = require('./config/env');
@@ -98,6 +99,15 @@ module.exports = {
             filename: appName + '.html',
             template: './index.html'
         }),
+        new CopyPlugin([
+            {
+                from: 'app/lib/',
+                to: path.resolve(__dirname, '../../dist/lib'),
+                ignore: [
+                    'brainbrowser.surface-viewer.min.js'
+                ]
+            }
+        ]),
         // Replace the default Chinese language with english
         new NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en')
     ],
