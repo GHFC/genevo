@@ -4,8 +4,58 @@
       <span>Human left hemisphere</span>
     </div>
     <div class="content">
-      <div id="human-hemisphere-legend"></div>
-      <div id="human-hemisphere"></div>
+      <div id="human-hemisphere-legend">
+        <p>
+          Displays the median of the expression levels or specificty in the brain for the selected gene(s).
+        </p>
+        <p>
+          Click on the brain to highlight a particular region or select it in the menu below.
+          Double click outside the brain to reset the view.
+        </p>
+        <div>
+          <el-radio-group v-model="selectedDataType">
+            <el-radio-button label="specificity">Specificty</el-radio-button>
+            <el-radio-button label="expression">Expression</el-radio-button>
+          </el-radio-group>
+        </div>
+        <p>
+          Currently displayed: <strong>median of all genes.</strong>
+        </p>
+        <div>
+          <el-select v-model="selectedRegion" clearable>
+            <el-option
+              v-for="(region, key) in regionsList"
+              :label="region"
+              :value="key"
+              :key="key">
+            </el-option>
+          </el-select>
+        </div>
+        <div>
+          <div id="expression-scale" v-if="selectedDataType === 'expression'">
+            <div class="scale"></div>
+            <div class="labels">
+              <span class="first">Low expression</span>
+              <span class="middle">Average expression</span>
+              <span class="last">High expression</span>
+            </div>
+          </div>
+          <div id="specificity-scale" v-if="selectedDataType === 'specificity'">
+            <div class="scale"></div>
+            <div class="labels">
+              <span class="first">Reverse specificity</span>
+              <span class="middle">No specificity</span>
+              <span class="last">High specificity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="human-hemisphere"
+        @mousedown="mousedown"
+        @mouseup="mouseup"
+        @dblclick="doubleclick">
+      </div>
     </div>
   </el-card>
 </div>

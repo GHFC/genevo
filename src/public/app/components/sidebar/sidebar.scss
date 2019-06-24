@@ -86,7 +86,7 @@
         li a {
             @extend %link;
             display: block;
-            padding: $spacer;
+            padding: $spacer / 1.5;
             padding-left: $spacer * 2;
         }
     }

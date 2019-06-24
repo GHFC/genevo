@@ -27,7 +27,8 @@ import Input from 'element-ui/lib/input';
 import Notification from 'element-ui/lib/notification';
 import Option from 'element-ui/lib/option';
 import OptionGroup from 'element-ui/lib/option-group';
-import Radio from 'element-ui/lib/radio';
+import RadioButton from 'element-ui/lib/radio-button';
+import RadioGroup from 'element-ui/lib/radio-group';
 import Select from 'element-ui/lib/select';
 import Switch from 'element-ui/lib/switch';
 
@@ -61,7 +62,8 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Option);
 Vue.use(OptionGroup);
-Vue.use(Radio);
+Vue.use(RadioButton);
+Vue.use(RadioGroup);
 Vue.use(Select);
 Vue.use(Switch);
 

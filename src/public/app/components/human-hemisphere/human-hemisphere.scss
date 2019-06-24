@@ -12,11 +12,45 @@
         height: 600px;
 
         #human-hemisphere {
-            width: 50%;
+            width: 60%;
         }
 
         #human-hemisphere-legend {
-            width: 50%;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+
+            & > * {
+                margin: $spacer 0;
+            }
+
+            #expression-scale,
+            #specificity-scale {
+                align-self: flex-end;
+
+                .scale {
+                    border: 1px solid #DDD;
+                    height: 2em;
+                    margin: 0;
+                }
+
+                .labels {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+            #expression-scale .scale {
+                background: -moz-linear-gradient(left,  #00cc29 15%, #000000 50%, #ff2c19 85%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  #00cc29 15%,#000000 50%,#ff2c19 85%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  #00cc29 15%,#000000 50%,#ff2c19 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            }
+
+            #specificity-scale .scale{
+                background: -moz-linear-gradient(left, #6699cc 0%, #000000 50%, #f5ec62 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left, #6699cc 0%,#000000 50%,#f5ec62 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right, #6699cc 0%,#000000 50%,#f5ec62 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            }
         }
     }
 }
