@@ -34,6 +34,7 @@ import Switch from 'element-ui/lib/switch';
 
 import 'normalize.css';
 import './styles/element-theme.scss';
+import './styles/fonts.css';
 
 import topbar from './components/topbar/topbar.vue';
 import sidebar from './components/sidebar/sidebar.vue';
