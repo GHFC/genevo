@@ -97,7 +97,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: appName + '.html',
-            template: './index.html'
+            template: './index.html',
+            favicon: 'app/images/favicon.png'
         }),
         new CopyPlugin([
             {
