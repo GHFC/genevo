@@ -42,6 +42,12 @@
 
         <ul class="gene-item-list" v-show="selectedGene === gene.Gene">
           <li>
+            <span @click="showBrainGene(gene, 'specificity')" title="Show the specificity levels of this gene in the 3D brain">Brain specificity</span>
+          </li>
+          <li>
+            <span @click="showBrainGene(gene, 'expression')" title="Show the expression levels of this gene in the 3D brain">Brain expression</span>
+          </li>
+          <li>
             <a :href="ncbiLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on NCBI in a new tab">
               <span>See on NCBI</span>
             </a>

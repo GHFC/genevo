@@ -12,17 +12,22 @@
           Click on the brain to highlight a particular region or select it in the menu below.
           Double click outside the brain to reset the view.
         </p>
+        <div class="currentlyDisplayed">
+          <p>
+            Currently displayed:
+            <strong class="medianAllGenes" v-if="!brainGene.gene">median of all genes.</strong>
+            <strong class="onlyOneGene" v-if="brainGene.gene">only {{ brainGene.gene.Gene }}.</strong>
+          </p>
+          <el-button @click="resetBrainGene" v-if="brainGene.gene">Reset</el-button>
+        </div>
         <div>
-          <el-radio-group v-model="selectedDataType">
+          <el-radio-group v-model="selectedDataType" @change="selectDataType">
             <el-radio-button label="specificity">Specificty</el-radio-button>
             <el-radio-button label="expression">Expression</el-radio-button>
           </el-radio-group>
         </div>
-        <p>
-          Currently displayed: <strong>median of all genes.</strong>
-        </p>
         <div>
-          <el-select v-model="selectedRegion" clearable>
+          <el-select v-model="selectedRegion" clearable placeholder="Select a region">
             <el-option
               v-for="(region, key) in regionsList"
               :label="region"

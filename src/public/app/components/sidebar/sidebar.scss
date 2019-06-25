@@ -83,7 +83,8 @@
     .gene-item-list {
         list-style-type: none;
 
-        li a {
+        li a,
+        li > span {
             @extend %link;
             display: block;
             padding: $spacer / 1.5;

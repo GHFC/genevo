@@ -136,6 +136,9 @@ const sidebar = {
             }
 
             this.$store.commit('setHoveredDot', { dot: geneIndex, origin });
+        },
+        showBrainGene: function (gene, dataType) {
+            this.$store.commit('setBrainGene', { gene, dataType });
         }
     }
 };

@@ -115,39 +115,45 @@ const humanHemisphere = {
     computed: mapState({
         genes: state => state.genes,
         quality: state => state.quality,
-        alleleFq: state => state.alleleFq
+        alleleFq: state => state.alleleFq,
+        brainGene: state => state.brainGene
     }),
     watch: {
-        genes: function () { this.buildChart(); },
-        quality: function () { this.buildChart(); },
-        alleleFq: function () { this.buildChart(); },
-        selectedDataType: function () {
-            this.selectedRegion = '';
-            this.buildChart();
-        },
+        genes: function () { this.buildChart(this.genes, this.selectedDataType); },
+        quality: function () { this.buildChart(this.genes, this.selectedDataType); },
+        alleleFq: function () { this.buildChart(this.genes, this.selectedDataType); },
         selectedRegion: function (newRegion, oldRegion) {
             if (this.brainScene === null) return;
             if (oldRegion) this.resetRegion(oldRegion);
             if (newRegion) this.highlightRegion(newRegion);
             this.selectedRegion = newRegion;
+        },
+        brainGene: {
+            deep: true,
+            handler: function (newValue) {
+                if (newValue.gene) {
+                    this.selectedDataType = newValue.dataType;
+                    this.buildChart([ newValue.gene ], newValue.dataType);
+                }
+            }
         }
     },
     methods: {
-        buildChart: function () {
+        buildChart: function (genes, dataType) {
             if (this.brainScene) this.purgeChart();
 
             BrainBrowser.SurfaceViewer.start('human-hemisphere', (viewer) => {
                 this.brainScene = viewer;
 
                 this.brainScene.addEventListener('displaymodel', () => {
-                    this.brainScene.loadColorMapFromURL(this.dataTypes[this.selectedDataType].colorMapUrl);
+                    this.brainScene.loadColorMapFromURL(this.dataTypes[dataType].colorMapUrl);
                     this.setScene();
                 });
 
                 this.brainScene.addEventListener('loadcolormap', () => {
-                    this.brainScene.loadIntensityDataFromString(this.setBrainValues(this.genes, this.selectedDataType), null, {
-                        min: this.dataTypes[this.selectedDataType].colorsMapping.min,
-                        max: this.dataTypes[this.selectedDataType].colorsMapping.max
+                    this.brainScene.loadIntensityDataFromString(this.setBrainValues(genes, dataType), null, {
+                        min: this.dataTypes[dataType].colorsMapping.min,
+                        max: this.dataTypes[dataType].colorsMapping.max
                     });
                 });
 
@@ -318,6 +324,14 @@ const humanHemisphere = {
             // Tell three.js to send the new array to the GPU
             colors.needsUpdate = true;
             this.renderScene();
+        },
+        resetBrainGene: function () {
+            this.$store.commit('setBrainGene', { gene: null });
+            this.buildChart(this.genes, this.selectedDataType);
+        },
+        selectDataType: function () {
+            this.selectedRegion = '';
+            this.buildChart(this.genes, this.selectedDataType);
         }
     }
 };

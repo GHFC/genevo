@@ -40,6 +40,10 @@ const store = new Vuex.Store({
         selectedDots: {
             dots:  [],
             origin: ''
+        },
+        brainGene: {
+            gene: null,
+            dataType: ''
         }
     },
     mutations: {
@@ -65,6 +69,10 @@ const store = new Vuex.Store({
         setSelectedDots: function (state, data) {
             state.selectedDots.dots = data.dots;
             state.selectedDots.origin = data.origin;
+        },
+        setBrainGene: function (state, data) {
+            state.brainGene.gene = data.gene;
+            state.brainGene.dataType = data.dataType;
         }
     },
     getters: {

@@ -24,9 +24,20 @@
                 margin: $spacer 0;
             }
 
+            .onlyOneGene {
+                color: $secondary;
+            }
+
+            .currentlyDisplayed {
+                > * {
+                    display: inline-block;
+                    margin-right: $spacer;
+                }
+            }
+
             #expression-scale,
             #specificity-scale {
-                align-self: flex-end;
+                margin-top: auto;
 
                 .scale {
                     border: 1px solid #DDD;
