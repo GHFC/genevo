@@ -131,10 +131,20 @@ const humanHemisphere = {
         brainGene: {
             deep: true,
             handler: function (newValue) {
-                if (newValue.gene) {
-                    this.selectedDataType = newValue.dataType;
-                    this.buildChart([ newValue.gene ], newValue.dataType);
-                }
+                if (!newValue.gene) return;
+
+                // Get the current Y position of the hemisphere
+                // to scroll the page to the brain
+                var yBrain = document.getElementById("human-hemisphere-card")
+                    .getBoundingClientRect()
+                    .top;
+
+                // Scroll the page to get to the brain
+                // Take into account the page header size and the default card spacing
+                window.scrollBy(0, yBrain - 64 - 15);
+
+                this.selectedDataType = newValue.dataType;
+                this.buildChart([ newValue.gene ], newValue.dataType);
             }
         }
     },
