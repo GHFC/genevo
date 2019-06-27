@@ -15,7 +15,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Vuex store for managing the application's states
+// Vuex store for managing the application state
 // =========================================================================
 
 import Vue from 'vue';
@@ -29,22 +29,22 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        loading: false,
-        genes: [],
-        genesRequest: '',
-        genesList: [],
-        exact: true,
-        quality: 'mediumQuality',
-        alleleFq: 'pNpSGlobal',
-        hoveredDot: {
+        loading: false,                 // Marker to know when a request is pending
+        genes: [],                      // List of genes found by the request
+        genesRequest: '',               // Text request sent to the server
+        genesList: [],                  // Lists of genes sent to the server
+        exact: true,                    // Exact match parameter
+        quality: 'mediumQuality',       // Coverage quality parameter
+        alleleFq: 'pNpSGlobal',         // Allele frequency parameter
+        hoveredDot: {                   // The dot of a chart currently hovered by the mouse
             dot: null,
-            origin: ''
+            origin: ''                  // The chart where is was triggered
         },
-        selectedDots: {
+        selectedDots: {                 // The list of dots currently selected by the user
             dots:  [],
-            origin: ''
+            origin: ''                  // The chart where is was triggered
         },
-        brainGene: {
+        brainGene: {                    // The gene selected in the sidebar to be displayed in the 3D brain
             gene: null,
             dataType: ''
         }
