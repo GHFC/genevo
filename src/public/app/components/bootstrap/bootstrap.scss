@@ -6,4 +6,62 @@
 
 .bootstrap-card {
     height: 100%;
+
+    #bootstrap {
+        align-items: center;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+
+        * {
+            margin: $spacer / 2 $spacer;
+        }
+    }
+
+    #bootstrap-title {
+        color: #4B4B4B;
+        text-align: left;
+
+        > * {
+            font-family: 'Raleway';
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .main-title {
+            border-bottom: 1px solid #DDD;
+            font-size: 140%;
+            padding: 0 $spacer $spacer / 2 $spacer;
+        }
+    }
+
+    #bootstrap-label {
+        text-align: center;
+
+        .sign-high,
+        .non-sign,
+        .sign-low {
+            display: block;
+            font-family: 'Raleway';
+            font-size: 130%;
+            font-weight: 400;
+            padding-bottom: $spacer / 2;
+        }
+
+        .sign-high,
+        .sign-low {
+            color: #2CA02C;
+        }
+
+        .non-sign {
+            color: #D62728;
+        }
+
+        .pvalue {
+            font-family: 'Raleway';
+            font-size: 100%;
+        }
+    }
+
+
 }

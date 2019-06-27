@@ -22,10 +22,37 @@ const bootstrap = {
     name: 'bootstrap',
     data: function () {
         return {
-            title: 'Neanderthal',
-            description: APP_DESCRIPTION,
-            contact: APP_CONTACT
+            median: null,
+            confidenceInterval: null
         };
+    },
+    computed: {
+        loading: function () {
+            return this.$store.state.loading;
+        }
+    },
+    methods: {
+        reset: function () {
+            this.median = null;
+            this.confidenceInterval = null;
+        },
+        getBootstrap: function () {
+            if (!this.$store.state.genesRequest && !this.$store.state.genesList.length) return;
+
+            const params = {
+                request: this.$store.state.genesRequest,
+                genesList: this.$store.state.genesList,
+                exactMatch: this.$store.state.exact,
+                quality: this.$store.state.quality
+            };
+
+            this.$resources.bootstrap(params).then((response) => {
+                this.median = response.data.median;
+                this.confidenceInterval = response.data.confidenceInterval;
+            }).catch((error) => {
+                console.error(error);
+            });
+        }
     }
 };
 

@@ -28,7 +28,7 @@
         <el-option value="pNpS005" label="MAF > 5%"></el-option>
       </el-select>
       <div class="buttons">
-        <el-button class="search-button" type="primary" @click="getGenes" title="Search for genes">Search</el-button>
+        <el-button class="search-button" type="primary" @click="getGenes" :disabled="loading" title="Search for genes">Search</el-button>
         <el-button class="reset-button" @click="reset" title="Erase the current request">Reset</el-button>
       </div>
     </div>

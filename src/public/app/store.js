@@ -31,6 +31,9 @@ const store = new Vuex.Store({
     state: {
         loading: false,
         genes: [],
+        genesRequest: '',
+        genesList: [],
+        exact: true,
         quality: 'mediumQuality',
         alleleFq: 'pNpSGlobal',
         hoveredDot: {
@@ -55,6 +58,15 @@ const store = new Vuex.Store({
         },
         setGenes: function (state, genes) {
             state.genes = genes;
+        },
+        setGenesRequest: function (state, request) {
+            state.genesRequest = request;
+        },
+        setGenesList: function (state, list) {
+            state.genesList = list;
+        },
+        setExact: function (state, exact) {
+            state.exact = exact;
         },
         setAlleleFq: function (state, alleleFq) {
             state.alleleFq = alleleFq;

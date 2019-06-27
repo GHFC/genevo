@@ -1,5 +1,34 @@
 <div class="wrapper">
   <el-card class="bootstrap-card" shadow="never">
-    <span>{{ $options.name }} working !</span>
+    <div slot="header">
+      <span>Bootstrap</span>
+    </div>
+    <div id="bootstrap">
+      <div id="bootstrap-title">
+        <h2 class="main-title">Evolution of your gene set vs genome</h2>
+        <h3 class="subtitle">Calculate with bootstrap on human dN/dS</h3>
+      </div>
+      <div id="bootstrap-label" v-if="confidenceInterval">
+        <span class="sign-high" v-if="median > confidenceInterval.high">More divergent</span>
+        <span class="non-sign" v-if="median > confidenceInterval.low && median < confidenceInterval.high">Non-significant</span>
+        <span class="sign-low" v-if="median < confidenceInterval.low">More conserved</span>
+        <span class="pvalue" v-if="median > confidenceInterval.high || median < confidenceInterval.low">p-value &#60; 0.05</span>
+        <span class="pvalue" v-if="median > confidenceInterval.low && median < confidenceInterval.high">p-value &#62; 0.05</span>
+      </div>
+      <div id="bootstrap-data">
+        <div id="bootstrap-median" v-if="median">
+          <strong>Gene set median</strong>
+          <span>{{ median }}</span>
+        </div>
+        <div id="bootstrap-ci" v-if="confidenceInterval">
+          <strong>Bootstrap confidence interval</strong>
+          <span>[</span>
+          <span>{{ confidenceInterval.low }}</span>
+          <span>{{ confidenceInterval.high }}</span>
+          <span>]</span>
+        </div>
+      </div>
+      <el-button type="primary" @click="getBootstrap" :disabled="loading">Run</el-button>
+    </div>
   </el-card>
 </div>

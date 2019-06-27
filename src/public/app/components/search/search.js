@@ -30,30 +30,38 @@ const search = {
             genesInput: 'dyn',
             genesLists: [],
             presetLists: presetLists,
-            exact: false,
+            exact: true,
             orthologs: false,
             quality: 'mediumQuality',
             alleleFq: 'pNpSGlobal'
         };
     },
+    computed: {
+        loading: function () {
+            return this.$store.state.loading;
+        }
+    },
     watch: {
+        genesInput: function (newValue) {
+            this.$store.commit('setGenesRequest', newValue);
+        },
+        genesLists: function (newValue) {
+            this.$store.commit('setGenesList', newValue);
+        },
+        exact: function (newValue) {
+            this.$store.commit('setExact', newValue);
+        },
         quality: function (newValue) {
-            this.setQuality(newValue);
+            this.$store.commit('setQuality', newValue);
         },
         alleleFq: function (newValue) {
-            this.setAlleleFq(newValue);
+            this.$store.commit('setAlleleFq', newValue);
         }
     },
     mounted: function () {
         this.getGenes();
     },
     methods: {
-        setAlleleFq: function (alleleFq) {
-            this.$store.commit('setAlleleFq', alleleFq);
-        },
-        setQuality: function (quality) {
-            this.$store.commit('setQuality', quality);
-        },
         getGenes: function () {
             if (!this.genesInput && !this.genesLists.length) return;
 

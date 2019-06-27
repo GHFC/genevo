@@ -31,36 +31,33 @@ module.exports = function (req, res, next) {
     const collection = db.collection('genes');          // Get the collection
     const entrezList = [];                              // List of Entrez identifiers
     const geneList = [];                                // List of gene names
-    const functionList = [];                            // List of the metabolic functions
     const exactMatch = cast(req.query.exactMatch);      // Match exactly the terms or not
     const quality = req.query.quality;                  // The level of quality
     const dndsField = quality + ".AN.HS.OmegaHuguet";   // The document field where to find the dnds value
 
     // ---------------------------------------------------------------------
 
-    // Split the request terms and fill the lists for the database query
-    req.query.request
-    .match(/[^\s,]+/g)
-    .map(function (term) {
-        return cast(term);
-    })
-    .forEach(function (term) {
+    // Split the request terms for the database query
+    if (req.query.request) {
+        req.query.request
+        .match(/[^\s,]+/g)
+        .map(function (term) {
+            return cast(term);
+        })
+        .forEach(function (term) {
 
-        if (typeof(term) === 'number') {
-            entrezList.push(term);
-        }
+            if (typeof(term) === 'number') {
+                entrezList.push(term);
+            }
 
-        else if (term.substring(0, 5) === 'list:')  {
-            functionList.push(term.substring(5));
-        }
-
-        else {
-            var regex = "";
-            if (exactMatch) regex = new RegExp('^' + term + '$', 'i');
-            else regex = new RegExp(term, 'i');
-            geneList.push(regex);
-        }
-    });
+            else {
+                var regex = "";
+                if (exactMatch) regex = new RegExp('^' + term + '$', 'i');
+                else regex = new RegExp(term, 'i');
+                geneList.push(regex);
+            }
+        });
+    }
 
     // ---------------------------------------------------------------------
 
@@ -70,11 +67,14 @@ module.exports = function (req, res, next) {
         { Gene: { '$in': geneList } }
     ]};
 
-    functionList.forEach(function (name) {
-        var req = {};
-        req[name] = true;
-        query.$or.push(req);
-    });
+    // Add the lists to the query, if any
+    if (req.query.genesLists) {
+        req.query.genesLists.forEach(function (name) {
+            var req = {};
+            req[name] = true;
+            query.$or.push(req);
+        });
+    }
 
     // Select only the fields of interest
     const fields = {

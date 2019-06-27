@@ -55,8 +55,8 @@ const resources = {
         return base.get('search', { params: params });
     },
 
-    bootstrap: function () {
-        return 'bootstrap';
+    bootstrap: function (params) {
+        return base.get('bootstrap', { params: params });
     }
 };
 
