@@ -15,24 +15,36 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Common config of the charts
+// Recursive function to flatten a JSON in order to display it in a table.
 // =========================================================================
 
 export default {
-    data: function () {
-        return {
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    'sendDataToCloud',
-                    'autoScale2d',
-                    'hoverClosestCartesian',
-                    'hoverCompareCartesian',
-                    'toggleSpikelines',
-                    'toImage'
-                ]
+    methods: {
+        flattenJSON: function (entry) {
+            const flatEntry = {};
+
+            function flatten(key, value) {
+
+                // Stop if the value is not a nested object
+                if (typeof(value) !== 'object') {
+                    flatEntry[key] = value;
+                    return;
+                }
+
+                // Recurse when the value is a nested object and concat the keys
+                for (let nestedKey in value) {
+                    const nextKey = key ? key + '.' + nestedKey : nestedKey;
+                    const nextValue = value[nestedKey];
+
+                    flatten(nextKey, nextValue);
+                }
             }
+
+            // Start the recursion
+            flatten('', entry);
+
+            // Return the end result
+            return flatEntry;
         }
     }
-}
+};

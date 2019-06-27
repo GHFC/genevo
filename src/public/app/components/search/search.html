@@ -30,6 +30,7 @@
       <div class="buttons">
         <el-button class="search-button" type="primary" @click="getGenes" :disabled="loading" title="Search for genes">Search</el-button>
         <el-button class="reset-button" @click="reset" title="Erase the current request">Reset</el-button>
+        <el-button class="download-button" type="primary" v-if="genes.length" @click="downloadGenes" title="Downolad the raw data">Download</el-button>
       </div>
     </div>
   </el-card>

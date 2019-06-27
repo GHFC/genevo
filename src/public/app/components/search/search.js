@@ -19,24 +19,34 @@
 // =========================================================================
 
 import presetLists from './gene-lists.js';
+import rawColumns from './raw-columns.js';
+import flattenJSON from '../../mixins/flatten-json.js';
+import jsonToTSV from '../../mixins/json-to-tsv.js';
 
 // =========================================================================
 
 const search = {
     name: 'search',
+    mixins: [
+        flattenJSON,
+        jsonToTSV
+    ],
     data: function () {
         return {
-            genes: [],
             genesInput: 'dyn',
             genesLists: [],
             presetLists: presetLists,
             exact: true,
             orthologs: false,
             quality: 'mediumQuality',
-            alleleFq: 'pNpSGlobal'
+            alleleFq: 'pNpSGlobal',
+            rawColumns: rawColumns,
         };
     },
     computed: {
+        genes: function () {
+            return this.$store.state.genes;
+        },
         loading: function () {
             return this.$store.state.loading;
         }
@@ -88,6 +98,40 @@ const search = {
             this.quality = 'mediumQuality',
             this.frequency = 'pNpSGlobal',
             this.$store.commit('setGenes', []);
+        },
+        downloadGenes: function () {
+
+            // Flatten the raw data
+            const flatData = this.genes.map(this.flattenJSON);
+
+            // Build the table and set the URI for the download
+            const filteredData = flatData.map((entry) => {
+                const filteredEntry = {};
+
+                for (let key in this.rawColumns) {
+                    const column = this.rawColumns[key];
+                    filteredEntry[column] = entry[key];
+                }
+
+                return filteredEntry;
+            });
+
+            // Generate the file in memory
+            const data = this.jsonToTSV(filteredData);
+            const file = new Blob([ data ], { type: 'text/tab-separated-values' });
+            const fileURL = window.URL.createObjectURL(file);
+            const date = new Date().toISOString().replace(/T.*/, '');
+
+            // Download the file
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = 'neanderthal_' + date + '.tsv';
+
+            // Explicity append the link to body for Firefox
+            document.body.appendChild(link);
+
+            link.click();
+            link.remove();
         }
     }
 };
