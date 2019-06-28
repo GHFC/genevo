@@ -19,6 +19,7 @@
 // =========================================================================
 
 import { mapState } from 'vuex';
+import variantsWindow from './variantsWindow.js';
 
 // =========================================================================
 
@@ -139,6 +140,12 @@ const sidebar = {
         },
         showBrainGene: function (gene, dataType) {
             this.$store.commit('setBrainGene', { gene, dataType });
+        },
+        openVariants: function (entry, entryIndex) {
+            const template = variantsWindow(entry, entryIndex);
+
+            window.open(template, "", "width=900,height=580,resizeable,scrollbars")
+                  .document.write(template);
         }
     }
 };

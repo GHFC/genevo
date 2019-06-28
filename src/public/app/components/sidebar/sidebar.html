@@ -42,6 +42,11 @@
 
         <ul class="gene-item-list" v-show="selectedGene === gene.Gene">
           <li>
+            <a :class="{ disabled: !gene.Variants }" @click="openVariants(gene)" role="buttton" target="_blank" title="View this gene on OMIM in a new tab">
+              <span>Show variants</span>
+            </a>
+          </li>
+          <li>
             <span @click="showBrainGene(gene, 'specificity')" title="Show the specificity levels of this gene in the 3D brain">Brain specificity</span>
           </li>
           <li>
