@@ -94,6 +94,7 @@ export default function (entry, entryIndex) {
 
             for (let variant in entry.Variants[transcript]) {
                 const variantData = entry.Variants[transcript][variant];
+                variantData['CADD_phred'] = parseFloat(variantData['CADD_phred']).toFixed(3);
 
                 let td = tr.insertCell();
                 let text = null;
