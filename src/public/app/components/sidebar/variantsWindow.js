@@ -24,7 +24,7 @@ import windowStyle from './variantsWindowStyle.js';
 
 // =========================================================================
 
-export default function (entry, entryIndex) {
+export default function (entry) {
 
     const gene = entry.Gene;            // The gene name
     const ccds = entry.CDS;             // The length of the coding sequence

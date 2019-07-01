@@ -141,8 +141,10 @@ const sidebar = {
         showBrainGene: function (gene, dataType) {
             this.$store.commit('setBrainGene', { gene, dataType });
         },
-        openVariants: function (entry, entryIndex) {
-            const template = variantsWindow(entry, entryIndex);
+        openVariants: function (gene) {
+            if (!gene.Variants) return;
+
+            const template = variantsWindow(gene);
 
             window.open(template, "", "width=900,height=580,resizeable,scrollbars")
                   .document.write(template);
