@@ -4,6 +4,12 @@
     height: 100%;
 }
 
+.search-card {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid $grey;
+}
+
 .card-content {
     display: grid;
     grid-template-columns: 3fr 2fr;
