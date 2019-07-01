@@ -1,5 +1,11 @@
 <div id="wrapper">
 
+  <div class="helper-text" v-if="!genes.length">
+    <p>Nothing to display.</p>
+    <p>Try to enter some gene names in the main input field.</p>
+    <i class="el-icon-right"></i>
+  </div>
+
   <div class="genes-found" title="Total number of genes found" v-show="genes.length">
     <span>Genes found</span>
     <span class="badge">{{ genes.length }}</span>

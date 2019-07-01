@@ -10,6 +10,15 @@
     height: 100%;
 }
 
+.helper-text {
+    padding: $spacer;
+    text-align: center;
+
+    i {
+        font-size: 30px;
+    }
+}
+
 .genes-found,
 .genes-selected,
 .clear-button {
