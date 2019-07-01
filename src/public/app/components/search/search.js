@@ -33,7 +33,7 @@ const search = {
     ],
     data: function () {
         return {
-            genesInput: 'dyn',
+            genesInput: '',
             genesLists: [],
             presetLists: presetLists,
             exact: true,
