@@ -6,8 +6,12 @@
   </h1>
 
   <div class="links">
-    <a href="https://github.com/GHFC/Neanderthal/wiki" target="_blank" title="Go to the documentation">
+    <a @click="startIntro" role="button" title="Start a quick presentation of the page">
       <i class="el-icon-info"></i>
+      Start here
+    </a>
+    <a href="https://github.com/GHFC/Neanderthal/wiki" target="_blank" title="Go to the documentation">
+      <i class="el-icon-question"></i>
       Documentation
     </a>
     <a :href="'mailto:' + contact" title="Send an email to the administrator">

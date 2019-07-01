@@ -32,6 +32,9 @@ import RadioGroup from 'element-ui/lib/radio-group';
 import Select from 'element-ui/lib/select';
 import Switch from 'element-ui/lib/switch';
 
+import VueIntro from 'vue-introjs';
+import 'intro.js/introjs.css';
+
 import 'normalize.css';
 import './styles/element-theme.scss';
 import './styles/fonts.css';
@@ -54,6 +57,7 @@ import store from './store.js';
 // =========================================================================
 
 Vue.use(resources);
+Vue.use(VueIntro);
 
 // Element-UI components
 Vue.use(Button);

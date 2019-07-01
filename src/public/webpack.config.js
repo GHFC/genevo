@@ -22,6 +22,7 @@ const path = require('path');
 
 const { DefinePlugin } = require('webpack');
 const { NormalModuleReplacementPlugin } = require('webpack');
+const { ProvidePlugin } =require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -110,7 +111,11 @@ module.exports = {
             }
         ]),
         // Replace the default Chinese language with english
-        new NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en')
+        new NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
+        // Inject introJS
+        new ProvidePlugin({
+            introJs: [ 'intro.js' ]
+        })
     ],
     module: {
         rules: [

@@ -1,7 +1,17 @@
 <div class="wrapper">
   <el-card class="search-card" shadow="never">
     <div class="card-content">
-      <el-select class="genes-lists" v-model="genesLists" placeholder="Select a list of genes" multiple clearable title="Choose a preset list of genes">
+
+      <el-select
+        class="genes-lists"
+        v-model="genesLists"
+        placeholder="Select a list of genes"
+        multiple
+        clearable
+        title="Choose a preset list of genes"
+        v-intro="'You can also select a preset list of genes based on specific tissues or functions.'"
+        v-intro-step="2"
+        v-intro-tooltip-class="'intro-tooltip'">
         <el-option-group
           v-for="(lists, group) in presetLists"
           :key="group"
@@ -14,23 +24,95 @@
           </el-option>
         </el-option-group>
       </el-select>
-      <el-input class="genes-input" v-model="genesInput" type="textarea" rows="5" spellcheck="false" placeholder="Or enter your own gene list here"></el-input>
-      <el-switch class="exact-match" v-model="exact" active-text="Exact match" title="Match exactly the keywords"></el-switch>
-      <el-switch class="orthologs" v-model="orthologs" active-text="Only 1-to-1 orthologs" title="Request only the 1-to-1 orthologs genes"></el-switch>
-      <el-select class="quality" v-model="quality" placeholder="Quality" title="Select the quality of gene coverage">
+
+      <el-input
+        class="genes-input"
+        v-model="genesInput"
+        type="textarea"
+        rows="5"
+        spellcheck="false"
+        placeholder="Or enter your own gene list here"
+        v-intro="'Enter a list of gene names or Entrez IDs here, separated by spaces and/or commas.'"
+        v-intro-step="1"
+        v-intro-tooltip-class="'intro-tooltip'">
+      </el-input>
+
+      <el-switch
+        class="exact-match"
+        v-model="exact"
+        active-text="Exact match"
+        title="Match exactly the keywords"
+        v-intro="'The exact match parameter allows you to match genes that are exactly like the keywords you entered.'"
+        v-intro-step="5"
+        v-intro-tooltip-class="'intro-tooltip'">
+      </el-switch>
+
+      <el-switch
+        class="orthologs"
+        v-model="orthologs"
+        active-text="Only 1-to-1 orthologs"
+        title="Request only the 1-to-1 orthologs genes"
+        v-intro="'Set this parameter to select only the 1:1 orthologs genes.'"
+        v-intro-step="6"
+        v-intro-tooltip-class="'intro-tooltip'">
+      </el-switch>
+
+      <el-select
+        class="quality"
+        v-model="quality"
+        placeholder="Quality"
+        title="Select the quality of gene coverage"
+        v-intro="'Then you can select the quality of the gene coverage.'"
+        v-intro-step="3"
+        v-intro-tooltip-class="'intro-tooltip'">
         <el-option value="lowQuality" label="Low quality"></el-option>
         <el-option value="mediumQuality" label="Medium quality"></el-option>
         <el-option value="highQuality" label="High quality"></el-option>
       </el-select>
-      <el-select class="allele-frequency" v-model="alleleFq" placeholder="Allele frequency" title="Select the allele frequency">
+
+      <el-select
+        class="allele-frequency"
+        v-model="alleleFq"
+        placeholder="Allele frequency"
+        title="Select the allele frequency"
+        v-intro="'And the allele frequency.'"
+        v-intro-step="4"
+        v-intro-tooltip-class="'intro-tooltip'">
         <el-option value="pNpSGlobal" label="All alleles frequencies"></el-option>
         <el-option value="pNpS001" label="MAF < 1%"></el-option>
         <el-option value="pNpS005" label="MAF > 5%"></el-option>
       </el-select>
+
       <div class="buttons">
-        <el-button class="search-button" type="primary" @click="getGenes" :disabled="loading" title="Search for genes">Search</el-button>
-        <el-button class="reset-button" @click="reset" title="Erase the current request">Reset</el-button>
-        <el-button class="download-button" type="primary" v-if="genes.length" @click="downloadGenes" title="Downolad the raw data">Download</el-button>
+
+        <el-button
+          class="search-button"
+          type="primary"
+          @click="getGenes"
+          :disabled="loading"
+          title="Search for genes"
+          v-intro="'Then make your request !'"
+          v-intro-step="7"
+          v-intro-tooltip-class="'intro-tooltip'">
+          Search
+        </el-button>
+
+        <el-button
+          class="reset-button"
+          @click="reset"
+          title="Erase the current request">
+          Reset
+        </el-button>
+
+        <el-button
+          class="download-button"
+          type="primary"
+          v-if="genes.length"
+          @click="downloadGenes"
+          title="Downolad the raw data">
+          Download
+        </el-button>
+
       </div>
     </div>
   </el-card>

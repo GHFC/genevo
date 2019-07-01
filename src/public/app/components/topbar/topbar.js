@@ -31,6 +31,11 @@ const topbar = {
         loading: function () {
             return this.$store.state.loading;
         }
+    },
+    methods: {
+        startIntro: function () {
+            this.$intro().start();
+        }
     }
 };
 
