@@ -120,6 +120,9 @@ export default {
     computed: {
         genes: function () {
             return this.$store.state.genes;
+        },
+        noResults: function () {
+            return this.$store.state.noResults;
         }
     },
     resources: resources,

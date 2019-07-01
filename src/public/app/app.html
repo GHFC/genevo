@@ -12,6 +12,10 @@
     <div class="search">
       <search></search>
     </div>
+    <div class="no-results" v-show="noResults">
+      <h1>No gene found</h1>
+      <div>Try to modify the parameters concerning 1-to-1 orthologs or the exact match.</div>
+    </div>
     <div class="bootstrap" v-show="genes.length">
       <bootstrap></bootstrap>
     </div>

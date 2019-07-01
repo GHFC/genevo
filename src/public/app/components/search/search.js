@@ -86,6 +86,9 @@ const search = {
 
             this.$resources.search(params).then((response) => {
                 this.$store.commit('setGenes', response.data);
+
+                if (!response.data.length) this.$store.commit('setNoResults', true);
+                else this.$store.commit('setNoResults', false);
             }).catch((error) => {
                 console.error(error);
             });
@@ -98,6 +101,7 @@ const search = {
             this.quality = 'mediumQuality',
             this.frequency = 'pNpSGlobal',
             this.$store.commit('setGenes', []);
+            this.$store.commit('setNoResults', false);
         },
         downloadGenes: function () {
 

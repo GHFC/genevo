@@ -36,6 +36,7 @@ const store = new Vuex.Store({
         exact: true,                    // Exact match parameter
         quality: 'mediumQuality',       // Coverage quality parameter
         alleleFq: 'pNpSGlobal',         // Allele frequency parameter
+        noResults: false,               // Marker to display the no-results message
         hoveredDot: {                   // The dot of a chart currently hovered by the mouse
             dot: null,
             origin: ''                  // The chart where is was triggered
@@ -73,6 +74,9 @@ const store = new Vuex.Store({
         },
         setQuality: function (state, quality) {
             state.quality = quality;
+        },
+        setNoResults: function (state, noResults) {
+            state.noResults = noResults;
         },
         setHoveredDot: function (state, data) {
             state.hoveredDot.dot = data.dot;

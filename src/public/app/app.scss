@@ -57,6 +57,11 @@ body, #app {
         .search {
             grid-column: 1 / 5;
         }
+        .no-results {
+            grid-column: 1 / 5;
+            text-align: center;
+            color: $black-light;
+        }
         .bootstrap {
             grid-column: 1 / 5;
             margin: 0 $spacer 0 $spacer;
