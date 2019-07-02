@@ -22,12 +22,14 @@
 module.exports = {
 
     // Environment
-    'APP_ENV': JSON.stringify(process.env.NODE_ENV),
+    'APP_ENV': process.env.NODE_ENV || 'development',
+    // 'APP_PUBLIC_PATH': process.env.NEANDERTHAL_APP_PUBLIC_PATH.trim().replace(/\/$/, '') || '/',
+    'APP_PUBLIC_PATH': process.env.NEANDERTHAL_APP_PUBLIC_PATH || '/',
 
     // From package.json
-    'APP_NAME': JSON.stringify(process.env.npm_package_name),
-    'APP_VERSION': JSON.stringify(process.env.npm_package_version),
-    'APP_DESCRIPTION': JSON.stringify(process.env.npm_package_description),
-    'APP_CONTACT': JSON.stringify(process.env.npm_package_bugs_email)
+    'APP_NAME': process.env.npm_package_name,
+    'APP_VERSION': process.env.npm_package_version,
+    'APP_DESCRIPTION': process.env.npm_package_description,
+    'APP_CONTACT': process.env.npm_package_bugs_email
 
 };

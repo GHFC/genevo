@@ -48,7 +48,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, '../../dist'),
-        publicPath: '/',
+        publicPath: config.APP_PUBLIC_PATH.replace(/\/$/, '') || '/',
         filename: appName + '.js',
         chunkFilename: '[name].js'
     },
@@ -90,17 +90,33 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new DefinePlugin(config),
+
+        // Generate global constants to be used by the front-end
+        new DefinePlugin({
+            APP_NAME: JSON.stringify(config.APP_NAME),
+            APP_PUBLIC_PATH: JSON.stringify(config.APP_PUBLIC_PATH),
+            APP_VERSION: JSON.stringify(config.APP_VERSION),
+            APP_DESCRIPTION: JSON.stringify(config.APP_DESCRIPTION),
+            APP_CONTACT: JSON.stringify(config.APP_CONTACT)
+        }),
+
+        // Remove dist folder after each reload to avoid issues
         new CleanWebpackPlugin(),
+
+        // Put the CSS in a separate chunk
         new MiniCssExtractPlugin({
             filename: appName + '.css',
             chunkFilename: '[name].css'
         }),
+
+        // Generate the main index.html page
         new HtmlWebpackPlugin({
             filename: appName + '.html',
             template: './index.html',
             favicon: 'app/images/favicon.png'
         }),
+
+        // Raw copy of the brainBrowser files and workers
         new CopyPlugin([
             {
                 from: 'app/lib/',
@@ -110,8 +126,10 @@ module.exports = {
                 ]
             }
         ]),
+
         // Replace the default Chinese language with english
         new NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
+
         // Inject introJS
         new ProvidePlugin({
             introJs: [ 'intro.js' ]

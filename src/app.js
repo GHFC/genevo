@@ -81,6 +81,7 @@ Database.connect(function (err, client) {
         log.info('Neanderthal server listening to ' + host + ' on port ' + port);
         log.info('Environment : ' + env);
         log.info('Proxy : ' + proxy);
+        log.info('Public path : ' + process.env.NEANDERTHAL_APP_PUBLIC_PATH);
     });
 
     // Exit handlers
