@@ -31,9 +31,8 @@ const humanHemisphere = {
         median
     ],
     mounted: function () {
-        console.log(APP_PUBLIC_PATH + 'lib/brainBrowser-2.5.2/workers');
         // Set the web workers directory
-        BrainBrowser.config.set('worker_dir', APP_PUBLIC_PATH + 'lib/brainBrowser-2.5.2/workers');
+        BrainBrowser.config.set('worker_dir', 'lib/brainBrowser-2.5.2/workers');
 
         window.addEventListener('resize', () => {
             if (this.brainScene) this.renderScene();
@@ -91,7 +90,7 @@ const humanHemisphere = {
             dataTypes: {                           // Two different set of data possible, specificity or expresssion
                 specificity: {
                     fieldSuffix: '_Specificity',
-                    colorMapUrl: APP_PUBLIC_PATH + 'lib/brainBrowser-2.5.2/colors/blue-yellow.txt',
+                    colorMapUrl: 'lib/brainBrowser-2.5.2/colors/blue-yellow.txt',
                     colorsMapping: {
                         min: -2,
                         max: 2
@@ -99,7 +98,7 @@ const humanHemisphere = {
                 },
                 expression: {
                     fieldSuffix: '_Levels',
-                    colorMapUrl: APP_PUBLIC_PATH + 'lib/brainBrowser-2.5.2/colors/green-red.txt',
+                    colorMapUrl: 'lib/brainBrowser-2.5.2/colors/green-red.txt',
                     colorsMapping: {
                         min: -2,
                         max: 2
@@ -171,7 +170,7 @@ const humanHemisphere = {
                 // Render the scene, set the background color and load the mesh
                 this.renderScene();
 
-                this.brainScene.loadModelFromURL(APP_PUBLIC_PATH + 'lib/brainBrowser-2.5.2/models/brain-surface', {
+                this.brainScene.loadModelFromURL('lib/brainBrowser-2.5.2/models/brain-surface', {
                     format: 'freesurferbin'
                 });
             });

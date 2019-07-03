@@ -328,7 +328,7 @@ const dnds = {
                 },
                 images: [
                     {
-                        source: APP_PUBLIC_PATH + "images/phylotree.png",
+                        source: "images/phylotree.png",
                         yref: "y",
                         xref: "paper",
                         y: 0,

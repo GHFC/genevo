@@ -23,8 +23,6 @@ module.exports = {
 
     // Environment
     'APP_ENV': process.env.NODE_ENV || 'development',
-    // 'APP_PUBLIC_PATH': process.env.NEANDERTHAL_APP_PUBLIC_PATH.trim().replace(/\/$/, '') || '/',
-    'APP_PUBLIC_PATH': process.env.NEANDERTHAL_APP_PUBLIC_PATH || '/',
 
     // From package.json
     'APP_NAME': process.env.npm_package_name,

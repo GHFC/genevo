@@ -48,7 +48,6 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, '../../dist'),
-        publicPath: config.APP_PUBLIC_PATH.replace(/\/$/, '') || '/',
         filename: appName + '.js',
         chunkFilename: '[name].js'
     },
@@ -74,6 +73,9 @@ module.exports = {
         contentBase: path.resolve(__dirname, '../../dist'),
         index: appName + '.html',
         port: 8888,
+        proxy: {
+            '/': 'http://localhost:3000'
+        },
         stats: {
             assetsSort: '!size',
             children: false,
