@@ -25,7 +25,7 @@ import store from './store';
 // =========================================================================
 
 const base = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: '/'
 });
 
 // Interceptors
