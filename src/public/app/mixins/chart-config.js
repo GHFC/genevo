@@ -29,8 +29,7 @@ export default {
                     'autoScale2d',
                     'hoverClosestCartesian',
                     'hoverCompareCartesian',
-                    'toggleSpikelines',
-                    'toImage'
+                    'toggleSpikelines'
                 ]
             }
         }
