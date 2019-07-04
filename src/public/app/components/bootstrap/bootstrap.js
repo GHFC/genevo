@@ -18,6 +18,10 @@
 // Request a bootstrap for the genes
 // =========================================================================
 
+import { mapState } from 'vuex';
+
+// =========================================================================
+
 const bootstrap = {
     name: 'bootstrap',
     data: function () {
@@ -26,10 +30,14 @@ const bootstrap = {
             confidenceInterval: null
         };
     },
-    computed: {
-        loading: function () {
-            return this.$store.state.loading;
-        }
+    computed: mapState({
+        loading: state => state.loading,
+        genes: state => state.genes,
+        genesLists: state => state.genesLists
+    }),
+    watch: {
+        genes: function () { this.reset(); },
+        genesLists: function () { this.reset(); },
     },
     methods: {
         reset: function () {
