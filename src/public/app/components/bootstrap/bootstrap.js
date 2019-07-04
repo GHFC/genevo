@@ -37,11 +37,11 @@ const bootstrap = {
             this.confidenceInterval = null;
         },
         getBootstrap: function () {
-            if (!this.$store.state.genesRequest && !this.$store.state.genesList.length) return;
+            if (!this.$store.state.genesRequest && !this.$store.state.genesLists.length) return;
 
             const params = {
                 request: this.$store.state.genesRequest,
-                genesList: this.$store.state.genesList,
+                genesLists: this.$store.state.genesLists,
                 exactMatch: this.$store.state.exact,
                 quality: this.$store.state.quality
             };

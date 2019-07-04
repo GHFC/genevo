@@ -32,7 +32,7 @@ const store = new Vuex.Store({
         loading: false,                 // Marker to know when a request is pending
         genes: [],                      // List of genes found by the request
         genesRequest: '',               // Text request sent to the server
-        genesList: [],                  // Lists of genes sent to the server
+        genesLists: [],                  // Lists of genes sent to the server
         exact: true,                    // Exact match parameter
         quality: 'mediumQuality',       // Coverage quality parameter
         alleleFq: 'pNpSGlobal',         // Allele frequency parameter
@@ -63,8 +63,8 @@ const store = new Vuex.Store({
         setGenesRequest: function (state, request) {
             state.genesRequest = request;
         },
-        setGenesList: function (state, list) {
-            state.genesList = list;
+        setGenesLists: function (state, list) {
+            state.genesLists = list;
         },
         setExact: function (state, exact) {
             state.exact = exact;

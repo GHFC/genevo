@@ -56,7 +56,7 @@ const search = {
             this.$store.commit('setGenesRequest', newValue);
         },
         genesLists: function (newValue) {
-            this.$store.commit('setGenesList', newValue);
+            this.$store.commit('setGenesLists', newValue);
         },
         exact: function (newValue) {
             this.$store.commit('setExact', newValue);
