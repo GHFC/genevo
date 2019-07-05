@@ -1,6 +1,6 @@
 {
   "name": "neanderthal-synapse",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "The website of the Neanderthal's Synapse project",
   "main": "src/app.js",
   "scripts": {
