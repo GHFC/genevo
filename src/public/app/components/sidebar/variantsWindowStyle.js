@@ -12,10 +12,17 @@ h2 {
 	font-size: 200%;
     font-weight: 400;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 h2 #gene {
 	margin-left: 20px;
+}
+
+.example {
+    color: #6B6B6B;
+    font-style: italic;
+    margin: 0 0 0 20px;
 }
 
 h2 small {

@@ -54,7 +54,8 @@ export default function (entry) {
             "<span id='gene' title='Gene name'>" + gene + "</span>"+
             "<small id='CCDS' title='Sequence length in nucleotides'>CCDS : " + ccds + " NT</small>"+
             "<small id='protLength' title='Protein length in amino-acid'>Protein : " + protLength + " AA</small>"+
-        "</h2>";
+        "</h2>" +
+        "<p class='example'>Example: for a H249R variant, 0/0 means H/H and 1/1 means R/R</p>";
 
     const footer =
         "</body>"+
