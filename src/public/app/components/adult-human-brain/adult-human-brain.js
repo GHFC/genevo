@@ -325,18 +325,18 @@ const adultHumanBrain = {
             const traces = [];
 
             // Hover the dot
-            for (var i = 1; i <= 7; i =i + 2) {
-                traces.push({ curveNumber: i, pointNumber: dot});
+            for (var i = 1; i <= 7; i = i + 2) {
+                traces.push({ curveNumber: i, pointNumber: dot });
             }
 
             Plotly.Fx.hover(this.chart, traces);
 
             // Color the brain
             for (let region in this.map.colors) {
-                const value = this.genes[dot]["pst" + region + "_gn"];
+                let value = this.genes[dot]["pst" + region + "_gn"];
 
-                if (typeof(value) !== "number") value = 0;
-                if (value > 3 ) value = 3;
+                if (typeof (value) !== "number") value = 0;
+                if (value > 3) value = 3;
                 if (value < -3) value = -3;
 
                 this.map.colors[region] = this.map.colorScale(value);
@@ -347,7 +347,7 @@ const adultHumanBrain = {
 
             // Unover the dot
             for (var i = 1; i <= 7; i = i + 2) {
-                traces.push({ curveNumber: i, pointNumber: dot});
+                traces.push({ curveNumber: i, pointNumber: dot });
             }
 
             Plotly.Fx.unhover(this.chart, traces);
