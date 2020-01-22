@@ -93,7 +93,7 @@ const sidebar = {
         clipboard: function () {
             const tmp = document.createElement("textarea");
             document.body.appendChild(tmp);
-            tmp.value = this.$store.getters.geneNames;
+            tmp.value = this.filteredGenes.map((gene) => { return gene.Gene; });
             tmp.select();
             document.execCommand("copy");
             document.body.removeChild(tmp);
