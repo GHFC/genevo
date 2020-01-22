@@ -52,7 +52,7 @@ const sidebar = {
 
             // Then filter with the filter input, if any
             if (this.filter.length) {
-                let filter = new RegExp(this.filter, 'ig');
+                let filter = new RegExp(this.filter, 'i');
 
                 filteredGenes = filteredGenes.filter((gene) => {
                     return filter.test(gene.Gene);
