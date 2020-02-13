@@ -79,6 +79,16 @@
             </a>
           </li>
           <li>
+            <a :href="gene2pheno(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on gene2phenotype in a new tab">
+              <span>See on gene2pheno</span>
+            </a>
+          </li>
+          <li>
+            <a :href="geisinger(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on Geisinger in a new tab">
+              <span>See on Geisinger</span>
+            </a>
+          </li>
+          <li>
             <a :class="{ disabled: !gene.MimId }" :href="omimLink(gene.MimId)" rel="external noreferrer" target="_blank" title="View this gene on OMIM in a new tab">
               <span>See on OMIM</span>
             </a>

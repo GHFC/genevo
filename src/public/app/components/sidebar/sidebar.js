@@ -122,6 +122,12 @@ const sidebar = {
         gtexLink: function (gene) {
             return "https://www.gtexportal.org/home/gene/"  + gene;
         },
+        gene2pheno: function (gene) {
+            return "https://www.ebi.ac.uk/gene2phenotype/search?panel=ALL&search_term=" + gene;
+        },
+        geisinger: function (gene) {
+            return "https://dbd.geisingeradmi.org/genes/" + gene + ".html";
+        },
         omimLink: function (id) {
             if (id && id.length > 0) return "https://www.omim.org/entry/" + id[0];
         },
