@@ -125,7 +125,7 @@ const sidebar = {
         gene2pheno: function (gene) {
             return "https://www.ebi.ac.uk/gene2phenotype/search?panel=ALL&search_term=" + gene;
         },
-        geisinger: function (gene) {
+        dbd: function (gene) {
             return "https://dbd.geisingeradmi.org/genes/" + gene + ".html";
         },
         omimLink: function (id) {
