@@ -30,26 +30,6 @@ export default {
                     'hoverClosestCartesian',
                     'hoverCompareCartesian',
                     'toggleSpikelines'
-                ],
-                modeBarButtonsToAdd: [
-                    {
-                        // Add a custom button to go to the documentation page for the graph
-                        name: "help",
-                        title: "Go to the documentation for this graph",
-                        click: function (chart) {
-
-                            const chartNames = {
-                                'dnds-chart': 'dnds-by-taxon',
-                                'modern-humans-chart': 'modern-humans',
-                                'primate-evolution-chart': 'primate-evolution',
-                                'introgression-chart': 'neanderthal-introgression',
-                                'fetal-human-brain-chart': 'fetal-brain',
-                                'adult-human-brain-chart': 'adult-brain'
-                            };
-
-                            window.open("https://github.com/GHFC/neanderthal-synapse/wiki/Data-panels#" + chartNames[chart.id]);
-                        }
-                    }
                 ]
             }
         }

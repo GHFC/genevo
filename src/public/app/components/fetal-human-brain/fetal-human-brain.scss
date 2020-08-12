@@ -1,4 +1,5 @@
 @import "../../styles/theme";
+@import "../../styles/link";
 
 .wrapper {
     height: 100%;
@@ -6,4 +7,18 @@
 
 .fetal-human-brain-card {
     height: 100%;
+
+    .header-card {
+        display: flex;
+        align-items: center;
+
+        .header-card-doc {
+            margin-left: auto;
+        }
+
+        .header-card-doc-link {
+            @extend %link;
+            padding: 0;
+        }
+    }
 }
