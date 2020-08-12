@@ -36,6 +36,12 @@
     font-weight: 400;
     margin: 0;
     margin-left: 14px;
+
+    .app-subtitle {
+        color: $grey;
+        font-size: 16px;
+        font-style: italic;
+    }
 }
 
 .links {
