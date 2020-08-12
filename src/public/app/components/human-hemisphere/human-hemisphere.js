@@ -15,7 +15,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// 3D left hemisphere of human brain displaying gene expression and specificty
+// 3D left hemisphere of human brain displaying gene expression and specificity
 // =========================================================================
 
 import '../../lib/brainBrowser-2.5.2/brainbrowser.surface-viewer.min';
