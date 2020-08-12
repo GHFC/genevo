@@ -15,11 +15,22 @@
     grid-template-columns: 3fr 2fr;
     grid-gap: $spacer;
     grid-template-areas:
+        "intro-text  intro-text"
         "genes-lists quality"
         "genes-input allele-frequency"
         "genes-input exact-match"
         "genes-input orthologs"
-        "buttons buttons";
+        "buttons     buttons";
+}
+
+.intro-text {
+    grid-area: intro-text;
+
+    .intro-text-p {
+        font-family: $text-font;
+        font-size: 14px;
+        line-height: 1.5;
+    }
 }
 
 .genes-lists {

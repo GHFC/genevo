@@ -2,6 +2,12 @@
   <el-card class="search-card" shadow="never">
     <div class="card-content">
 
+      <el-alert class="intro-text">
+        <p class="intro-text-p">GenEvo is an online tool that enables users to explore, visualize, and test the evolution of protein-coding genes in modern and archaic humans, and other primates.</p>
+        <p class="intro-text-p">Users can explore their own gene list or curated gene list. Once queried, GenEvo computes the direction and magnitude of selective pressure of the gene list compared to the genome. It also proposes different visualizations, from raw evolutionary measure (dN/dS; Neanderthal introgression) to brain expression (3D visualization of Allen Brain atlas).</p>
+        <p class="intro-text-p">All outputs can be downloaded in TSV format for further analyses.</p>
+      </el-alert>
+
       <el-select
         class="genes-lists"
         v-model="genesLists"

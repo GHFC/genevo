@@ -19,6 +19,7 @@
 // =========================================================================
 
 import Vue from 'vue';
+import Alert from 'element-ui/lib/alert';
 import Button from 'element-ui/lib/button';
 import Card from 'element-ui/lib/card';
 import Form from 'element-ui/lib/form';
@@ -60,6 +61,7 @@ Vue.use(resources);
 Vue.use(VueIntro);
 
 // Element-UI components
+Vue.use(Alert)
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Form);
