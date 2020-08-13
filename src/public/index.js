@@ -24,6 +24,6 @@ import App from './app/app.vue';
 // =========================================================================
 
 new Vue({
-    el: '#ns-app',
+    el: '#genevo-app',
     render: (h) => h(App)
 });

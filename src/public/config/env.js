@@ -29,5 +29,4 @@ module.exports = {
     'APP_VERSION': process.env.npm_package_version,
     'APP_DESCRIPTION': process.env.npm_package_description,
     'APP_CONTACT': process.env.npm_package_bugs_email
-
 };

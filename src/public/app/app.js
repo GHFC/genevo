@@ -79,7 +79,7 @@ Vue.prototype.$notify = Notification;
 // =========================================================================
 
 export default {
-    name: 'ns-app',
+    name: 'genevo-app',
     components: {
         topbar,
         sidebar,
