@@ -1,5 +1,5 @@
 {
-  "name": "neanderthal-synapse",
+  "name": "genevo",
   "version": "1.0.1",
   "description": "The website of the Neanderthal's Synapse project",
   "main": "src/app.js",
@@ -16,10 +16,12 @@
     "url": "https://github.com/GHFC/neanderthal-synapse.git"
   },
   "keywords": [
+    "genes",
     "genetics",
-    "neanderthal",
+    "genome",
     "brain",
     "evolution",
+    "primates",
     "data-visualization"
   ],
   "author": {
