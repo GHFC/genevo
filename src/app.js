@@ -1,4 +1,4 @@
-// Neanderthal Synapse
+// GenEvo
 // Copyright (C) 2019 Institut Pasteur
 //
 // This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Server for the Neanderthal application.
+// Server for the GenEvo application.
 // Handles the configuration, middlewares and graceful exit functions.
 // =========================================================================
 
@@ -78,7 +78,7 @@ Database.connect(function (err, client) {
     app.locals.db = client.db(name);
 
     app.listen(port, host, function () {
-        log.info('Neanderthal server listening to ' + host + ' on port ' + port);
+        log.info('GenEvo server listening to ' + host + ' on port ' + port);
         log.info('Environment : ' + env);
         log.info('Proxy : ' + proxy);
     });

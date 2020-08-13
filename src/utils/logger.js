@@ -1,4 +1,4 @@
-// Neanderthal Synapse
+// GenEvo
 // Copyright (C) 2019 Institut Pasteur
 //
 // This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 // =========================================================================
 
 function log (level, message) {
-    
+
     let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
     let date = new Date(Date.now() - timeZoneOffset)
         .toISOString()
