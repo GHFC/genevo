@@ -1,7 +1,7 @@
 {
   "name": "genevo",
   "version": "1.0.1",
-  "description": "The website of the Neanderthal's Synapse project",
+  "description": "The website of the Neanderthal's Synapse project conducted at the Pasteur institute",
   "main": "src/app.js",
   "scripts": {
     "start": "npm run build && node src/app.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GHFC/neanderthal-synapse.git"
+    "url": "https://github.com/GHFC/genevo.git"
   },
   "keywords": [
     "genes",
