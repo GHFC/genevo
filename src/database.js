@@ -35,8 +35,10 @@ const url = format('mongodb://%s:%d/%s', host, port, name);
 // =========================================================================
 
 exports.connect = function (callback) {
-
-    MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+    MongoClient.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }, function (err, client) {
         if (err) {
             log.fatal('Error during the database connection : ' + err.message);
             throw err;
