@@ -36,7 +36,10 @@ const bootstrap = {
         genesLists: state => state.genesLists
     }),
     watch: {
-        genes: function () { this.reset(); },
+        genes: function (newValue) {
+          if (newValue.length === 0) this.reset();
+          else this.getBootstrap();
+        },
         genesLists: function () { this.reset(); },
     },
     methods: {
