@@ -52,7 +52,7 @@ app.set('trust proxy', proxy);
 app.use(cors());
 app.use(helmet());
 app.use(express.static(path.resolve(__dirname, '../dist'), {
-    index: 'neanderthal-synapse.html'
+    index: 'genevo.html'
 }));
 
 // Router
