@@ -40,8 +40,8 @@ const env = process.env.NODE_ENV || "development";
 
 let proxy = false;
 
-if (process.env.NEANDERTHAL_APP_PROXY) {
-    proxy = cast(process.env.NEANDERTHAL_APP_PROXY.toLowerCase());
+if (process.env.GENEVO_APP_PROXY) {
+    proxy = cast(process.env.GENEVO_APP_PROXY.toLowerCase());
 }
 
 app.set('trust proxy', proxy);
@@ -63,9 +63,9 @@ app.use('/', router);
 // Server
 // =========================================================================
 
-const port = process.env.NEANDERTHAL_APP_PORT || 3000;
-const host = process.env.NEANDERTHAL_APP_HOST || 'localhost';
-const name = process.env.NEANDERTHAL_DB_NAME  || 'neanderthal';
+const port = process.env.GENEVO_APP_PORT || 3000;
+const host = process.env.GENEVO_APP_HOST || 'localhost';
+const name = process.env.GENEVO_DB_NAME  || 'genevo';
 
 // Start
 // =========================================================================

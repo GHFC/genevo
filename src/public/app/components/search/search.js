@@ -129,7 +129,7 @@ const search = {
             // Download the file
             const link = document.createElement('a');
             link.href = fileURL;
-            link.download = 'neanderthal_' + date + '.tsv';
+            link.download = 'genevo_' + date + '.tsv';
 
             // Explicity append the link to body for Firefox
             document.body.appendChild(link);

@@ -25,9 +25,9 @@ const log = require('./utils/logger.js');
 // Configuration
 // =========================================================================
 
-const host = process.env.NEANDERTHAL_DB_HOST || 'localhost';
-const port = process.env.NEANDERTHAL_DB_PORT || 27017;
-const name = process.env.NEANDERTHAL_DB_NAME || 'neanderthal';
+const host = process.env.GENEVO_DB_HOST || 'localhost';
+const port = process.env.GENEVO_DB_PORT || 27017;
+const name = process.env.GENEVO_DB_NAME || 'genevo';
 
 const url = format('mongodb://%s:%d/%s', host, port, name);
 

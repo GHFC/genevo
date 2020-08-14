@@ -1,5 +1,5 @@
 // The individuals interface
-// Copyright (C) 2017 Institut Pasteur
+// Copyright (C) 2019 Institut Pasteur
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
