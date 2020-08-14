@@ -211,7 +211,7 @@ const primateEvolution = {
         quality: function () { this.buildChart(); },
         alleleFq: function () { this.buildChart(); },
         hoveredDot: function (newValue, oldValue) {
-            if (newValue) this.hoverDot(newValue);
+            if (typeof(newValue) === 'number') this.hoverDot(newValue);
             else this.unhoverDot(oldValue);
         },
         selectedDots: function (newValue, oldValue) {
