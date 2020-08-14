@@ -15,43 +15,24 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Main router
+// Download a FASTA from the external folder for the requested gene
 // =========================================================================
 
-const express = require('express');
-const requestChecker = require('./controllers/requestChecker');
-const bootstrap = require('./controllers/bootstrap');
-const search = require('./controllers/search');
-const downloadFasta = require('./controllers/downloadFasta');
-const logger = require('./middlewares/log.js');
-
-const router = express.Router();
-
-// Middlewares
-// =========================================================================
-
-router.use(logger);
-
-// Routes
-// =========================================================================
-
-// Request the database and return the genes
-router.get('/search', [
-    requestChecker,
-    search
-]);
-
-// Run a bootstrap for the requested genes
-router.get('/bootstrap', [
-    requestChecker,
-    bootstrap
-]);
-
-// Get a FASTA file for a gene
-router.get('/fasta/:file', [
-  downloadFasta
-])
+const fs = require('fs');
+const path = require('path');
 
 // =========================================================================
 
-module.exports = router;
+const rootPath = process.env.GENEVO_APP_FASTA_PATH
+
+module.exports = function (req, res) {
+    const fileName = `${req.params.file}.fasta`;
+    const filePath = path.join(rootPath, fileName);
+    const exists = fs.existsSync(filePath);
+
+    if (!exists) return res.status(404).send('No fasta file found for this gene');
+
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+    fs.createReadStream(filePath).pipe(res);
+}

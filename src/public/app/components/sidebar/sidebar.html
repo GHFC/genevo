@@ -57,6 +57,12 @@
             <span @click="showBrainGene(gene, 'expression')" title="Show the expression levels of this gene in the 3D brain">Brain expression</span>
           </li>
           <li>
+            <span @click="downloadFasta(gene, 'DNA')" title="Download the DNA sequences in FASTA for this gene">Download DNA</span>
+          </li>
+          <li>
+            <span @click="downloadFasta(gene, 'PROT')" title="Download the protein sequences in FASTA for this gene">Download protein</span>
+          </li>
+          <li>
             <a :href="ncbiLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on NCBI in a new tab">
               <span>See on NCBI</span>
             </a>

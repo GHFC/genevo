@@ -154,6 +154,32 @@ const sidebar = {
 
             window.open(template, "", "width=900,height=580,resizeable,scrollbars")
                   .document.write(template);
+        },
+        downloadFasta: function (gene, type) {
+          const fileName = `${gene.EntrezId}_${gene.Gene}_${type}`;
+
+          this.$resources.downloadFasta(fileName).then((response) => {
+            const file = new Blob([ response.data ], { type: 'text/plain' });
+            const fileURL = window.URL.createObjectURL(file);
+
+            // Download the file
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.download = fileName + '.fasta'
+
+            // Explicity append the link to body for Firefox
+            document.body.appendChild(link);
+
+            link.click();
+            link.remove();
+          }).catch((error) => {
+              console.error(error);
+              this.$notify.error({
+                title: 'Woops..',
+                message: 'Sorry, no fasta file found for this gene.',
+                offset: 64
+            });
+          })
         }
     }
 };

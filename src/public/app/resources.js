@@ -57,6 +57,10 @@ const resources = {
 
     bootstrap: function (params) {
         return base.get('bootstrap', { params: params });
+    },
+
+    downloadFasta: function (fileName) {
+        return base.get('fasta/' + fileName)
     }
 };
 
