@@ -1,6 +1,6 @@
 {
   "name": "genevo",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "The website of the GenEvo project conducted at the Pasteur institute",
   "main": "src/app.js",
   "scripts": {
