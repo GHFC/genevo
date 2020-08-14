@@ -1,6 +1,6 @@
 # GenEvo
 
-The website of the [GenEvo project](https://research.pasteur.fr/fr/project/genevo-synapse), conducted at the [Institut Pasteur](https://www.pasteur.fr/en) of Paris.
+The website of the [GenEvo project](https://research.pasteur.fr/fr/project/genevo-project), conducted at the [Institut Pasteur](https://www.pasteur.fr/en) of Paris.
 
 Visit it here: http://genevo.pasteur.fr/
 
