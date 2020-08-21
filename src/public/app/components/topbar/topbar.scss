@@ -38,6 +38,18 @@
     margin-left: 14px;
 }
 
+.app-subtitle {
+    color: $grey;
+    font-size: 16px;
+    font-style: italic;
+    height: 24px;
+    margin-top: 14px;
+    margin-left: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .links {
     display: flex;
     margin: auto 64px auto auto;
@@ -46,6 +58,7 @@
         @extend %link;
         color: $grey;
         padding: 22px 36px;
+        white-space: nowrap;
 
         i {
             padding-right: 4px;

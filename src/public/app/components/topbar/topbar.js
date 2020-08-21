@@ -23,6 +23,7 @@ const topbar = {
     data: function () {
         return {
             title: 'GenEvo',
+            subtitle: 'Track and explore the evolution of protein-coding genes in primates',
             description: APP_DESCRIPTION,
             contact: APP_CONTACT,
         }
