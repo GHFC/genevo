@@ -50,7 +50,7 @@ app.set('trust proxy', proxy);
 // =========================================================================
 
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 app.use(express.static(path.resolve(__dirname, '../dist'), {
     index: 'genevo.html'
 }));
