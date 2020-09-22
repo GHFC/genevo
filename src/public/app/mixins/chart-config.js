@@ -19,19 +19,19 @@
 // =========================================================================
 
 export default {
-    data: function () {
-        return {
-            config: {
-                showTips: false,
-                displaylogo: false,
-                modeBarButtonsToRemove: [
-                    'sendDataToCloud',
-                    'autoScale2d',
-                    'hoverClosestCartesian',
-                    'hoverCompareCartesian',
-                    'toggleSpikelines'
-                ]
-            }
-        }
+  data: function () {
+    return {
+      config: {
+        showTips: false,
+        displaylogo: false,
+        modeBarButtonsToRemove: [
+          'sendDataToCloud',
+          'autoScale2d',
+          'hoverClosestCartesian',
+          'hoverCompareCartesian',
+          'toggleSpikelines'
+        ]
+      }
     }
+  }
 }

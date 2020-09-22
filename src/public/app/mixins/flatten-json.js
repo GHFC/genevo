@@ -19,32 +19,31 @@
 // =========================================================================
 
 export default {
-    methods: {
-        flattenJSON: function (entry) {
-            const flatEntry = {};
+  methods: {
+    flattenJSON: function (entry) {
+      const flatEntry = {}
 
-            function flatten(key, value) {
-
-                // Stop if the value is not a nested object
-                if (typeof(value) !== 'object') {
-                    flatEntry[key] = value;
-                    return;
-                }
-
-                // Recurse when the value is a nested object and concat the keys
-                for (let nestedKey in value) {
-                    const nextKey = key ? key + '.' + nestedKey : nestedKey;
-                    const nextValue = value[nestedKey];
-
-                    flatten(nextKey, nextValue);
-                }
-            }
-
-            // Start the recursion
-            flatten('', entry);
-
-            // Return the end result
-            return flatEntry;
+      function flatten (key, value) {
+        // Stop if the value is not a nested object
+        if (typeof (value) !== 'object') {
+          flatEntry[key] = value
+          return
         }
+
+        // Recurse when the value is a nested object and concat the keys
+        for (const nestedKey in value) {
+          const nextKey = key ? key + '.' + nestedKey : nestedKey
+          const nextValue = value[nestedKey]
+
+          flatten(nextKey, nextValue)
+        }
+      }
+
+      // Start the recursion
+      flatten('', entry)
+
+      // Return the end result
+      return flatEntry
     }
-};
+  }
+}

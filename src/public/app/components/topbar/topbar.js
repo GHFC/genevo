@@ -19,27 +19,27 @@
 // =========================================================================
 
 const topbar = {
-    name: 'topbar',
-    data: function () {
-        return {
-            title: 'GenEvo',
-            subtitle: 'Track and explore the evolution of protein-coding genes in primates',
-            description: APP_DESCRIPTION,
-            contact: APP_CONTACT,
-        }
-    },
-    computed: {
-        loading: function () {
-            return this.$store.state.loading;
-        }
-    },
-    methods: {
-        startIntro: function () {
-            this.$intro().start();
-        }
+  name: 'topbar',
+  data: function () {
+    return {
+      title: 'GenEvo',
+      subtitle: 'Track and explore the evolution of protein-coding genes in primates',
+      description: APP_DESCRIPTION,
+      contact: APP_CONTACT
     }
-};
+  },
+  computed: {
+    loading: function () {
+      return this.$store.state.loading
+    }
+  },
+  methods: {
+    startIntro: function () {
+      this.$intro().start()
+    }
+  }
+}
 
 // =========================================================================
 
-export default topbar;
+export default topbar

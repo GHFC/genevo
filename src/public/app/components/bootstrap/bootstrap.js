@@ -18,55 +18,55 @@
 // Request a bootstrap for the genes
 // =========================================================================
 
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
 // =========================================================================
 
 const bootstrap = {
-    name: 'bootstrap',
-    data: function () {
-        return {
-            median: null,
-            confidenceInterval: null
-        };
-    },
-    computed: mapState({
-        loading: state => state.loading,
-        genes: state => state.genes,
-        genesLists: state => state.genesLists
-    }),
-    watch: {
-        genes: function (newValue) {
-          if (newValue.length === 0) this.reset();
-          else this.getBootstrap();
-        },
-        genesLists: function () { this.reset(); },
-    },
-    methods: {
-        reset: function () {
-            this.median = null;
-            this.confidenceInterval = null;
-        },
-        getBootstrap: function () {
-            if (!this.$store.state.genesRequest && !this.$store.state.genesLists.length) return;
-
-            const params = {
-                request: this.$store.state.genesRequest,
-                genesLists: this.$store.state.genesLists,
-                exactMatch: this.$store.state.exact,
-                quality: this.$store.state.quality
-            };
-
-            this.$resources.bootstrap(params).then((response) => {
-                this.median = response.data.median;
-                this.confidenceInterval = response.data.confidenceInterval;
-            }).catch((error) => {
-                console.error(error);
-            });
-        }
+  name: 'bootstrap',
+  data: function () {
+    return {
+      median: null,
+      confidenceInterval: null
     }
-};
+  },
+  computed: mapState({
+    loading: state => state.loading,
+    genes: state => state.genes,
+    genesLists: state => state.genesLists
+  }),
+  watch: {
+    genes: function (newValue) {
+      if (newValue.length === 0) this.reset()
+      else this.getBootstrap()
+    },
+    genesLists: function () { this.reset() }
+  },
+  methods: {
+    reset: function () {
+      this.median = null
+      this.confidenceInterval = null
+    },
+    getBootstrap: function () {
+      if (!this.$store.state.genesRequest && !this.$store.state.genesLists.length) return
+
+      const params = {
+        request: this.$store.state.genesRequest,
+        genesLists: this.$store.state.genesLists,
+        exactMatch: this.$store.state.exact,
+        quality: this.$store.state.quality
+      }
+
+      this.$resources.bootstrap(params).then((response) => {
+        this.median = response.data.median
+        this.confidenceInterval = response.data.confidenceInterval
+      }).catch((error) => {
+        console.error(error)
+      })
+    }
+  }
+}
 
 // =========================================================================
 
-export default bootstrap;
+export default bootstrap

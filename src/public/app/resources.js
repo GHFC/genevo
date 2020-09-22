@@ -18,56 +18,56 @@
 // Resources of the app, accessed with axios
 // =========================================================================
 
-import axios from 'axios';
-import store from './store';
+import axios from 'axios'
+import store from './store'
 
 // Axios instance
 // =========================================================================
 
 const base = axios.create({
-    baseURL: '/'
-});
+  baseURL: '/'
+})
 
 // Interceptors
 // =========================================================================
 
 base.interceptors.request.use(function (config) {
-    store.commit('addRequest');
-    return config;
+  store.commit('addRequest')
+  return config
 }, function (error) {
-    return Promise.reject(error);
-});
+  return Promise.reject(error)
+})
 
 base.interceptors.response.use(function (response) {
-    store.commit('removeRequest');
-    return response;
+  store.commit('removeRequest')
+  return response
 }, function (error) {
-    store.commit('removeRequest');
-    return Promise.reject(error);
-});
+  store.commit('removeRequest')
+  return Promise.reject(error)
+})
 
 // Resources
 // =========================================================================
 
 const resources = {
 
-    search: function (params) {
-        return base.get('search', { params: params });
-    },
+  search: function (params) {
+    return base.get('search', { params: params })
+  },
 
-    bootstrap: function (params) {
-        return base.get('bootstrap', { params: params });
-    },
+  bootstrap: function (params) {
+    return base.get('bootstrap', { params: params })
+  },
 
-    downloadFasta: function (fileName) {
-        return base.get('fasta/' + fileName)
-    }
-};
+  downloadFasta: function (fileName) {
+    return base.get('fasta/' + fileName)
+  }
+}
 
 // =========================================================================
 
 export default {
-    install: function (Vue) {
-        Vue.prototype.$resources = resources;
-    }
-};
+  install: function (Vue) {
+    Vue.prototype.$resources = resources
+  }
+}

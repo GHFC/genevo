@@ -19,9 +19,9 @@
 // =========================================================================
 
 const bottombar = {
-    name: 'bottombar'
-};
+  name: 'bottombar'
+}
 
 // =========================================================================
 
-export default bottombar;
+export default bottombar

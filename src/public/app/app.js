@@ -18,119 +18,117 @@
 // Vue instance handling the main page
 // =========================================================================
 
-import Vue from 'vue';
-import Alert from 'element-ui/lib/alert';
-import Button from 'element-ui/lib/button';
-import Card from 'element-ui/lib/card';
-import Form from 'element-ui/lib/form';
-import FormItem from 'element-ui/lib/form-item';
-import Input from 'element-ui/lib/input';
-import Notification from 'element-ui/lib/notification';
-import Option from 'element-ui/lib/option';
-import OptionGroup from 'element-ui/lib/option-group';
-import RadioButton from 'element-ui/lib/radio-button';
-import RadioGroup from 'element-ui/lib/radio-group';
-import Select from 'element-ui/lib/select';
-import Switch from 'element-ui/lib/switch';
+import Vue from 'vue'
+import Alert from 'element-ui/lib/alert'
+import Button from 'element-ui/lib/button'
+import Card from 'element-ui/lib/card'
+import Form from 'element-ui/lib/form'
+import FormItem from 'element-ui/lib/form-item'
+import Input from 'element-ui/lib/input'
+import Notification from 'element-ui/lib/notification'
+import Option from 'element-ui/lib/option'
+import OptionGroup from 'element-ui/lib/option-group'
+import RadioButton from 'element-ui/lib/radio-button'
+import RadioGroup from 'element-ui/lib/radio-group'
+import Select from 'element-ui/lib/select'
+import Switch from 'element-ui/lib/switch'
 
-import VueIntro from 'vue-introjs';
-import 'intro.js/introjs.css';
+import VueIntro from 'vue-introjs'
+import 'intro.js/introjs.css'
 
-import 'normalize.css';
-import './styles/element-theme.scss';
-import './styles/fonts.css';
+import 'normalize.css'
+import './styles/element-theme.scss'
+import './styles/fonts.css'
 
-import topbar from './components/topbar/topbar.vue';
-import sidebar from './components/sidebar/sidebar.vue';
-import bottombar from './components/bottombar/bottombar.vue';
-import search from './components/search/search.vue';
-import bootstrap from './components/bootstrap/bootstrap.vue';
-import dnds from './components/dnds/dnds.vue';
-import modernHumans from './components/modern-humans/modern-humans.vue';
-import primateEvolution from './components/primate-evolution/primate-evolution.vue';
-import introgression from './components/introgression/introgression.vue';
-import humanHemisphere from './components/human-hemisphere/human-hemisphere.vue';
-import fetalHumanBrain from './components/fetal-human-brain/fetal-human-brain.vue';
-import adultHumanBrain from './components/adult-human-brain/adult-human-brain.vue';
-import resources from './resources.js';
-import store from './store.js';
+import topbar from './components/topbar/topbar.vue'
+import sidebar from './components/sidebar/sidebar.vue'
+import bottombar from './components/bottombar/bottombar.vue'
+import search from './components/search/search.vue'
+import bootstrap from './components/bootstrap/bootstrap.vue'
+import dnds from './components/dnds/dnds.vue'
+import modernHumans from './components/modern-humans/modern-humans.vue'
+import primateEvolution from './components/primate-evolution/primate-evolution.vue'
+import introgression from './components/introgression/introgression.vue'
+import humanHemisphere from './components/human-hemisphere/human-hemisphere.vue'
+import fetalHumanBrain from './components/fetal-human-brain/fetal-human-brain.vue'
+import adultHumanBrain from './components/adult-human-brain/adult-human-brain.vue'
+import resources from './resources.js'
+import store from './store.js'
 
 // =========================================================================
 
-Vue.use(resources);
-Vue.use(VueIntro);
+Vue.use(resources)
+Vue.use(VueIntro)
 
 // Element-UI components
 Vue.use(Alert)
-Vue.use(Button);
-Vue.use(Card);
-Vue.use(Form);
-Vue.use(FormItem);
-Vue.use(Input);
-Vue.use(Option);
-Vue.use(OptionGroup);
-Vue.use(RadioButton);
-Vue.use(RadioGroup);
-Vue.use(Select);
-Vue.use(Switch);
+Vue.use(Button)
+Vue.use(Card)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(Option)
+Vue.use(OptionGroup)
+Vue.use(RadioButton)
+Vue.use(RadioGroup)
+Vue.use(Select)
+Vue.use(Switch)
 
-Vue.prototype.$notify = Notification;
+Vue.prototype.$notify = Notification
 
 // =========================================================================
 
 export default {
-    name: 'genevo-app',
-    components: {
-        topbar,
-        sidebar,
-        bottombar,
-        search,
-        bootstrap,
-        dnds,
-        modernHumans,
-        primateEvolution,
-        introgression,
-        humanHemisphere,
-        fetalHumanBrain,
-        adultHumanBrain
+  name: 'genevo-app',
+  components: {
+    topbar,
+    sidebar,
+    bottombar,
+    search,
+    bootstrap,
+    dnds,
+    modernHumans,
+    primateEvolution,
+    introgression,
+    humanHemisphere,
+    fetalHumanBrain,
+    adultHumanBrain
+  },
+  mounted: function () {
+    // Handle online and offline states properly
+    // -----------------------------------------
+
+    const notify = this.$notify
+    let offlineNotification = null
+
+    window.addEventListener('offline', function () {
+      offlineNotification = notify.warning({
+        title: 'Network',
+        message: 'You are offline.',
+        offset: 64,
+        duration: 0
+      })
+    })
+
+    window.addEventListener('online', function () {
+      offlineNotification.close()
+      notify.success({
+        title: 'Network',
+        message: 'You are back online.',
+        offset: 64
+      })
+    })
+
+    // -----------------------------------------
+  },
+  computed: {
+    genes: function () {
+      return this.$store.state.genes
     },
-    mounted: function () {
-
-        // Handle online and offline states properly
-        // -----------------------------------------
-
-        const notify = this.$notify;
-        let offlineNotification = null;
-
-        window.addEventListener('offline', function () {
-            offlineNotification = notify.warning({
-                title: 'Network',
-                message: 'You are offline.',
-                offset: 64,
-                duration: 0
-            });
-        });
-
-        window.addEventListener('online', function () {
-            offlineNotification.close();
-            notify.success({
-                title: 'Network',
-                message: 'You are back online.',
-                offset: 64
-            });
-        });
-
-        // -----------------------------------------
-
-    },
-    computed: {
-        genes: function () {
-            return this.$store.state.genes;
-        },
-        noResults: function () {
-            return this.$store.state.noResults;
-        }
-    },
-    resources: resources,
-    store: store
-};
+    noResults: function () {
+      return this.$store.state.noResults
+    }
+  },
+  resources: resources,
+  store: store
+}

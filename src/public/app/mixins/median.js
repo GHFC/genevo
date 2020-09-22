@@ -19,25 +19,24 @@
 // =========================================================================
 
 export default {
-    methods: {
-        median: function (values) {
+  methods: {
+    median: function (values) {
+      // Sort the values numerically first
+      values.sort((a, b) => { return a - b })
 
-            // Sort the values numerically first
-            values.sort((a, b) => { return a - b; });
+      // Get the index of the median
+      const medianIndex = Math.floor(values.length / 2)
 
-            // Get the index of the median
-            const medianIndex = Math.floor(values.length / 2);
+      // Get the median value
+      // If odd
+      if (values.length % 2) {
+        return values[medianIndex]
+      }
 
-            // Get the median value
-            // If odd
-            if (values.length % 2) {
-                return values[medianIndex];
-            }
-
-            // If even
-            else {
-                return (values[medianIndex - 1] + values[medianIndex]) / 2.0;
-            }
-        }
+      // If even
+      else {
+        return (values[medianIndex - 1] + values[medianIndex]) / 2.0
+      }
     }
+  }
 }

@@ -18,48 +18,45 @@
 // The main function to do the bootstrap with the genes
 // =========================================================================
 
-const median = require('../../utils/median');
+const median = require('../../utils/median')
 
 // =========================================================================
 
 module.exports = function (bootstrapBoxes, population, dataField) {
+  // The distribution of random medians
+  const distribution = []
 
-    // The distribution of random medians
-    let distribution = [];
+  // The main bootstrap function
+  function bootstrap (bootstrapBoxes, pop, dataField) {
+    const dnds = []
 
-    // The main bootstrap function
-    function bootstrap(bootstrapBoxes, pop, dataField) {
-        let dnds = [];
+    // Get the dNdS of random genes
+    // -------------------------------------------------------------
 
-        // Get the dNdS of random genes
-        // -------------------------------------------------------------
+    for (var box in bootstrapBoxes) {
+      const genesNumber = bootstrapBoxes[box] // Number of genes with this box
+      const reducedPop = pop.filter((gene) => { // Genes in the population with this box
+        return gene.BootstrapBox === parseInt(box)
+      })
 
-        for (var box in bootstrapBoxes) {
-
-            let genesNumber = bootstrapBoxes[box];             // Number of genes with this box
-            let reducedPop = pop.filter((gene) => {            // Genes in the population with this box
-                return gene.BootstrapBox === parseInt(box);
-            });
-
-            // Get randomly the proper amount of genes per box
-            for (var i = 0; i < genesNumber; i++) {
-                let gene = pop[Math.floor(Math.random() * pop.length)];
-                dnds.push(gene[dataField]);
-            }
-        }
-
-        // Return the median of those dNdS
-        // -------------------------------------------------------------
-
-        return median(dnds);
-
+      // Get randomly the proper amount of genes per box
+      for (var i = 0; i < genesNumber; i++) {
+        const gene = pop[Math.floor(Math.random() * pop.length)]
+        dnds.push(gene[dataField])
+      }
     }
 
-    // Execute the bootstrap 200 times
-    for (var i = 0; i < 200; i++) {
-        distribution.push(bootstrap(bootstrapBoxes, population, dataField));
-    }
+    // Return the median of those dNdS
+    // -------------------------------------------------------------
 
-    // Return the sorted result
-    return distribution.sort();
-};
+    return median(dnds)
+  }
+
+  // Execute the bootstrap 200 times
+  for (var i = 0; i < 200; i++) {
+    distribution.push(bootstrap(bootstrapBoxes, population, dataField))
+  }
+
+  // Return the sorted result
+  return distribution.sort()
+}

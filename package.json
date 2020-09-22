@@ -15,7 +15,7 @@
   },
   "standard": {
     "ignore": [
-      "src/public/app/lib/"
+      "src/public/app/lib/*"
     ]
   },
   "repository": {

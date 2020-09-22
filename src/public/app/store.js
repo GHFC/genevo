@@ -18,88 +18,88 @@
 // Vuex store for managing the application state
 // =========================================================================
 
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
 // =========================================================================
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 // =========================================================================
 
 const store = new Vuex.Store({
-    state: {
-        loading: false,                 // Marker to know when a request is pending
-        genes: [],                      // List of genes found by the request
-        genesRequest: '',               // Text request sent to the server
-        genesLists: [],                 // Lists of genes sent to the server
-        exact: true,                    // Exact match parameter
-        quality: 'mediumQuality',       // Coverage quality parameter
-        alleleFq: 'pNpSGlobal',         // Allele frequency parameter
-        noResults: false,               // Marker to display the no-results message
-        hoveredDot: {                   // The dot of a chart currently hovered by the mouse
-            dot: null,
-            origin: ''                  // The chart where is was triggered
-        },
-        selectedDots: {                 // The list of dots currently selected by the user
-            dots:  [],
-            origin: ''                  // The chart where is was triggered
-        },
-        brainGene: {                    // The gene selected in the sidebar to be displayed in the 3D brain
-            gene: null,
-            dataType: ''
-        }
+  state: {
+    loading: false, // Marker to know when a request is pending
+    genes: [], // List of genes found by the request
+    genesRequest: '', // Text request sent to the server
+    genesLists: [], // Lists of genes sent to the server
+    exact: true, // Exact match parameter
+    quality: 'mediumQuality', // Coverage quality parameter
+    alleleFq: 'pNpSGlobal', // Allele frequency parameter
+    noResults: false, // Marker to display the no-results message
+    hoveredDot: { // The dot of a chart currently hovered by the mouse
+      dot: null,
+      origin: '' // The chart where is was triggered
     },
-    mutations: {
-        addRequest: function (state) {
-            state.loading = true;
-        },
-        removeRequest: function (state) {
-            state.loading = false;
-        },
-        setGenes: function (state, genes) {
-            state.genes = genes;
-        },
-        setGenesRequest: function (state, request) {
-            state.genesRequest = request;
-        },
-        setGenesLists: function (state, list) {
-            state.genesLists = list;
-        },
-        setExact: function (state, exact) {
-            state.exact = exact;
-        },
-        setAlleleFq: function (state, alleleFq) {
-            state.alleleFq = alleleFq;
-        },
-        setQuality: function (state, quality) {
-            state.quality = quality;
-        },
-        setNoResults: function (state, noResults) {
-            state.noResults = noResults;
-        },
-        setHoveredDot: function (state, data) {
-            state.hoveredDot.dot = data.dot;
-            state.hoveredDot.origin = data.origin;
-        },
-        setSelectedDots: function (state, data) {
-            state.selectedDots.dots = data.dots;
-            state.selectedDots.origin = data.origin;
-        },
-        setBrainGene: function (state, data) {
-            state.brainGene.gene = data.gene;
-            state.brainGene.dataType = data.dataType;
-        }
+    selectedDots: { // The list of dots currently selected by the user
+      dots: [],
+      origin: '' // The chart where is was triggered
     },
-    getters: {
-        geneNames: function (state) {
-            return state.genes.map((gene) => {
-                return gene.Gene;
-            });
-        }
+    brainGene: { // The gene selected in the sidebar to be displayed in the 3D brain
+      gene: null,
+      dataType: ''
     }
-});
+  },
+  mutations: {
+    addRequest: function (state) {
+      state.loading = true
+    },
+    removeRequest: function (state) {
+      state.loading = false
+    },
+    setGenes: function (state, genes) {
+      state.genes = genes
+    },
+    setGenesRequest: function (state, request) {
+      state.genesRequest = request
+    },
+    setGenesLists: function (state, list) {
+      state.genesLists = list
+    },
+    setExact: function (state, exact) {
+      state.exact = exact
+    },
+    setAlleleFq: function (state, alleleFq) {
+      state.alleleFq = alleleFq
+    },
+    setQuality: function (state, quality) {
+      state.quality = quality
+    },
+    setNoResults: function (state, noResults) {
+      state.noResults = noResults
+    },
+    setHoveredDot: function (state, data) {
+      state.hoveredDot.dot = data.dot
+      state.hoveredDot.origin = data.origin
+    },
+    setSelectedDots: function (state, data) {
+      state.selectedDots.dots = data.dots
+      state.selectedDots.origin = data.origin
+    },
+    setBrainGene: function (state, data) {
+      state.brainGene.gene = data.gene
+      state.brainGene.dataType = data.dataType
+    }
+  },
+  getters: {
+    geneNames: function (state) {
+      return state.genes.map((gene) => {
+        return gene.Gene
+      })
+    }
+  }
+})
 
 // =========================================================================
 
-export default store;
+export default store

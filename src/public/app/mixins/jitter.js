@@ -19,9 +19,9 @@
 // =========================================================================
 
 export default {
-    methods: {
-        jitter: function () {
-            return Math.random() * (0.1) - 0.05;
-        }
+  methods: {
+    jitter: function () {
+      return Math.random() * (0.1) - 0.05
     }
+  }
 }

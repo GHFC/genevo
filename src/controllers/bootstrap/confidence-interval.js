@@ -19,11 +19,11 @@
 // =========================================================================
 
 module.exports = function (distribution) {
-    let high = distribution[Math.round((1 - 0.025) * distribution.length)];
-    let low = distribution[Math.round(0.025 * distribution.length)];
+  const high = distribution[Math.round((1 - 0.025) * distribution.length)]
+  const low = distribution[Math.round(0.025 * distribution.length)]
 
-    return {
-        high: high.toFixed(5),
-        low: low.toFixed(5)
-    };
-};
+  return {
+    high: high.toFixed(5),
+    low: low.toFixed(5)
+  }
+}

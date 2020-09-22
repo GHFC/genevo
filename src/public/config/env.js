@@ -21,12 +21,12 @@
 
 module.exports = {
 
-    // Environment
-    'APP_ENV': process.env.NODE_ENV || 'development',
+  // Environment
+  APP_ENV: process.env.NODE_ENV || 'development',
 
-    // From package.json
-    'APP_NAME': process.env.npm_package_name,
-    'APP_VERSION': process.env.npm_package_version,
-    'APP_DESCRIPTION': process.env.npm_package_description,
-    'APP_CONTACT': process.env.npm_package_bugs_email
-};
+  // From package.json
+  APP_NAME: process.env.npm_package_name,
+  APP_VERSION: process.env.npm_package_version,
+  APP_DESCRIPTION: process.env.npm_package_description,
+  APP_CONTACT: process.env.npm_package_bugs_email
+}

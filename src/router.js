@@ -18,34 +18,34 @@
 // Main router
 // =========================================================================
 
-const express = require('express');
-const requestChecker = require('./controllers/request-checker');
-const bootstrap = require('./controllers/bootstrap');
-const search = require('./controllers/search');
-const downloadFasta = require('./controllers/download-fasta');
-const logger = require('./middlewares/log.js');
+const express = require('express')
+const requestChecker = require('./controllers/request-checker')
+const bootstrap = require('./controllers/bootstrap')
+const search = require('./controllers/search')
+const downloadFasta = require('./controllers/download-fasta')
+const logger = require('./middlewares/log.js')
 
-const router = express.Router();
+const router = express.Router()
 
 // Middlewares
 // =========================================================================
 
-router.use(logger);
+router.use(logger)
 
 // Routes
 // =========================================================================
 
 // Request the database and return the genes
 router.get('/search', [
-    requestChecker,
-    search
-]);
+  requestChecker,
+  search
+])
 
 // Run a bootstrap for the requested genes
 router.get('/bootstrap', [
-    requestChecker,
-    bootstrap
-]);
+  requestChecker,
+  bootstrap
+])
 
 // Get a FASTA file for a gene
 router.get('/fasta/:file', [
@@ -54,4 +54,4 @@ router.get('/fasta/:file', [
 
 // =========================================================================
 
-module.exports = router;
+module.exports = router

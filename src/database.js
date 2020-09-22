@@ -18,34 +18,34 @@
 // Handle the MongoDB connection and return the connected database.
 // =========================================================================
 
-const MongoClient = require('mongodb').MongoClient;
-const format = require('util').format;
-const log = require('./utils/logger.js');
+const MongoClient = require('mongodb').MongoClient
+const format = require('util').format
+const log = require('./utils/logger.js')
 
 // Configuration
 // =========================================================================
 
-const host = process.env.GENEVO_DB_HOST || 'localhost';
-const port = process.env.GENEVO_DB_PORT || 27017;
-const name = process.env.GENEVO_DB_NAME || 'genevo';
+const host = process.env.GENEVO_DB_HOST || 'localhost'
+const port = process.env.GENEVO_DB_PORT || 27017
+const name = process.env.GENEVO_DB_NAME || 'genevo'
 
-const url = format('mongodb://%s:%d/%s', host, port, name);
+const url = format('mongodb://%s:%d/%s', host, port, name)
 
 // Connection
 // =========================================================================
 
 exports.connect = function (callback) {
-    MongoClient.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }, function (err, client) {
-        if (err) {
-            log.fatal('Error during the database connection : ' + err.message);
-            throw err;
-        }
+  MongoClient.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }, function (err, client) {
+    if (err) {
+      log.fatal('Error during the database connection : ' + err.message)
+      throw err
+    }
 
-        log.info('Connected to database ' + name  + ' on port ' + port);
+    log.info('Connected to database ' + name + ' on port ' + port)
 
-        return callback(null, client);
-    });
-};
+    return callback(null, client)
+  })
+}

@@ -19,35 +19,34 @@
 // =========================================================================
 
 export default {
-    methods: {
-        jsonToTSV: function (json) {
-            const delimiter = '\t';
+  methods: {
+    jsonToTSV: function (json) {
+      const delimiter = '\t'
 
-            // Ensure the order of the columns
-            const orderedKeys = Object.keys(json[0]);
+      // Ensure the order of the columns
+      const orderedKeys = Object.keys(json[0])
 
-            // Write the headers
-            let csv = orderedKeys.join(delimiter).concat('\n');
+      // Write the headers
+      let csv = orderedKeys.join(delimiter).concat('\n')
 
-            // Write the data
-            for (let i = 0; i < json.length; i++) {
-                const row = json[i];
+      // Write the data
+      for (let i = 0; i < json.length; i++) {
+        const row = json[i]
 
-                for (let j = 0; j < orderedKeys.length; j++) {
-                    const key = orderedKeys[j];
-                    const value = row[key] || '';
+        for (let j = 0; j < orderedKeys.length; j++) {
+          const key = orderedKeys[j]
+          const value = row[key] || ''
 
-                    // The last value of each row get a new line instead of a tab
-                    if (j !== orderedKeys.length - 1) {
-                        csv = csv.concat(value, delimiter);
-                    }
-                    else {
-                        csv = csv.concat(value, '\n');
-                    }
-                }
-            }
-
-            return csv;
+          // The last value of each row get a new line instead of a tab
+          if (j !== orderedKeys.length - 1) {
+            csv = csv.concat(value, delimiter)
+          } else {
+            csv = csv.concat(value, '\n')
+          }
         }
+      }
+
+      return csv
     }
+  }
 }
