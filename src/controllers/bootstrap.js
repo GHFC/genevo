@@ -21,7 +21,7 @@
 const cast = require('../utils/cast')
 const median = require('../utils/median')
 const bootstrapping = require('./bootstrap/bootstrapping')
-const confidenceInterval = require('./bootstrap/confidenceInterval')
+const confidenceInterval = require('./bootstrap/confidence-interval')
 
 // =========================================================================
 

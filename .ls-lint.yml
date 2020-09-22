@@ -1,0 +1,9 @@
+ls:
+  .dir: kebab-case
+  .js: kebab-case
+
+ignore:
+  - .git
+  - node_modules
+  - src/public/webpack.config.js
+  - src/public/app/lib

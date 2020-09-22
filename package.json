@@ -10,7 +10,7 @@
     "dev": "concurrently 'npm:dev-front' 'npm:dev-back'",
     "dev-front": "webpack-dev-server --config src/public/webpack.config.js",
     "dev-back": "nodemon --use-strict src/app.js",
-    "lint": "standard src/**/*.js | snazzy",
+    "lint": "ls-lint && standard src/**/*.js | snazzy",
     "lint-fix": "standard src/**/*.js --fix | snazzy"
   },
   "standard": {
@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@ls-lint/ls-lint": "^1.9.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^3.0.0",

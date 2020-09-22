@@ -19,10 +19,10 @@
 // =========================================================================
 
 const express = require('express');
-const requestChecker = require('./controllers/requestChecker');
+const requestChecker = require('./controllers/request-checker');
 const bootstrap = require('./controllers/bootstrap');
 const search = require('./controllers/search');
-const downloadFasta = require('./controllers/downloadFasta');
+const downloadFasta = require('./controllers/download-fasta');
 const logger = require('./middlewares/log.js');
 
 const router = express.Router();
