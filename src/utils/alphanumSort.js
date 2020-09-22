@@ -20,31 +20,27 @@
 // =========================================================================
 
 module.exports = function (doc, nextDoc) {
+  // Split each gene by groups of letters and numbers
+  var gene = doc.Gene.match(/([^\d]+)|([\d]+)/g)
+  var nextGene = nextDoc.Gene.match(/([^\d]+)|([\d]+)/g)
 
-    // Split each gene by groups of letters and numbers
-    var gene = doc.Gene.match(/([^\d]+)|([\d]+)/g);
-    var nextGene = nextDoc.Gene.match(/([^\d]+)|([\d]+)/g);
-
-    for (var i = 0; i < gene.length; i++) {
-
-        // If the next gene is shorter and equal so far, put it before
-        if (!nextGene[i]) {
-            return 1;
-        }
-
-        // Sort by numbers if letters are equal so far
-        if (parseInt(gene[i])) {
-            if (parseInt(gene[i]) > parseInt(nextGene[i])) return 1;
-            if (parseInt(gene[i]) < parseInt(nextGene[i])) return -1;
-        }
-
-        // Sort by letters
-        else {
-            if (gene[i] > nextGene[i]) return 1;
-            if (gene[i] < nextGene[i]) return -1;
-        }
+  for (var i = 0; i < gene.length; i++) {
+    // If the next gene is shorter and equal so far, put it before
+    if (!nextGene[i]) {
+      return 1
     }
 
-    // If the current gene is shorter and equal so far, put it before
-    return -1;
-};
+    // Sort by numbers if letters are equal so far
+    if (parseInt(gene[i])) {
+      if (parseInt(gene[i]) > parseInt(nextGene[i])) return 1
+      if (parseInt(gene[i]) < parseInt(nextGene[i])) return -1
+    } else {
+      // Sort by letters
+      if (gene[i] > nextGene[i]) return 1
+      if (gene[i] < nextGene[i]) return -1
+    }
+  }
+
+  // If the current gene is shorter and equal so far, put it before
+  return -1
+}

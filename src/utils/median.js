@@ -19,23 +19,20 @@
 // =====================================================================
 
 module.exports = function (values) {
+  // Sort the values numerically first
+  values.sort(function (a, b) { return a - b })
 
-    // Sort the values numerically first
-    values.sort(function (a, b) { return a - b; });
+  // Get the index of the median
+  var medianIndex = Math.floor(values.length / 2)
 
-    // Get the index of the median
-    var medianIndex = Math.floor(values.length / 2);
+  // Get the median
+  // ---------------------------------------------------------------------
 
-    // Get the median
-    // ---------------------------------------------------------------------
+  // Odd index
+  if (values.length % 2) return values[medianIndex]
 
-    // Odd index
-    if (values.length % 2) {
-        return values[medianIndex];
-    }
-
-    // Even index
-    else {
-        return (values[medianIndex - 1] + values[medianIndex]) / 2.0;
-    }
-};
+  // Even index
+  else {
+    return (values[medianIndex - 1] + values[medianIndex]) / 2.0
+  }
+}

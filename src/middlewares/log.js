@@ -18,11 +18,11 @@
 // Basic logger for each request
 // =========================================================================
 
-const log = require('../utils/logger.js');
+const log = require('../utils/logger.js')
 
 // =========================================================================
 
-module.exports = function (req, res ,next) {
-    log.info(req.ip + ' ' + req.method + ' ' + req.originalUrl);
-    next();
-};
+module.exports = function (req, res, next) {
+  log.info(req.ip + ' ' + req.method + ' ' + req.originalUrl)
+  next()
+}

@@ -18,78 +18,75 @@
 // Search the database for one or many genes
 // =========================================================================
 
-const alphanumSort = require ('../utils/alphanumSort');
-const cast = require('../utils/cast');
-const median = require('../utils/median')
-const log = require('../utils/logger');
+const alphanumSort = require('../utils/alphanumSort')
+const cast = require('../utils/cast')
+const log = require('../utils/logger')
 
 // =========================================================================
 
 module.exports = function (req, res) {
+  var db = req.app.locals.db // Get the database reference
+  var genes = db.collection('genes') // Get the collection
+  var entrezList = [] // List of Entrez identifiers
+  var geneList = [] // List of gene names
+  var exactMatch = cast(req.query.exactMatch) // Match exactly the terms or not
+  var orthologs = cast(req.query.orthologs) // Return only the 1-to-1 orthologs genes
+  var fields = { _id: 0 } // Do not keep the _id field in the results
 
-    var db = req.app.locals.db                     // Get the database reference
-    var genes = db.collection('genes');            // Get the collection
-    var entrezList = [];                           // List of Entrez identifiers
-    var geneList = [];                             // List of gene names
-    var exactMatch = cast(req.query.exactMatch)    // Match exactly the terms or not
-    var orthologs = cast(req.query.orthologs)      // Return only the 1-to-1 orthologs genes
-    var fields = { _id: 0 };                       // Do not keep the _id field in the results
+  // Split the request terms for the database query
+  if (req.query.request) {
+    req.query.request
+      .match(/[^\s,]+/g)
+      .map(function (term) {
+        return cast(term)
+      })
+      .forEach(function (term) {
+        if (typeof (term) === 'number') {
+          entrezList.push(term)
+        } else {
+          var regex = ''
+          if (exactMatch) regex = new RegExp('^' + term + '$', 'i')
+          else regex = new RegExp(term, 'i')
+          geneList.push(regex)
+        }
+      })
+  }
 
-    // Split the request terms for the database query
-    if (req.query.request) {
-        req.query.request
-        .match(/[^\s,]+/g)
-        .map(function (term) {
-            return cast(term);
-        })
-        .forEach(function (term) {
+  // Build the request
+  var query = {
+    $or: [
+      { EntrezId: { $in: entrezList } },
+      { Gene: { $in: geneList } }
+    ]
+  }
 
-            if (typeof(term) === 'number') {
-                entrezList.push(term);
-            }
+  if (orthologs) {
+    query.$and = [
+      { 'Chimpanzee.HomologyType': true },
+      { 'Gorilla.HomologyType': true },
+      { 'Marmoset.HomologyType': true },
+      { 'Orangutan.HomologyType': true },
+      { 'Macaque.HomologyType': true }
+    ]
+  }
 
-            else {
-                var regex = "";
-                if (exactMatch) regex = new RegExp('^' + term + '$', 'i');
-                else regex = new RegExp(term, 'i');
-                geneList.push(regex);
-            }
-        });
-    }
+  // Add the lists to the query, if any
+  if (req.query.genesLists) {
+    req.query.genesLists.forEach(function (name) {
+      var req = {}
+      req[name] = true
+      query.$or.push(req)
+    })
+  }
 
-    // Build the request
-    var query = { $or: [
-        { EntrezId: { '$in': entrezList } },
-        { Gene: { '$in': geneList } }
-    ]};
-
-    if (orthologs) {
-        query.$and = [
-            { "Chimpanzee.HomologyType": true },
-            { "Gorilla.HomologyType": true },
-            { "Marmoset.HomologyType": true },
-            { "Orangutan.HomologyType": true },
-            { "Macaque.HomologyType": true }
-        ];
-    }
-
-    // Add the lists to the query, if any
-    if (req.query.genesLists) {
-        req.query.genesLists.forEach(function (name) {
-            var req = {};
-            req[name] = true;
-            query.$or.push(req);
-        });
-    }
-
-    // Send the request to the database
-    genes.find(query)
-        .project(fields)
-        .toArray(function (err, docs) {
-            if (err) {
-                log.error(req.ip + ' Error during the request: ' + err.message);
-                res.status(500).send(err.message);
-            }
-            res.status(200).send(docs.sort(alphanumSort));
-        });
-};
+  // Send the request to the database
+  genes.find(query)
+    .project(fields)
+    .toArray(function (err, docs) {
+      if (err) {
+        log.error(req.ip + ' Error during the request: ' + err.message)
+        res.status(500).send(err.message)
+      }
+      res.status(200).send(docs.sort(alphanumSort))
+    })
+}

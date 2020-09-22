@@ -20,24 +20,23 @@
 // =========================================================================
 
 function log (level, message) {
+  const timeZoneOffset = new Date().getTimezoneOffset() * 60000
+  const date = new Date(Date.now() - timeZoneOffset)
+    .toISOString()
+    .replace('T', ' ')
+    .substring(0, 19)
 
-    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
-    let date = new Date(Date.now() - timeZoneOffset)
-        .toISOString()
-        .replace('T', ' ')
-        .substring(0, 19);
+  const line = date + ' ' + level + ': ' + message
 
-    let line = date + ' ' + level + ': ' + message;
-
-    if (level === 'INFO' || level === 'WARN') console.log(line);
-    if (level === 'ERROR' || level === 'FATAL') console.error(line);
+  if (level === 'INFO' || level === 'WARN') console.log(line)
+  if (level === 'ERROR' || level === 'FATAL') console.error(line)
 }
 
 // =========================================================================
 
 module.exports = {
-    info: function (message) { log('INFO', message) },
-    warn: function (message) { log('WARN', message) },
-    error: function (message) { log('ERROR', message) },
-    fatal: function (message) { log('FATAL', message) },
-};
+  info: function (message) { log('INFO', message) },
+  warn: function (message) { log('WARN', message) },
+  error: function (message) { log('ERROR', message) },
+  fatal: function (message) { log('FATAL', message) }
+}

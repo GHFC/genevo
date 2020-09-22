@@ -20,23 +20,22 @@
 // =========================================================================
 
 // Regular expressions for the different numbers, allowing exponents
-var integer = /^[+-]?\d+(?:[eE][+-]?\d+)?$/;
-var decimal = /^[+-]?\d+\.\d+(?:[eE][+-]?\d+)?$/;
+var integer = /^[+-]?\d+(?:[eE][+-]?\d+)?$/
+var decimal = /^[+-]?\d+\.\d+(?:[eE][+-]?\d+)?$/
 
 module.exports = function (string) {
+  // Only parseFloat can handle exponents
+  if (integer.test(string) || decimal.test(string)) {
+    return parseFloat(string.toLowerCase())
+  }
 
-    // Only parseFloat can handle exponents
-    if (integer.test(string) || decimal.test(string)) {
-        return parseFloat(string.toLowerCase());
-    }
+  if (string.toLowerCase() === 'true') {
+    return true
+  }
 
-    if (string.toLowerCase() === "true") {
-        return true;
-    }
+  if (string.toLowerCase() === 'false') {
+    return false
+  }
 
-    if (string.toLowerCase() === "false") {
-        return false;
-    }
-
-    return string;
-};
+  return string
+}

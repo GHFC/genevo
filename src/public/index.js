@@ -18,12 +18,16 @@
 // Inject the app into the index.html
 // =========================================================================
 
-import Vue from 'vue';
-import App from './app/app.vue';
+import Vue from 'vue'
+import App from './app/app.vue'
 
 // =========================================================================
 
-new Vue({
-    el: '#genevo-app',
-    render: (h) => h(App)
-});
+const app = new Vue({
+  el: '#genevo-app',
+  render: (h) => h(App)
+})
+
+// =========================================================================
+
+export default app

@@ -18,21 +18,21 @@
 // Download a FASTA from the external folder for the requested gene
 // =========================================================================
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
 // =========================================================================
 
 const rootPath = process.env.GENEVO_APP_FASTA_PATH
 
 module.exports = function (req, res) {
-    const fileName = `${req.params.file}.fasta`;
-    const filePath = path.join(rootPath, fileName);
-    const exists = fs.existsSync(filePath);
+  const fileName = `${req.params.file}.fasta`
+  const filePath = path.join(rootPath, fileName)
+  const exists = fs.existsSync(filePath)
 
-    if (!exists) return res.status(404).send('No fasta file found for this gene');
+  if (!exists) return res.status(404).send('No fasta file found for this gene')
 
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
-    fs.createReadStream(filePath).pipe(res);
+  res.setHeader('Content-Type', 'text/plain')
+  res.setHeader('Content-disposition', 'attachment; filename=' + fileName)
+  fs.createReadStream(filePath).pipe(res)
 }
