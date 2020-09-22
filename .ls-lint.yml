@@ -1,6 +1,10 @@
 ls:
   .dir: kebab-case
+  .vue: kebab-case
   .js: kebab-case
+  .html: kebab-case
+  .css: kebab-case
+  .png: kebab-case
 
 ignore:
   - .git

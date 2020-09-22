@@ -19,7 +19,7 @@
 // =========================================================================
 
 import { mapState } from 'vuex';
-import variantsWindow from './variantsWindow.js';
+import variantsWindow from './variants-window.js';
 
 // =========================================================================
 

@@ -18,7 +18,7 @@
 // Search the database for one or many genes
 // =========================================================================
 
-const alphanumSort = require('../utils/alphanumSort')
+const alphanumSort = require('../utils/alphanum-sort')
 const cast = require('../utils/cast')
 const log = require('../utils/logger')
 

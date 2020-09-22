@@ -20,7 +20,7 @@
 // WATCH YOUR EYES AND SANITY PLEASE !
 // =========================================================================
 
-import windowStyle from './variantsWindowStyle.js';
+import windowStyle from './variants-window-style.js';
 
 // =========================================================================
 
