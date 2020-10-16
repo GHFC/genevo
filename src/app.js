@@ -21,7 +21,6 @@
 
 const path = require('path')
 const express = require('express')
-const helmet = require('helmet')
 const cors = require('cors')
 const Database = require('./database')
 const router = require('./router')
@@ -50,7 +49,6 @@ app.set('trust proxy', proxy)
 // =========================================================================
 
 app.use(cors())
-// app.use(helmet());
 app.use(express.static(path.resolve(__dirname, '../dist'), {
   index: 'genevo.html'
 }))
@@ -73,6 +71,11 @@ const name = process.env.GENEVO_DB_NAME || 'genevo'
 log.info('Starting the application')
 
 Database.connect(function (err, client) {
+  if (err) {
+    log.fatal('Error while connecting to the database: ' + err.message)
+    throw err
+  }
+
   // Store the reference of the database
   app.locals.db = client.db(name)
 
