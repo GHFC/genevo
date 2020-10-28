@@ -25,6 +25,8 @@ import median from '../../mixins/median'
 
 // =========================================================================
 
+/* global BrainBrowser */
+
 const humanHemisphere = {
   name: 'human-hemisphere',
   mixins: [
@@ -105,11 +107,7 @@ const humanHemisphere = {
           }
         }
       },
-      selectedDataType: 'specificity', // Expression by default
-      mousePos: {
-        x: null,
-        y: null
-      }
+      selectedDataType: 'specificity' // Expression by default
     }
   },
   computed: mapState({

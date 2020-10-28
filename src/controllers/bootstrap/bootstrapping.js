@@ -35,9 +35,6 @@ module.exports = function (bootstrapBoxes, population, dataField) {
 
     for (var box in bootstrapBoxes) {
       const genesNumber = bootstrapBoxes[box] // Number of genes with this box
-      const reducedPop = pop.filter((gene) => { // Genes in the population with this box
-        return gene.BootstrapBox === parseInt(box)
-      })
 
       // Get randomly the proper amount of genes per box
       for (var i = 0; i < genesNumber; i++) {

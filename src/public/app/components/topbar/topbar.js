@@ -18,6 +18,8 @@
 // Component handling the top bar
 // =========================================================================
 
+/* global APP_DESCRIPTION, APP_CONTACT */
+
 const topbar = {
   name: 'topbar',
   data: function () {

@@ -94,12 +94,12 @@ const search = {
       })
     },
     reset: function () {
-      this.genesInput = '',
-      this.genesLists = [],
-      this.exact = true,
-      this.orthologs = false,
-      this.quality = 'mediumQuality',
-      this.frequency = 'pNpSGlobal',
+      this.genesInput = ''
+      this.genesLists = []
+      this.exact = true
+      this.orthologs = false
+      this.quality = 'mediumQuality'
+      this.frequency = 'pNpSGlobal'
       this.$store.commit('setGenes', [])
       this.$store.commit('setNoResults', false)
     },
@@ -121,7 +121,7 @@ const search = {
 
       // Generate the file in memory
       const data = this.jsonToTSV(filteredData)
-      const file = new Blob([data], { type: 'text/tab-separated-values' })
+      const file = new window.Blob([data], { type: 'text/tab-separated-values' })
       const fileURL = window.URL.createObjectURL(file)
       const date = new Date().toISOString().replace(/T.*/, '')
 

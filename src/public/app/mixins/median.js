@@ -29,14 +29,10 @@ export default {
 
       // Get the median value
       // If odd
-      if (values.length % 2) {
-        return values[medianIndex]
-      }
+      if (values.length % 2) return values[medianIndex]
 
       // If even
-      else {
-        return (values[medianIndex - 1] + values[medianIndex]) / 2.0
-      }
+      else return (values[medianIndex - 1] + values[medianIndex]) / 2.0
     }
   }
 }

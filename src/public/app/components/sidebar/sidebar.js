@@ -158,7 +158,7 @@ const sidebar = {
       const fileName = `${gene.EntrezId}_${gene.Gene}_${type}`
 
       this.$resources.downloadFasta(fileName).then((response) => {
-        const file = new Blob([response.data], { type: 'text/plain' })
+        const file = new window.Blob([response.data], { type: 'text/plain' })
         const fileURL = window.URL.createObjectURL(file)
 
         // Download the file

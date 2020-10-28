@@ -7,16 +7,16 @@ export default `* {
 }
 
 h2 {
-	border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
     color: #4B4B4B;
-	font-size: 200%;
+  font-size: 200%;
     font-weight: 400;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
 h2 #gene {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .example {
@@ -26,7 +26,7 @@ h2 #gene {
 }
 
 h2 small {
-	font-size: 60%;
+  font-size: 60%;
     font-style: italic;
     font-weight: 150;
     margin-left: 20px;
