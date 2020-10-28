@@ -22,6 +22,7 @@
 const path = require('path')
 const express = require('express')
 const cors = require('cors')
+const config = require('./config/config.js')
 const Database = require('./database')
 const router = require('./router')
 const log = require('./utils/logger.js')
@@ -29,18 +30,13 @@ const cast = require('./utils/cast.js')
 
 const app = express()
 
-// Environment
-// =========================================================================
-
-const env = process.env.NODE_ENV || 'development'
-
 // Proxy
 // =========================================================================
 
 let proxy = false
 
-if (process.env.GENEVO_APP_PROXY) {
-  proxy = cast(process.env.GENEVO_APP_PROXY.toLowerCase())
+if (config.PROXY) {
+  proxy = cast(config.PROXY.toLowerCase())
 }
 
 app.set('trust proxy', proxy)
@@ -58,12 +54,6 @@ app.use(express.static(path.resolve(__dirname, '../dist'), {
 
 app.use('/', router)
 
-// Server
-// =========================================================================
-
-const port = process.env.GENEVO_APP_PORT || 3000
-const host = process.env.GENEVO_APP_HOST || 'localhost'
-const name = process.env.GENEVO_DB_NAME || 'genevo'
 
 // Start
 // =========================================================================
@@ -77,11 +67,11 @@ Database.connect(function (err, client) {
   }
 
   // Store the reference of the database
-  app.locals.db = client.db(name)
+  app.locals.db = client.db(config.DB_NAME)
 
-  app.listen(port, host, function () {
-    log.info('GenEvo server listening to ' + host + ' on port ' + port)
-    log.info('Environment : ' + env)
+  app.listen(config.PORT, config.HOST, function () {
+    log.info('GenEvo server listening to ' + config.HOST + ' on port ' + config.PORT)
+    log.info('Environment : ' + config.ENV)
     log.info('Proxy : ' + proxy)
   })
 

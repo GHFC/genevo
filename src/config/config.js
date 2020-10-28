@@ -15,25 +15,15 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 // =========================================================================
-// Download a FASTA from the external folder for the requested gene
+// App configuration
 // =========================================================================
 
-const fs = require('fs')
-const path = require('path')
-const config = require('../config/config.js')
-
-// =========================================================================
-
-const rootPath = config.FASTA_PATH
-
-module.exports = function (req, res) {
-  const fileName = `${req.params.file}.fasta`
-  const filePath = path.join(rootPath, fileName)
-  const exists = fs.existsSync(filePath)
-
-  if (!exists) return res.status(404).send('No fasta file found for this gene')
-
-  res.setHeader('Content-Type', 'text/plain')
-  res.setHeader('Content-disposition', 'attachment; filename=' + fileName)
-  fs.createReadStream(filePath).pipe(res)
+module.exports = {
+  PORT: process.env.GENEVO_APP_PORT || 3000,
+  HOST: process.env.GENEVO_APP_HOST || 'localhost',
+  DB_NAME: process.env.GENEVO_DB_NAME || 'genevo',
+  DB_PORT: process.env.GENEVO_DB_PORT || 27017,
+  PROXY: process.env.GENEVO_APP_PROXY,
+  FASTA_PATH: process.env.GENEVO_APP_FASTA_PATH,
+  ENV: process.env.NODE_ENV || 'development'
 }

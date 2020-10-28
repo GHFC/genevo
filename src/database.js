@@ -20,16 +20,13 @@
 
 const MongoClient = require('mongodb').MongoClient
 const format = require('util').format
+const config = require('./config/config.js')
 const log = require('./utils/logger.js')
 
 // Configuration
 // =========================================================================
 
-const host = process.env.GENEVO_DB_HOST || 'localhost'
-const port = process.env.GENEVO_DB_PORT || 27017
-const name = process.env.GENEVO_DB_NAME || 'genevo'
-
-const url = format('mongodb://%s:%d/%s', host, port, name)
+const url = format('mongodb://%s:%d/%s', config.HOST, config.DB_PORT, config.DB_NAME)
 
 // Connection
 // =========================================================================
@@ -44,7 +41,7 @@ exports.connect = function (callback) {
       throw err
     }
 
-    log.info('Connected to database ' + name + ' on port ' + port)
+    log.info('Connected to database "' + config.DB_NAME + '" on port ' + config.PORT)
 
     return callback(null, client)
   })
