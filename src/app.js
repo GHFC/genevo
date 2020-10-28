@@ -54,7 +54,6 @@ app.use(express.static(path.resolve(__dirname, '../dist'), {
 
 app.use('/', router)
 
-
 // Start
 // =========================================================================
 
@@ -71,8 +70,9 @@ Database.connect(function (err, client) {
 
   app.listen(config.PORT, config.HOST, function () {
     log.info('GenEvo server listening to ' + config.HOST + ' on port ' + config.PORT)
-    log.info('Environment : ' + config.ENV)
-    log.info('Proxy : ' + proxy)
+    log.info('Environment: ' + config.ENV)
+    log.info('Proxy: ' + proxy)
+    log.info('Fasta directory: ' + config.FASTA_PATH)
   })
 
   // Exit handlers

@@ -41,7 +41,7 @@ exports.connect = function (callback) {
       throw err
     }
 
-    log.info('Connected to database "' + config.DB_NAME + '" on port ' + config.PORT)
+    log.info('Connected to database "' + config.DB_NAME + '" on port ' + config.DB_PORT)
 
     return callback(null, client)
   })
