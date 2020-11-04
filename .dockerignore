@@ -2,12 +2,12 @@
 
 node_modules/
 
+# Front-end build
+
+dist/
+
 # Logs
 
 logs
 *.log
 npm-debug.log*
-
-# Front-end build
-
-dist/

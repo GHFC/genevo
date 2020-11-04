@@ -4,9 +4,8 @@
   "description": "The website of the GenEvo project conducted at the Pasteur institute",
   "main": "src/app.js",
   "scripts": {
-    "start": "npm run build && node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config src/public/webpack.config.js",
+    "start": "node src/app.js",
+    "build-front": "webpack --config src/public/webpack.config.js",
     "dev": "concurrently 'npm:dev-front' 'npm:dev-back'",
     "dev-front": "webpack-dev-server --config src/public/webpack.config.js",
     "dev-back": "nodemon --use-strict src/app.js",

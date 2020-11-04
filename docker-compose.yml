@@ -1,0 +1,14 @@
+version: "1.0"
+
+services:
+  genevo:
+    container_name: genevo-website
+    image: genevo:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - genevo-db
+
+  genevo-db:
+    container_name: genevo-database
+    image: mongo:4.0
