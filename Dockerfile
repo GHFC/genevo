@@ -12,9 +12,10 @@ COPY --from=builder /usr/src/build/dist/ ./dist/
 COPY --from=builder /usr/src/build/package.json ./package.json
 COPY --from=builder /usr/src/build/package-lock.json ./package-lock.json
 ENV NODE_ENV="production" \
-    GENEVO_APP_PORT="3000" \
+    GENEVO_APP_PORT=3000 \
     GENEVO_APP_HOST="localhost" \
     GENEVO_DB_NAME="genevo" \
+    GENEVO_DB_NAME=27017 \
     GENEVO_APP_FASTA_PATH="/usr/src/genevo/fasta-files"
 RUN npm ci
 EXPOSE 3000

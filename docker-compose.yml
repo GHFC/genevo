@@ -1,14 +1,30 @@
-version: "1.0"
+version: "3.8"
 
 services:
-  genevo:
-    container_name: genevo-website
+  web:
+    container_name: genevo-web
     image: genevo:latest
+    build: .
     ports:
       - 3000:3000
+    volumes:
+      - fasta-files:/usr/src/genevo/fasta-files
+    networks:
+      - main
     depends_on:
-      - genevo-db
+      - mongodb
 
-  genevo-db:
+  mongodb:
     container_name: genevo-database
     image: mongo:4.0
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - main
+
+volumes:
+  mongodb-data:
+  fasta-files:
+
+networks:
+  main:
