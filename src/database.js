@@ -26,7 +26,7 @@ const log = require('./utils/logger.js')
 // Configuration
 // =========================================================================
 
-const url = format('mongodb://%s:%d/%s', config.HOST, config.DB_PORT, config.DB_NAME)
+const url = format('mongodb://%s:%d/%s', config.DB_HOST, config.DB_PORT, config.DB_NAME)
 
 // Connection
 // =========================================================================
@@ -41,7 +41,7 @@ exports.connect = function (callback) {
       throw err
     }
 
-    log.info('Connected to database "' + config.DB_NAME + '" on port ' + config.DB_PORT)
+    log.info('Connected to database ' + url)
 
     return callback(null, client)
   })

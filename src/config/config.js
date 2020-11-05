@@ -21,6 +21,7 @@
 module.exports = {
   PORT: process.env.GENEVO_APP_PORT || 3000,
   HOST: process.env.GENEVO_APP_HOST || 'localhost',
+  DB_HOST: process.env.GENEVO_DB_HOST || 'localhost',
   DB_NAME: process.env.GENEVO_DB_NAME || 'genevo',
   DB_PORT: process.env.GENEVO_DB_PORT || 27017,
   PROXY: process.env.GENEVO_APP_PROXY,
