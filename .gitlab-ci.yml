@@ -1,0 +1,19 @@
+# Declare the stages
+stages:
+  - lint
+  - build
+  - deploy
+
+# This folder is cached between jobs
+# http://docs.gitlab.com/ee/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+
+lint:
+  image: node:12.19
+  stage: lint
+  allow_failure: true
+  script:
+    - npm ci
+    - npm run lint
