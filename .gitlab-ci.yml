@@ -9,6 +9,12 @@ cache:
   paths:
     - node_modules/
 
+services:
+  - docker:dind
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375/
+
 # Lint the code but only return a warning
 lint:
   stage: lint
@@ -22,10 +28,6 @@ lint:
 build:
   stage: build
   image: docker:latest
-  services:
-    - docker:dind
-  variables:
-    DOCKER_HOST: tcp://localhost:2375/
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build -t "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:${CI_COMMIT_SHORT_SHA}" .
