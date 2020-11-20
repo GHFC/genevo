@@ -9,7 +9,7 @@
     "dev": "concurrently 'npm:dev-front' 'npm:dev-back'",
     "dev-front": "webpack-dev-server --config src/public/webpack.config.js",
     "dev-back": "nodemon --use-strict src/app.js",
-    "lint": "ls-lint && standard | snazzy",
+    "lint": "ls-lint; standard | snazzy",
     "lint-fix": "standard --fix | snazzy"
   },
   "standard": {
