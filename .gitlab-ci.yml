@@ -2,7 +2,6 @@
 stages:
   - lint
   - build
-  - deploy
 
 # This folder is cached between jobs
 # http://docs.gitlab.com/ee/ci/yaml/README.html#cache
@@ -10,10 +9,27 @@ cache:
   paths:
     - node_modules/
 
+# Lint the code but only return a warning
 lint:
-  image: node:12.19
   stage: lint
+  image: node:12.19
   allow_failure: true
   script:
     - npm ci
     - npm run lint
+
+# Build the docker image and store it the gitlab registery
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://localhost:2375/
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -t "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:${CI_COMMIT_SHORT_SHA}" .
+    - docker tag "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:${CI_COMMIT_SHORT_SHA}" "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:latest"
+    - docker push "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:${CI_COMMIT_SHORT_SHA}"
+  tags:
+    - k8s
