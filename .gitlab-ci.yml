@@ -3,11 +3,10 @@ stages:
   - lint
   - build
 
-# This folder is cached between jobs
-# http://docs.gitlab.com/ee/ci/yaml/README.html#cache
+# Cache node modules in between jobs
 cache:
   paths:
-    - node_modules/
+    - .npm/
 
 services:
   - docker:dind
@@ -20,8 +19,9 @@ lint:
   stage: lint
   image: node:12.19
   allow_failure: true
+  before_script:
+    - npm ci --cache .npm --prefer-offline
   script:
-    - npm ci
     - npm run lint
 
 # Build the docker image and store it the gitlab registery
