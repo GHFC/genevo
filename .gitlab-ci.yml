@@ -9,7 +9,7 @@ cache:
     - .npm/
 
 services:
-  - docker:dind
+  - registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:dind
 
 variables:
   DOCKER_HOST: tcp://localhost:2375/
@@ -27,7 +27,7 @@ lint:
 # Build the docker image and store it the gitlab registery
 build:
   stage: build
-  image: docker:latest
+  image: registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:latest
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build -t "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:${CI_COMMIT_SHORT_SHA}" .
