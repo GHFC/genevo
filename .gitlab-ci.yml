@@ -4,11 +4,6 @@ stages:
   - build
   - deploy
 
-# Cache node modules in between jobs
-cache:
-  paths:
-    - .npm/
-
 services:
   - registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:dind
 
@@ -21,7 +16,7 @@ lint:
   image: node:12.19
   allow_failure: true
   before_script:
-    - npm ci --cache .npm --prefer-offline
+    - npm ci
   script:
     - npm run lint
 
