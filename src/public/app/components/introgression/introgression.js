@@ -386,18 +386,18 @@ const introgression = {
         this.data.text.push(gene.Gene)
 
         // Get both parameters
-        const CCDS_Europe = gene.CCDS_PEUR
-        const CCDS_Asia = gene.CCDS_PASN
+        const ccdsEurope = gene.CCDS_PEUR
+        const ccdsAsia = gene.CCDS_PASN
 
-        if (typeof (CCDS_Europe) !== 'number' || typeof (CCDS_Asia) !== 'number') {
+        if (typeof (ccdsEurope) !== 'number' || typeof (ccdsAsia) !== 'number') {
           this.data.x.push(NaN)
           this.data.y.push(NaN)
           return
         }
 
         // Add the results to the list
-        this.data.x.push(CCDS_Europe)
-        this.data.y.push(CCDS_Asia)
+        this.data.x.push(ccdsEurope)
+        this.data.y.push(ccdsAsia)
       })
 
       Plotly.react('introgression-chart', [this.data], this.layout, this.config).then((chart) => {
