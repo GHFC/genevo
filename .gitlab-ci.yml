@@ -44,7 +44,6 @@ deploy:
   script:
     - kubectl delete secret registry-gitlab -n ${NAMESPACE} --ignore-not-found=true
     - kubectl create secret docker-registry -n ${NAMESPACE} registry-gitlab --docker-server=registry-gitlab.pasteur.fr --docker-username=${DEPLOY_USER} --docker-password=${DEPLOY_TOKEN} --docker-email=kubernetes@pasteur.fr
-    - kubectl wait --for=condition=available --timeout=600s deployment/postgresql
     - kubectl delete job polls-migrations -n ${NAMESPACE} --ignore-not-found=true
     - kubectl wait --for=condition=complete --timeout=600s job/polls-migrations
     - kubectl patch deployment polls -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
