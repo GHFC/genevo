@@ -37,10 +37,10 @@ deploy:
   stage: deploy
   image: registry-gitlab.pasteur.fr/dsi-tools/docker-images:docker_kubernetes_image
   variables:
-    NAMESPACE: ${GITLAB_USER_LOGIN}-${CI_PROJECT_NAME}
+    NAMESPACE: ${CI_PROJECT_NAME}-dev
   environment:
-    name: ${GITLAB_USER_LOGIN}-${CI_PROJECT_NAME}
-    url: https://${GITLAB_USER_LOGIN}-${CI_PROJECT_NAME}.k8s-dev.pasteur.fr
+    name: k8sdev-01-${CI_PROJECT_NAME}
+    url: https://${CI_PROJECT_NAME}-dev.pasteur.cloud
   script:
     - kubectl delete secret registry-gitlab -n ${NAMESPACE} --ignore-not-found=true
     - kubectl create secret docker-registry -n ${NAMESPACE} registry-gitlab --docker-server=registry-gitlab.pasteur.fr --docker-username=${DEPLOY_USER} --docker-password=${DEPLOY_TOKEN} --docker-email=kubernetes@pasteur.fr
