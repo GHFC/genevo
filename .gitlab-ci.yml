@@ -46,11 +46,8 @@ deploy:
     - kubectl create secret docker-registry -n ${NAMESPACE} registry-gitlab --docker-server=registry-gitlab.pasteur.fr --docker-username=${DEPLOY_USER} --docker-password=${DEPLOY_TOKEN} --docker-email=kubernetes@pasteur.fr
     - envsubst < mongodb.yaml | kubectl apply -n ${NAMESPACE} -f -
     - kubectl wait --for=condition=available --timeout=600s deployment/mongodb
-    - kubectl delete job polls-migrations -n ${NAMESPACE} --ignore-not-found=true
-    - envsubst < job.yaml | kubectl apply -n ${NAMESPACE} -f -
-    - kubectl wait --for=condition=complete --timeout=600s job/polls-migrations
-    - envsubst < polls.yaml | kubectl apply -n ${NAMESPACE} -f -
-    - kubectl patch deployment polls -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - envsubst < genevo.yaml | kubectl apply -n ${NAMESPACE} -f -
+    - kubectl patch deployment genevo -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
   tags:
     - k8s
   only:
