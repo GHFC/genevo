@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: genevo
+  labels:
+    app: genevo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: genevo
+  template:
+    metadata:
+      labels:
+        app: genevo
+    spec:
+      containers:
+        - name: genevo-app
+          image: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/genevo:${CI_COMMIT_SHORT_SHA}
+          imagePullPolicy: Always
+          env:
+            - name: GENEVO_APP_PORT
+              value: "8080"
+            - name: GENEVO_DB_HOST
+              value: "mongodb"
+            - name: GENEVO_DB_NAME
+              value: "genevo"
+            - name: GENEVO_APP_FASTA_PATH
+              value: "/fasta-files"
+            - name: NODE_ENV
+              value: "production"
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+      imagePullSecrets:
+        - name: registry-gitlab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: genevo
+  labels:
+    app: genevo
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+  selector:
+    app: genevo
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app: genevo
+  name: genevo
+spec:
+  rules:
+    - host: ${NAMESPACE}.pasteur.fr
+      http:
+        paths:
+          - backend:
+              serviceName: genevo
+              servicePort: 8080
+            path: /
