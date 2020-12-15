@@ -21,6 +21,8 @@ spec:
           env:
             - name: GENEVO_APP_PORT
               value: "8080"
+            - name: GENEVO_APP_HOST
+              value: "0.0.0.0"
             - name: GENEVO_DB_HOST
               value: "mongodb"
             - name: GENEVO_DB_NAME
