@@ -39,6 +39,7 @@ fetch-mongo:
   image: registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:latest
   script:
     - docker pull mongo:4.0
+    - docker tag "$CI_REGISTRY_IMAGE/mongo:4.0" mongo:4.0
     - docker push "$CI_REGISTRY_IMAGE/mongo:4.0"
   tags:
     - k8s
