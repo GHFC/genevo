@@ -53,10 +53,10 @@ spec:
             - containerPort: 27017
               name: mongodb
           resources:
-            requests:
+            limits:
               memory: "512Mi"
               cpu: "1"
-            limits:
+            requests:
               memory: "256Mi"
               cpu: "500m"
           volumeMounts:
