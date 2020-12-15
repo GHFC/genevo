@@ -32,6 +32,17 @@ build:
   tags:
     - k8s
 
+# Fetch the image of MongoDB from the DockerHub and store it if there is any changes
+# This void issues with DOcker in case of overpulling
+fetch-mongo:
+  stage: build
+  image: registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:latest
+  script:
+    - docker pull mongo:4.0
+    - docker push docker push "$CI_REGISTRY_IMAGE/mongo:4.0"
+  tags:
+    - k8s
+
 # Deploy on Kubernetes
 deploy:
   stage: deploy
