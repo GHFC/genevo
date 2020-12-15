@@ -33,13 +33,13 @@ spec:
               value: "production"
           ports:
             - containerPort: 8080
-          liveness:
+          livenessProbe:
             httpGet:
               path: /
               port: 8080
             initialDelaySeconds: 10
             period: 30
-          readyness:
+          readinessProbe:
             httpGet:
               path: /
               port: 8080
