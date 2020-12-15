@@ -33,6 +33,18 @@ spec:
               value: "production"
           ports:
             - containerPort: 8080
+          liveness:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            period: 30
+          readyness:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            period: 30
           resources:
             requests:
               memory: "64Mi"

@@ -33,6 +33,22 @@ spec:
       containers:
         - name: mongodb
           image: $CI_REGISTRY_IMAGE/mongo:4.0
+          livenessProbe:
+            exec:
+              command:
+                - pgrep
+                - mongod
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
           ports:
             - containerPort: 27017
               name: mongodb
