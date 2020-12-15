@@ -38,6 +38,10 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "100m"
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
       imagePullSecrets:
         - name: registry-gitlab
 ---
