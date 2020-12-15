@@ -44,9 +44,9 @@ deploy:
   script:
     - kubectl delete secret registry-gitlab -n ${NAMESPACE} --ignore-not-found=true
     - kubectl create secret docker-registry -n ${NAMESPACE} registry-gitlab --docker-server=registry-gitlab.pasteur.fr --docker-username=${DEPLOY_USER} --docker-password=${DEPLOY_TOKEN} --docker-email=kubernetes@pasteur.fr
-    - envsubst < mongodb.yaml | kubectl apply -n ${NAMESPACE} -f -
+    - envsubst < ./k8s/mongodb.yaml | kubectl apply -n ${NAMESPACE} -f -
     - kubectl wait --for=condition=available --timeout=600s deployment/mongodb
-    - envsubst < genevo.yaml | kubectl apply -n ${NAMESPACE} -f -
+    - envsubst < ./k8s/genevo.yaml | kubectl apply -n ${NAMESPACE} -f -
     - kubectl patch deployment genevo -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
   tags:
     - k8s
