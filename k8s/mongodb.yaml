@@ -47,6 +47,12 @@ spec:
             - name: mongodb
               mountPath: /var/lib/mongodb/data
               subPath: data
+          securityContext:
+            fsGroup: 2000
+            runAsUser: 2000
+            runAsNonRoot: true
+      imagePullSecrets:
+        - name: registry-gitlab
       volumes:
         - name: mongodb
           persistentVolumeClaim:
