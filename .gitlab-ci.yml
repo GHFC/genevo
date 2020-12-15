@@ -38,6 +38,7 @@ fetch-mongo:
   stage: build
   image: registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:latest
   script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker pull mongo:4.0
     - docker tag mongo:4.0 "$CI_REGISTRY_IMAGE/mongo:4.0"
     - docker push "$CI_REGISTRY_IMAGE/mongo:4.0"
