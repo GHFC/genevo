@@ -54,11 +54,11 @@ spec:
               name: mongodb
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "50m"
+              memory: "512Mi"
+              cpu: "1"
             limits:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: "256Mi"
+              cpu: "500m"
           volumeMounts:
             - name: mongodb
               mountPath: /data/db
