@@ -38,13 +38,13 @@ spec:
               path: /
               port: 8080
             initialDelaySeconds: 10
-            period: 30
+            periodSeconds: 30
           readinessProbe:
             httpGet:
               path: /
               port: 8080
             initialDelaySeconds: 10
-            period: 30
+            periodSeconds: 30
           resources:
             requests:
               memory: "64Mi"
