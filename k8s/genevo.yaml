@@ -64,7 +64,7 @@ metadata:
   name: genevo
 spec:
   rules:
-    - host: ${NAMESPACE}.pasteur.fr
+    - host: ${URL}
       http:
         paths:
           - backend:

@@ -7,8 +7,6 @@ stages:
 services:
   - registry-gitlab.pasteur.fr/dsi-tools/docker-images/docker:dind
 
-variables:
-  DOCKER_HOST: tcp://localhost:2375/
 
 # Lint the code but return only a warning
 lint:
@@ -29,8 +27,7 @@ build:
     - docker build -t "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/genevo:${CI_COMMIT_SHORT_SHA}" .
     - docker tag "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/genevo:${CI_COMMIT_SHORT_SHA}" "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/polls:latest"
     - docker push "$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME/genevo:${CI_COMMIT_SHORT_SHA}"
-  tags:
-    - k8s
+
 
 # Fetch the image of MongoDB from the DockerHub and store it if there is any changes
 # This void issues with Docker in case of overpulling
@@ -42,8 +39,6 @@ fetch-mongo:
     - docker pull mongo:4.0
     - docker tag mongo:4.0 "$CI_REGISTRY_IMAGE/mongo:4.0"
     - docker push "$CI_REGISTRY_IMAGE/mongo:4.0"
-  tags:
-    - k8s
 
 # Deploy on Kubernetes
 deploy:
@@ -51,6 +46,7 @@ deploy:
   image: registry-gitlab.pasteur.fr/dsi-tools/docker-images:docker_kubernetes_image
   variables:
     NAMESPACE: ${CI_PROJECT_NAME}-dev
+    URL: genevo.dev.pasteur.cloud
   environment:
     name: k8sdev-01-${CI_PROJECT_NAME}
     url: https://${CI_PROJECT_NAME}-dev.pasteur.cloud
@@ -61,8 +57,6 @@ deploy:
     - kubectl wait --for=condition=available --timeout=600s deployment/mongodb
     - envsubst < ./k8s/genevo.yaml | kubectl apply -n ${NAMESPACE} -f -
     - kubectl patch deployment genevo -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
-  tags:
-    - k8s
   only:
     refs:
       - dev
