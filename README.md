@@ -4,7 +4,7 @@ The website of the [GenEvo project](https://research.pasteur.fr/fr/project/genev
 
 Visit it here: http://genevo.pasteur.fr/
 
-The related Article: https://www.biorxiv.org/content/10.1101/658658v1
+The related Article: https://www.biorxiv.org/content/10.1101/658658v2
 
 ## Credits
 
