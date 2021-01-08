@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: genevo-storage
+  labels:
+    app: genevo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -52,12 +65,20 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "100m"
+          volumeMounts:
+            - name: genevo-files
+              mountPath: /home/fasta-files
+              subPath: data
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
             runAsNonRoot: true
       imagePullSecrets:
         - name: registry-gitlab
+      volumes:
+        - name: genevo-files
+          persistentVolumeClaim:
+            claimName: genevo-storage
 ---
 apiVersion: v1
 kind: Service
