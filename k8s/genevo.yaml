@@ -41,7 +41,7 @@ spec:
             - name: GENEVO_DB_NAME
               value: "genevo"
             - name: GENEVO_APP_FASTA_PATH
-              value: "/mnt/fasta-files"
+              value: "/home/fasta-files"
             - name: NODE_ENV
               value: "production"
           ports:
@@ -67,7 +67,7 @@ spec:
               cpu: "100m"
           volumeMounts:
             - name: genevo-storage
-              mountPath: /mnt/fasta-files
+              mountPath: /home/fasta-files
               subPath: data
           securityContext:
             runAsUser: 1000
