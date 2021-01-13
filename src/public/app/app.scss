@@ -26,7 +26,9 @@ body, #app {
 
         height: 64px;
         position: fixed;
-        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
         z-index: 2400;      /* Ridiculous z-index to avoid cosmetic bugs with ElementUI tooltips */
     }
 
@@ -35,8 +37,9 @@ body, #app {
 
         position: fixed;
         top: 64px;
+        left: 0;
+        bottom: 0;
         width: 254px;
-        height: 100%;
     }
 
     .bottombar {
