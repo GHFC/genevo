@@ -6,7 +6,7 @@ metadata:
     app: genevo
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
@@ -68,7 +68,6 @@ spec:
           volumeMounts:
             - name: genevo-storage
               mountPath: /home/fasta-files
-              subPath: data
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
