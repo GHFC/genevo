@@ -31,7 +31,7 @@ const sidebar = {
       selectedGene: '',
       currentPage: 1,
       totalPages: 0,
-      pageSize: 15
+      pageSize: 12
     }
   },
   computed: {
