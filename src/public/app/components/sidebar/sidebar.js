@@ -113,7 +113,12 @@ const sidebar = {
       return 'https://www.ncbi.nlm.nih.gov/gene/' + id
     },
     ensemblLink: function (id) {
+      if (!id) return
       return 'http://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=' + id
+    },
+    gnomadLink: function (id) {
+      if (!id) return
+      return 'https://gnomad.broadinstitute.org/gene/' + id
     },
     biogpsLink: function (id) {
       return 'http://biogps.org/#goto=genereport&id=' + id
