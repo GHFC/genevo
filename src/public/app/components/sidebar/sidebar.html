@@ -75,9 +75,15 @@
             </a>
           </li>
           <li>
-            <a :href="ensemblLink(gene.EnsemblId)" rel="external noreferrer" target="_blank" title="View this gene on Ensembl in a new tab">
+            <a v-bind:class="{ disabled: !gene.ensemblID }" :href="ensemblLink(gene.EnsemblId)" rel="external noreferrer" target="_blank" title="View this gene on Ensembl in a new tab">
               <i class="el-icon-link"></i>
               <span>See on Ensembl</span>
+            </a>
+          </li>
+          <li>
+            <a v-bind:class="{ disabled: !gene.ensemblID }" :href="gnomadLink(gene.EnsemblId)" rel="external noreferrer" target="_blank" title="View this gene on gnomAD in a new tab">
+              <i class="el-icon-link"></i>
+              <span>See on gnomAD</span>
             </a>
           </li>
           <li>
