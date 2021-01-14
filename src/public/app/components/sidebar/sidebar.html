@@ -40,8 +40,8 @@
       <li class="gene-item" v-for="gene in paginatedGenes">
         <div class="gene-item-label" :class="{ 'gene-hover': hoveredGene === gene.Gene }" @click="selectGene(gene)" @mouseenter="hoverGene(gene.Gene)" @mouseleave="hoverGene('')">
           <span>{{ gene.Gene }}</span>
-          <i class="el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoveredGene === gene.Gene"></i>
-          <i class="el-icon-caret-top" v-show="selectedGene === gene.Gene"></i>
+          <i class="caret el-icon-caret-bottom" v-show="selectedGene !== gene.Gene && hoveredGene === gene.Gene"></i>
+          <i class="caret el-icon-caret-top" v-show="selectedGene === gene.Gene"></i>
         </div>
 
         <ul class="gene-item-list" v-show="selectedGene === gene.Gene">
@@ -57,43 +57,56 @@
             <span @click="showBrainGene(gene, 'expression')" title="Show the expression levels of this gene in the 3D brain">Brain expression</span>
           </li>
           <li>
-            <span @click="downloadFasta(gene, 'DNA')" title="Download the DNA sequences in FASTA for this gene">Download DNA</span>
+            <span @click="downloadFasta(gene, 'DNA')" title="Download the DNA sequences in FASTA for this gene">
+              <i class="el-icon-download"></i>
+              Download DNA
+            </span>
           </li>
           <li>
-            <span @click="downloadFasta(gene, 'PROT')" title="Download the protein sequences in FASTA for this gene">Download protein</span>
+            <span @click="downloadFasta(gene, 'PROT')" title="Download the protein sequences in FASTA for this gene">
+              <i class="el-icon-download"></i>
+              Download protein
+            </span>
           </li>
           <li>
             <a :href="ncbiLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on NCBI in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on NCBI</span>
             </a>
           </li>
           <li>
             <a :href="ensemblLink(gene.EnsemblId)" rel="external noreferrer" target="_blank" title="View this gene on Ensembl in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on Ensembl</span>
             </a>
           </li>
           <li>
             <a :href="biogpsLink(gene.EntrezId)" rel="external noreferrer" target="_blank" title="View this gene on BioGPS in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on BioGPS</span>
             </a>
           </li>
           <li>
             <a :href="gtexLink(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on GTEx in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on GTEx</span>
             </a>
           </li>
           <li>
             <a :href="gene2pheno(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on gene2phenotype in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on gene2pheno</span>
             </a>
           </li>
           <li>
             <a :href="dbd(gene.Gene)" rel="external noreferrer" target="_blank" title="View this gene on the Developmental Brain Disorder Genes Database in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on DBD</span>
             </a>
           </li>
           <li>
             <a :class="{ disabled: !gene.MimId }" :href="omimLink(gene.MimId)" rel="external noreferrer" target="_blank" title="View this gene on OMIM in a new tab">
+              <i class="el-icon-link"></i>
               <span>See on OMIM</span>
             </a>
           </li>
