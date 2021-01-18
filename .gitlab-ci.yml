@@ -72,7 +72,7 @@ deploy-prod:
   extends: .deploy
   variables:
     NAMESPACE: ${CI_PROJECT_NAME}-prod
-    URL: genevo.pasteur.cloud
+    URL: genevo.pasteur.fr
     INGRESS_CLASS: external
   environment:
     name: k8sprod-02-${CI_PROJECT_NAME}
