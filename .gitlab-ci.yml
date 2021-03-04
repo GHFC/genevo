@@ -53,20 +53,6 @@ fetch-mongo:
     - kubectl patch deployment genevo -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
 
 # Deploy on Kubernetes
-deploy-dev:
-  stage: deploy
-  extends: .deploy
-  variables:
-    NAMESPACE: ${CI_PROJECT_NAME}-dev
-    URL: genevo.dev.pasteur.cloud
-    INGRESS_CLASS: internal
-  environment:
-    name: k8sdev-01-${CI_PROJECT_NAME}
-    url: https://${CI_PROJECT_NAME}-dev.pasteur.cloud
-  only:
-    refs:
-      - dev
-
 deploy-prod:
   stage: deploy
   extends: .deploy
