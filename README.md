@@ -2,7 +2,7 @@
 
 The website of the [GenEvo project](https://research.pasteur.fr/fr/project/genevo-project), conducted at the [Institut Pasteur](https://www.pasteur.fr/en) of Paris.
 
-Visit it here: http://genevo.pasteur.fr/
+Visit it here: https://genevo.pasteur.fr/
 
 The related Article in Genome reasearch: https://doi.org/10.1101/gr.262113.120
 
