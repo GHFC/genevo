@@ -98,8 +98,7 @@ module.exports = {
       APP_NAME: JSON.stringify(config.APP_NAME),
       APP_PUBLIC_PATH: JSON.stringify(config.APP_PUBLIC_PATH),
       APP_VERSION: JSON.stringify(config.APP_VERSION),
-      APP_DESCRIPTION: JSON.stringify(config.APP_DESCRIPTION),
-      APP_CONTACT: JSON.stringify(config.APP_CONTACT)
+      APP_DESCRIPTION: JSON.stringify(config.APP_DESCRIPTION)
     }),
 
     // Remove dist folder after each reload to avoid issues
