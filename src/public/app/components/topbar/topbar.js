@@ -18,7 +18,7 @@
 // Component handling the top bar
 // =========================================================================
 
-/* global APP_DESCRIPTION, APP_CONTACT */
+/* global APP_DESCRIPTION */
 
 const topbar = {
   name: 'topbar',
@@ -26,8 +26,7 @@ const topbar = {
     return {
       title: 'GenEvo',
       subtitle: 'Track and explore the evolution of protein-coding genes in primates',
-      description: APP_DESCRIPTION,
-      contact: APP_CONTACT
+      description: APP_DESCRIPTION
     }
   },
   computed: {
