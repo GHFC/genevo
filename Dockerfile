@@ -2,7 +2,7 @@
 FROM node:12.19 AS builder
 WORKDIR /usr/src/build
 COPY . .
-RUN npm ci && npm run build-front
+RUN npm ci && npm run build
 
 # Second stage to setup the container
 FROM node:12.19
