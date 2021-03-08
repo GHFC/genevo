@@ -21,6 +21,7 @@
 const alphanumSort = require('../utils/alphanum-sort')
 const cast = require('../utils/cast')
 const log = require('../utils/logger')
+const fieldsToSkip = require('../utils/fields-to-skip')
 
 // =========================================================================
 
@@ -31,7 +32,7 @@ module.exports = function (req, res) {
   var geneList = [] // List of gene names
   var exactMatch = cast(req.query.exactMatch) // Match exactly the terms or not
   var orthologs = cast(req.query.orthologs) // Return only the 1-to-1 orthologs genes
-  var fields = { _id: 0 } // Do not keep the _id field in the results
+  var fields = fieldsToSkip // Do not keep the _id field nor the lists fields in the results
 
   // Split the request terms for the database query
   if (req.query.request) {
