@@ -22,7 +22,6 @@ export default {
   Evolution: {
     'Evolution#Positive': 'Positive',
     'Evolution#Negative': 'Negative',
-    'Evolution#Neutral': 'Neutral',
     'Evolution#Brain_structures_positive': 'Brain structures positive',
     'Evolution#Brain_structures_negative': 'Brain structures negative',
     'Evolution#Brain_structures_neutral': 'Brain structures neutral',
