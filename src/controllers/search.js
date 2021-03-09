@@ -18,7 +18,6 @@
 // Search the database for one or many genes
 // =========================================================================
 
-const alphanumSort = require('../utils/alphanum-sort')
 const cast = require('../utils/cast')
 const log = require('../utils/logger')
 const fieldsToSkip = require('../utils/fields-to-skip')
@@ -88,6 +87,6 @@ module.exports = function (req, res) {
         log.error(req.ip + ' Error during the request: ' + err.message)
         res.status(500).send(err.message)
       }
-      res.status(200).send(docs.sort(alphanumSort))
+      res.status(200).send(docs)
     })
 }

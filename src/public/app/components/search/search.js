@@ -22,12 +22,14 @@ import presetLists from './gene-lists.js'
 import rawColumns from './raw-columns.js'
 import flattenJSON from '../../mixins/flatten-json.js'
 import jsonToTSV from '../../mixins/json-to-tsv.js'
+import alphanumSort from '../../mixins/alphanum-sort'
 
 // =========================================================================
 
 const search = {
   name: 'search',
   mixins: [
+    alphanumSort,
     flattenJSON,
     jsonToTSV
   ],
@@ -85,7 +87,7 @@ const search = {
       }
 
       this.$resources.search(params).then((response) => {
-        this.$store.commit('setGenes', response.data)
+        this.$store.commit('setGenes', response.data.sort(this.alphanumSort))
 
         if (!response.data.length) this.$store.commit('setNoResults', true)
         else this.$store.commit('setNoResults', false)
